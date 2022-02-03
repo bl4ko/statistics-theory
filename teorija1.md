@@ -287,16 +287,18 @@
   - potem $\Gamma(k, \lambda)= X_1+X_2+\dots+X_k$
 - `slika, zaloga vrednosti, gostota verjetnosti in kako pridemo do zgornjih primerov iz Gama porazdelitve`
   - $p(x)=\Bigg\{\begin{matrix}\frac{\lambda^k}{\Gamma(k)}x^{k-1}+e^{-\lambda x}, && x > 0 \\ 0, && sicer \end{matrix}$
-  - Z_X = $\mathbb{R}^+$
+  - $Z_X$ = $\mathbb{R}^+$
 - `Gama funkcija (definicija, rekurzija in nekatere vrednosti, tudi za 1/2)`
   - `Funkcijo gama` definiramo z dolocenim integralom
     $$\Gamma (z)=\int\limits_0^\infty t^{z-1} e^{-t}dt$$
   - $\Gamma(1)=1$
   - $\Gamma(\frac{1}{2})=\sqrt{\pi}$
-  - `Izrazena rekurzivno` (prek per partes): $\Gamma(x)=x(x-1)\Gamma(x-1)$
+  - `Izrazena rekurzivno` (prek per partes): $\Gamma(x)=(x-1)\Gamma(x-1)$
   - Za naravno stevilo dobimo tako $\Gamma(n)=(n-1)!$
 - `Pricakovana vrednost in disperzija`
   - $E(X)=\frac{k}{\lambda}$
   - $D(X)=\frac{k}{\lambda^2}$
 - `Uporaba hi-kvadrat porazdelitve`
+  - Hi-kvadrat je poseben primer gama porazdeliteve
+  - $\chi^2 (n) = \Gamma(\frac{n}{2}, \frac{1}{2})$
 - `Dedna lastnost gama porazdelitve, skica dokaza za aditivnost, tj. Γ(k, λ) + Γ(h, λ) = Γ(k + h, λ)`
