@@ -3,39 +3,87 @@
 ## 1. Pricakovana vrednost slucajne spremenljivke (matematicno upanje)
 
 - `primer: npr. igralna kocka (3.5) ali binomska (np)`
+  - $X\sim \begin{pmatrix}1 && 2 && 3 && 4 && 5 && 6 \\ \frac{1}{6} &&  \frac{1}{6} && \frac{1}{6} && \frac{1}{6} && \frac{1}{6} && \frac{1}{6}\end{pmatrix}$
+  - $E(X)=\sum\limits_{i=1}^6 x_i \cdot p_i = 1\cdot \frac{1}{6}+2\cdot \frac{1}{6}+\cdots + 6\cdot \frac{1}{6}=3.5$
+
+<div align="center">
+
+| Porazdelitev          | E(X)                |
+| --------------------- | ------------------- |
+| $B(p)$                | $p$                 |
+| $B(n,p)$              | $np$                |
+| $G(p)$                | $\frac{1}{p}$       |
+| $P(n,p)$              | $\frac{n}{p}$       |
+| $H(R,B,n)$            | $\frac{nR}{R+B}$    |
+| $E([a,b])$            | $\frac{a+b}{2}$     |
+| $P(\lambda)$          | $\lambda$           |
+| $\text{Exp}(\lambda)$ | $\frac{1}{\lambda}$ |
+| $\Gamma(n,\lambda)$   | $\frac{n}{\lambda}$ |
+| $N(\mu, \sigma)$      | $\mu$               |
+| $\chi^2(n)$           | $n$                 |
+
+</div>
+
 - `motivacija za definicijo (utezeno povprecje), tj. tezisce`
-  - = povprecje vrednosti diskretne spremenljivke (verjetnost \* vrednost)
+  - povprecje vrednosti diskretne spremenljivke (verjetnost \* vrednost)
+  - predstavlja $\mu$ pri CLI
     $$E(X)=\sum\limits^n_{i=1}x_i \cdot p_i$$
 - `definicija za diskretne slucajne spremenljivke (kdaj obstaja)`
   - diskretan slucjan spremenljivka je slucajna spremenljivka, ki ima stevno zalogo vrednosti
+  - $E(X)=\sum\limits^n_{i=1}x_i \cdot p_i$
+  - **pogoj** $\sum\limits^n_{i=1} |x_i| \cdot p_i < \infty$
 - `definicija za zvezne slucajne spremenljivke (kdaj obstaja)`
   - zvezna slucajna spremenljivka je slucajna spremenljivaka ki lahko zavzameo katerkoli vrednost iz nekega intervala
-  - $E(X) = \int\limits_{-\infty}^{\infty} x\cdot p_X dx$
+  - $E(X) = \int\limits_{-\infty}^{\infty} x\cdot p_X(x) dx$
+  - **pogoj**: $\int\limits_{-\infty}^{\infty} |x|p_X(x)dx < \infty$
 - `primer slucajne spremenljivke za katero ne obstaja E(X)`
   - $X\sim p(x) = \frac{1}{\pi (1+x^2)}$ (Caucheyeva porazdelitev)
 - `lastnosti: linearnost, z dokazom za homogenost`
-
   - **linearnost**: $E(aX+bY)=aE(x)+bE(Y)$
   - **homogenost**: $E(aX)=aE(X)$: dokaz:
     - E(X) je definirana kot povprecje diskretnih spremenljivk, ce vse to pomnozis s konstanto se mnozi tudi povprecje
-
+    - homogenost in linearnost **integriranja** ter **vsote** (po definiciji)
 - `Skica dokaz aditivnosti E(X+Y) = E(X)+E(Y) = ali Trditev 7.1: E(|XY|) ≤ √E(X2)E(Y 2)`
-  // TODO
+  - skripta str 90 // TODO
 
 ## 2. Disperzija (razprsenost oz. varianca) slucajne spremenljivke, odklon in standardizacija
 
 - `primeri: npr. binomska (np(1 − p)), enakomerna (b − a)2/12`
+<div align="center">
+
+| porazdelitev          | D(X)                                      |
+| --------------------- | ----------------------------------------- |
+| $B(p)$                | $p(1-p)$                                  |
+| $B(n,p)$              | $np(1-p)$                                 |
+| $G(p)$                | $\frac{1-p}{p^2}$                         |
+| $P(n,p)$              | $\frac{n(1-p)}{p^2}$                      |
+| $H(R,B,n)$            | $\frac{nRB\cdot (R+B-n)}{(R+B)^2(R+B-1)}$ |
+| $P(\lambda)$          | $\lambda$                                 |
+| $\text{Exp}(\lambda)$ | $\frac{1}{\lambda^2}$                     |
+| $\Gamma(n,\lambda)$   | $\frac{n}{\lambda^2}$                     |
+| $E([a,b])$            | $\frac{(b-a)^2}{12}$                      |
+| $\chi^2(n)$           | $2n$                                      |
+
+</div>
+
 - `definicija s pricakovano vrednostjo in obstoj`
-  - **Definicija**: $D(X) = E((X-E(X))^2)=E(X^2)-E^2(X)$
-  - $D(X)\geq 0$, ce je neskoncna neobstaja
+  - **Definicija**: $D(X) = E(X-E(X))^2=E(X^2)-E^2(X)$
+  - $D(X)\geq 0$
+  - **Pogoj**: nesme biti neskoncna
 - `D(X) = 0 ⇐⇒ X je konstanta`
+  - $D(X)=E(X-E(X))^2=E(X-X)^2=E(0)=0$
   - Torej ce je npr $P(X=a)=c$, Bo odklon vseh ostalih posameznih vzorcev od povprecja = 0;
 - `lastnosti (aditivnost za neodvisni slucajni spremenljivki)`
   - Aditivnost disperzije: $D(X+Y)=D(X)+D(Y)+2 \text{Cov}(X,Y)$
     - ce sta X in Y neodvisni: $D(X+Y)=D(X)+D(Y)$
 - `Standardizacija, slucajne spremenljivke in njena pricakovana vrednost oz. odklon`
+  - Slucajno spremenljiko X **standardiziramo** s transformacijo
+    $$X_s=\frac{X-\mu}{\sigma}$$
+    - $E(X)=\mu$ in $D(X)=\sigma^2$
+  - **Velja**:
+    - $E(X_s)=E(\frac{X-\mu}{\sigma})=\frac{E(X-\mu)}{\sigma}=\frac{\mu-\mu}{\sigma}=0$
+    - $D(X_s)=D(\frac{X-\mu}{\sigma})=\frac{D(X-\mu)}{\sigma^2}=\frac{\sigma^2+0}{\sigma^2}=1$
   - Standardizacija slucajne spremenljivke povzroci da vsaka spr. enako vpliva na pricakovano vrednost (npr. ce smo neke rezultate zmerili z razlicinimi merili, to nam pomaga za primerjavao razlicnih tipov spremenljivk)
-  - $X_s=\frac{X-\mu}{\sigma}$, $\mu=E(X)$, $\sigma=\sqrt{D(X)}$
 - `Skica dokaza zveze “kosinusnu izrek”`
   - TODO
 
@@ -44,7 +92,7 @@
 - `meri algebraicno povezanost dveh stevilskih slucajnih spremenljivk`
   - predstavlja mero povezanosti med dvema spremenljivkama
   <p align="center"><img src="./images/korelacija.png" width="70%"></p>
-- `definicij korelacije in njen obstoj (CS E(|XY |) ≤ √E(X2)E(Y 2))`
+- `definicij korelacije in njen obstoj (CS E(|XY|) ≤ √E(X2)E(Y2))`
 - `lastnosti korelacije`
   - $r(X,Y)=0\Leftrightarrow$ X in Y nekorelirani
   - $r(X,Y)=\pm 1 \Leftrightarrow$ X in Y sta v linearni zvezi
