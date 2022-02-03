@@ -1,0 +1,22 @@
+\section{Testiranje domneve O $\mu$}
+Naj bo $(X_1,...,X_n)$ enostavni slucajni vzorec.\\
+Testiramo $H_0:\mu=\mu_0$ ($\mu_0$ je predpostavljena vrednost) proti eni od alternativnih domnev\\
+Predpostavka: slucajna spremenljivka X je normalno porazdeljena ali je vzorec dovolj velik (za uporabo CLI).
+\begin{enumerate}
+    \item $H_1:\mu \neq \mu_0$
+    \item $H_1:\mu < \mu_0$
+    \item $H_1:\mu > \mu_0$
+\end{enumerate}
+
+Uporabimo testno statistiko $$Z=\frac{\overline{X}-\mu_0}{\sigma}\sqrt{n}$$
+$Z\sim N(0,1)$\\
+Kriticno obmocje K\\
+\begin{tabular}{|c|c|c|}
+    \hline
+    $H_1$ & K & c \\
+    \hline
+    $\mu\neq \mu_0$ & $|Z|\ge c$ & $F^{-1}(1-\frac{\alpha}{2})$ \\
+    $\mu < \mu_0$ & $|Z|\le c$ & $F^{-1}(\alpha)=-F^{-1}(1-\alpha)$ \\
+    $\mu > \mu_0$ & $|Z|\ge c$ & $F^{-1}(1-\alpha)$ \\
+    \hline
+\end{tabular}

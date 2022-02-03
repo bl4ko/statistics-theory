@@ -1,0 +1,61 @@
+\section{Kombinatorika}
+
+\subsection*{Pravilo produkta}
+Denimo da izbiranje poteka v k zaporednih korakih. Na prvem koraku izbiramo med $n_1$
+moznostmi, \underline{in} nato na drugem med $n_2$ moznostmi, ..., \underline{in} nato
+na k-tem koraku med $n_k$ moznostmi. Na vsakem koraku izbiranja naj bo stevilo moznosti,
+neodvsino od izbranih moznosti na prejsnih korakih. Stevilo vseh moznih izborov je 
+tedaj enako:\\
+$n_1\cdot n_2\cdot n_3\cdot ...\cdot n_k$
+
+\subsection*{Pravilo vsote}
+Kadar se pri izbiranju odlocamo za eno od $n_1$ moznosti iz prve mnozice, \underline{ali}
+za eno od $n_2$ moznosti iz druge mnozice, ..., \underline{ali} za eno od $n_k$ 
+moznosti iz k-te mnozice, in so te mnozice paroma disjunktne je stevilo vseh moznih
+izidov enako:\\
+$n_1+n_2+n_3+...+n_k$
+
+\subsection*{Pravilo komplementa}
+Ce je vseh moznosti $n$ in je $s$ takih, ki ne ustrezajo pogojem, potem je moznosti:\\
+$d=n-s$\\
+
+
+\subsection*{Permutacije brez ponavljanja}
+so razporeditve $n$ razlicnih elementov na $\text{n prostih mest}$. Vrstni red elementov
+\underline{je} pomemben. Stevilo vseh takih razporeditev je:\\
+$n!=n\cdot (n-1)\cdot (n-2)\cdot ... \cdot 2\cdot 1$
+
+\subsection*{Variacije brez ponavljanja}
+Razporeditev $n$ razlicnih elementov na $\text{k prostih mest}$, vrstni red 
+\underline{je} pomemben.
+$\frac{n!}{(n-k)!}=n\cdot (n-1)\cdot (n-2)\cdot ... \cdot (n-k+1)$\\
+
+\subsection*{Permutacije s ponavlanjem}
+so razporeditve $n$ ne nujno razlicnih elementov na n prostih mest. Vrstni red
+\underline{je} pomemben. Ce lahko elemente razdelimo v m skupin med sabo enakih elementov
+, in ce je v prvi taki skupini $k_1$ enakih elementov, v drugi pa $k_2$ enakih elementov,
+..., v m-ti pa $k_m$ enakih elementov, potem je stevilo vseh takih razporeditev:\\
+$\binom{n}{k_1,k_2,...,k_m}=\frac{n!}{k_1!\cdot k_2!\cdot ...\cdot k_m!}$
+
+\subsection*{Variacije s ponavlanjem}
+so razporeditve n razlicnih elementov na k prostih mest. Vrstni red \underline{je} 
+pomemben. Pri tem se lahko element dolocene vrste v razporeditvi pojavi poljubno
+mnogokrat. Stevilo vseh takih razporeditev je:\\
+$n^k=n\cdot n\cdot n\cdot ...\cdot n$
+
+\subsection*{Kombinacije brez ponavljanja}
+so izbire k elemntov izmed n razlicnih elementov, kjer lahko vsak element izberemo
+le enkrat. Vrstni red izbir \underline{ni} pomemben. Stevilo kombinacij brez 
+ponavljanja je:\\
+$\binom{n}{k}=\frac{n!}{k!(n-k)!}$
+
+\subsection*{Pravilo kvocienta (vrtiljak)}
+Ce imamo n objektov, ki jih grupiramo v skupine velikosti k, za katere velja
+, da objektov znotraj iste skupine ne locimo, objekte iz dveh razlicnih skupin pa
+razlikujemo, potem je razlicnih razredov objektov $\frac{n}{k}$
+
+\subsection*{Kombinacije s ponavljanjem}
+so izbire k elementov izmed n razlicnih elementov (vrstni red \underline{ni} pomemben)
+, kjer lahko vsak element izberemo poljubnokrat. Stevilo kombinacij s ponavljanjem
+je:\\
+$(\binom{n}{k})=\binom{n+k-1}{k}$

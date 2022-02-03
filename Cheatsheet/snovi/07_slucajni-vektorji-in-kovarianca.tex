@@ -1,0 +1,89 @@
+\section{Vektorji}
+
+\subsection{Diskretni vekotor}
+Porazdelitev $(X,Y)$ lahko podamo na dva enakovredna načina, in sicer\\
+\textbf{1. Porazdelitveno tabelo}
+$$(X,Y)\sim\begin{array}{|c|ccccc|c|}
+\hline X\backslash Y& y_1	& y_2 & \ldots & y_m& \ldots& X	\\[-2pt]\hline
+x_1	&     p_{11}& p_{12}& \ldots & p_{1m}& \ldots&p_1\\[-2pt]
+x_2	&     p_{21}& p_{22}& \ldots & p_{2m}& \ldots&p_2\\[-2pt]
+\vdots & 	\vdots   & \vdots & \vdots & \vdots & \vdots&\vdots \\[-2pt]
+x_n	&     p_{n1}&   p_{n2}&  \ldots & p_{nm} & \ldots&p_n\\[-2pt]
+\vdots & 	\vdots   & \vdots & \vdots & \vdots & \vdots&\vdots \\[-2pt]
+\hline
+Y & q_1 & q_2 & \ldots & q_m &\ldots& 1\\[-2pt] 
+\hline
+\end{array}$$
+pri čemer je
+$0\!\leq\!p_{ij}\!\leq\!1$, 
+$\displaystyle\sum_{i=1}^{\infty}\sum_{j=1}^{\infty} p_{ij}\!=\!1$,
+$\displaystyle\sum_{j=1}^\infty p_{ij}=p_i$ za vsak $i\in \mathbb{N}$
+in 
+$\displaystyle\sum_{i=1}^\infty p_{ij}=q_j$ za vsak $j\in \mathbb{N}$\\
+\textbf{2. Porazdelitveno funkcijo} \\
+$F_{X,Y}(x,y) = P(X\!\leq\!x, Y\!\leq\!y).$\\
+$\displaystyle F_X(x,y) = \sum_{i=1}^{\infty}\sum_{j=1}^{\infty} p_{ij} \cdot I_{[x_i,\infty)}(x) I_{[y_j,\infty)}(y)$\\
+$I_{[x_i,\infty)}(x)=\left\{\begin{array}{ll}1, & x_i\leq x, \\ 0, & \text{sicer,}\end{array}\right.\quad$\\
+$I_{[y_j,\infty)}(y)=\left\{\begin{array}{ll}1, & y_j\leq y, \\ 0, & \text{sicer.}\end{array}\right.$\\
+\textbf{Robne porazdelitve}\\
+$P(X=x_i)=\sum\limits_{j=1}^\infty p_{ij}$\\
+$P(Y=y_i)=\sum\limits_{i=1}^\infty p_{ij}$\\
+
+
+
+
+
+\subsection{Neodvisnost spremenljivk X in Y}
+Ce za $\forall$ x,y velja:\\
+$P(X=x, Y=y)=P(X=x)P(Y=y)$
+
+
+\subsection{Zvezni vektor}
+\begin{center}
+Naj bosta $X, Y$ zvezni slučajni spremenljivki. Par $(X,Y)$ je \textbf{zvezni slučajni vektor}, če obstaja integrabilna funkcija $p_{X\!,Y}:\mathbb{R}^2\to \mathbb{R}$, tako da za vsak par $(x,y)\in \mathbb{R}^2$ velja
+    $$F_{X,Y}(x,y) = P(X\leq x, Y\leq y)= \int_{-\infty}^x \int_{-\infty}^y 
+        p_{X\!,Y}(x,y)\, \mathrm{d}x\, \mathrm{d}y.$$
+Funkciji $p_{X,Y}$ pravimo \textbf{(dvorazse\v zna) gostota verjetnosti},
+funkciji $F_{X,Y}$ pa \textbf{porazdelitvena funkcija}.
+Velja 
+    $$\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}p_{X,Y}(x,y)
+        \text{d}x\text{d}y\!=\!1.$$
+\textbf{Robni gostoti} sta
+    $$p_X(x) = \int_{-\infty}^{\infty} p_{X\!,Y}(x,y)\, \mathrm{d}y \text{ \;\;in\;\; } 
+    p_Y(y) = \int_{-\infty}^{\infty} p_{X\!,Y} (x,y)\, \mathrm{d}x.$$
+\end{center}
+    
+
+\subsection{Neodvisnost spremenljivk X in Y}
+Ce za $\forall$ x,y $X\leq x$ in $Y\leq y$\\
+$p_{X,Y}(x,y)=p_X(x)p_Y(y)$
+
+
+\subsection{Matematicno upanje vektorja}
+\textbf{diskretni slucajni vektor}\\
+$E(f(X,Y))=\sum\limits_{i=1}^\infty\sum\limits_{j=1}^\infty f(x_i,y_j)P(X=x_i, Y=y_i)$\\
+\textbf{zvezni slucajni vektor}\\
+$E(f(X,Y))=\int\limits_{-\infty}^{\infty}\int\limits_{-\infty}^{\infty}f(x,y)p_{X,Y}(x,y) dxdy$\\
+
+
+\subsection{neodivsnot}
+Ce sta X,Y neodvisni\\
+$E(XY)=E(X)E(Y)$\\
+
+\subsection{Kovarianca slucajnih spremenljivk}
+$\text{Cov}(X,Y)=E((X-E(X))(Y-E(Y)))=E(XY)-E(X)E(Y)$\\
+$\text{Cov}(X,Y)=0\Leftrightarrow X\text{ neodvisen od }Y$\\
+$\text{Cov}(aX,bY)=ab\text{Cov}(X,Y)$\\
+$\text{Cov}(X+a,Y+b)=\text{Cov}(X,Y)$\\
+$\text{Cov}(aX+bY,Z)=a\text{Cov}(X,Z)+b\text{Cov}(Y,Z)$\\
+$\text{Cov}(X,Y)=\text{Cov}(Y,X)$\\
+$|\text{Cov}(X,Y)|\leq\sqrt{D(X)D(Y)}$\\
+
+\subsection{Korelacijski koeficient}
+$r(X,Y)=\frac{\text{Cov}(X,Y)}{\sigma(X)\sigma(Y)}$\\
+$r(X,Y)=\frac{E(XY)-E(X)E(Y)}{\sqrt{E(X^2)-E(X)^2}\cdot\sqrt{E(Y^2)-E(Y)^2}}$\\
+$-1\leq r(X,Y)\leq 1$\\
+$\forall a,b,c,d \in \mathbb{R} \land  a,c\ge 0$\\
+$r(aX+b,cY+d)=r(X,Y)$\\
+X in Y sta \textbf{nekorelirani} $\Leftrightarrow r(X,Y)=0$\\
+X in Y v \textbf{linearni zvezi} $\Leftrightarrow r(X,Y)=\pm 1$\\

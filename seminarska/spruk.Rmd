@@ -1,0 +1,244 @@
+---
+header-includes:
+   - \usepackage[utf8]{inputenc}
+   - \usepackage[slovene]{babel}
+   
+output:
+  pdf_document: default
+  html_document: default
+  
+title: "Seminarska naloga iz linearne regresije"
+subtitle: "Verjetnost in statistika, FRI UNI 2021/22"
+author: "Nik Jan Špruk"
+date: "13. januar 2022"
+---
+
+
+# Linearna regresija: poraba goriva
+
+## 1. Opis podatkov
+
+Zbrali smo vzorec meritve hitrosti in zavorne poti na vzorcu 62 avtomobilov. Podatke smo zapisali v dokument, ki ima sta stolpca:
+\begin{enumerate}
+\item $hitrost$ je numerična zvezna spremenljivka, ki predstavlja hitrost avtomobila (v kilometrih na uro).
+\item $pot$ je numerična zvezna spremenljivka, ki predstavlja zavorno pot (v metrih).
+\end{enumerate}
+Baza podatkov se imenuje \emph{zavor.csv}. Najprej bomo prebrali podatke v R, in zatem pogledali strukturo podatkov
+
+```{r}
+zavor<-read.csv("zavor.csv", header=TRUE)
+str(zavor)
+
+hitrost <- zavor$hitrost
+pot <- zavor$pot
+sqrtPot <- sqrt(zavor$pot)
+```
+
+
+## 2. Opisna statistika
+
+Zdaj bomo izračunali opisno statistiko za naše podatke – povzetek s petimi števili (minimum, maksimum, prvi in tretji kvartil, mediano), vzorčni povprečji in vzorčna standardna odklona hitrosti in zavorne poti.
+
+```{r}
+summary(hitrost)
+sd(hitrost)
+
+```
+
+Opazimo, da hitrost vzorca avtomobilov varira od $6$ do $64$km/h, s povprečjem $30.39$ in standardnim odklonom $16.01368$ km/h.
+
+Ponovimo postopek računanja za vzorec zavorne poti.
+```{r}
+summary(pot)
+sd(pot)
+```
+Opazimo, da zavorna pot vzorca avtomobilov varira od $0.610$ do $42.060$ prevoženih metrov, s povprečjem $11.980$ in standardnim odklonom $10.17246$ m.
+
+Ponovimo postopek računanja za transformirano spremenljivko $\sqrt{pot}$.
+```{r}
+summary(sqrtPot)
+sd(sqrtPot)
+```
+Opazimo, da transformirana spremenljivka vzorca avtomobilov varira od $0.781$ do $6.485$ $\sqrt{m}$, s povprečjem $3.152$ in standardnim odklonom $1.442363$ $\sqrt{m}$.
+
+Razpon vrednosti hitrosti in zavorne poti nam pomaga pri izbiri mej na oseh razsevnega diagrama.
+
+## 3. Razsevni diagram in vzorčni koeficient korealcije
+
+Prikažimo dobljene podatke na razsevnem diagramu.
+
+```{r}
+par(las=1, cex=1.1, mar=c(4,4,2,2))
+plot(hitrost, pot, main="", xlim=c(0,65), ylim=c(0,45),
+xlab="Hitrost (km/h)", ylab="Zavorna pot (m)", lwd=2, axes=FALSE)
+axis(1,pos=0,at=seq(0,65,by=10),tcl=-0.2)
+axis(2,pos=0,at=seq(0,45,by=5),tcl=-0.2)
+arrows(x0=65,y0=0,x1=71,y1=0,length=0.1)
+arrows(x0=0,y0=45,x1=0,y1=46,length=0.1)
+```
+
+
+Podatki so prikazani na rasevnem diagramu.
+
+```{r}
+par(las=1, cex=1.1, mar=c(4,4,2,2))
+plot(hitrost, sqrtPot, main="", xlim=c(0,70), ylim=c(0,8),
+xlab="Hitrost (km/h)", ylab="Zavorna pot (m)", lwd=2, axes=FALSE)
+axis(1,pos=0,at=seq(0,70,by=10),tcl=-0.2)
+axis(2,pos=0,at=seq(0,8,by=1),tcl=-0.2)
+arrows(x0=70,y0=0,x1=71,y1=0,length=0.1)
+arrows(x0=0,y0=8,x1=0,y1=8.3,length=0.1)
+```
+Točke na razsevnem diagramu se nahajajo okoli namišljene premice, tako da linearni model zaenkrat izgleda kot primeren. Moč korelacije preverimo še z računanjem Pearsonovega koeficienta korelacije.
+
+
+```{r}
+(r<-cor(hitrost,pot))
+```
+```{r}
+(r<-cor(hitrost,sqrtPot))
+```
+
+Vrednost vzorčnega koeficienta korelacije je visoka ($r=0.9356374$), kar govori o visoki linearni povezanosti hitrosti avtomobilov in njihove zavorne poti.
+Koeficient korelacije je pozitiven, kar pomeni, da avtomobili pri večji hitrosti potrebujejo daljšo zavorno pot.
+Pri transformiranih podatkih opazimo povečanje koreliranosti podatkov ($r=0.9615461$).
+
+## 4. Formiranje linearnega regresijskega modela
+
+Formirajmo linearni regresijski model.
+```{r}
+(model<-lm(sqrtPot~hitrost,data=zavor))
+```
+
+Dobili smo ocenjeno regresijsko premico $\hat{y}=0.52000 - 0.08661$, oziroma oceni odseka in naklona sta enaki $\hat{a}= 0.52000$ in $\hat{b}=0.08661$. 
+
+## 5. Točke visokega vzvoda in osamelci
+
+Identificirajmo točke visokega vzvoda in osamelce. Vrednost $x$ je točka visokega vzvoda, če je njen vzvod večji od $\frac{4}{n}$. 
+
+```{r}
+zavor[hatvalues(model)>4/nrow(zavor),]
+```
+
+Odkrili smo 4 točke visokega vzvoda. 4 avtomobili imajo visoko hitrost nad 55 km/h. 
+
+Za podatke majhne in srednje velikosti vzorca je osamelec podatkovna točka, kateri ustreza standardizirani ostanek izven intervala $[-2, 2]$. 
+
+```{r}
+zavor[abs(rstandard(model))>2,]
+```
+Dve podatkovni točki sta osamelca in se nanašata na dva avtomobila z nenavadno dolžino zavorne poti glede na njuno hitrost.
+
+## 6. Preverjanje predpostavk linearnega regresijskega modela
+
+Predpostavke linearnega regresijskega modela bomo preverili s štirimi grafi, ki se imenujejo diagnostični grafi (ali grafi za diagnostiko modela). Če neke predpostavke modela niso izpolnjene, so lahko ocene neznanih parametrov, $p$-vrednost testa, intervali zaupanja in intervali predikcije netočni.
+
+<!-- S pomočjo parametra \emph{mfrow=c(2,2)} rišemo 4 grafe na eni sliki (2 vrstici in 2 stolpca). Grafe lahko dobimo z enim ukazom \emph{plot(model, which=1:4)}, vse ostale spremembe se nanašajo na nazive na grafu v slovenščini. Na prvem in tretjem grafu je narisana funkcija glajenja (označena z rdečo barvo), ki se lahko odstrani s pomočjo parametra \emph{add.smooth=FALSE}. -->
+
+```{r}
+par(mfrow=c(2,2),mar=c(4,3,2,1))
+plot(model,which=1,caption="",ann=FALSE)
+title(xlab=expression(italic(widehat(y)==widehat(a)+widehat(b)*x)),
+ylab="Ostanki",main="Linearnost modela")
+plot(model,which=2,caption="", ann=FALSE)
+title(xlab="Teoretični kvantili", ylab= "St. ostanki",
+main="Normalnost porazdelitve")
+plot(model,which=3,caption="",ann=FALSE)
+title(xlab=expression(italic(widehat(y)==widehat(a)+widehat(b)*x)),
+ylab=expression(sqrt(paste("|St. ostanki|"))), main="Homogenost variance")
+plot(model,which=4,caption="", ann=FALSE)
+title(xlab="Meritev",ylab="Cookova razdalja", main="Vpliv točk na model")
+```
+
+
+### 1) Graf za preverjanje linearnosti modela
+Validnost linearnega regresijskega modela lahko preverimo tako, da narišemo graf ostankov v odvisnosti od $x$ vrednosti ali od predvidenih vrednosti $\hat{y}$ = $\hat{a}x$ + $\hat{b}$ in preverimo, če obstaja kakšen vzorec. Če so točke dokaj enakomerno raztresene nad in pod premico $Ostanki = 0$ in ne moremo zaznati neke oblike, je linearni model validen. Če na grafu opazimo kakšen vzorec (npr. točke formirajo nelinearno funkcijo), nam sama oblika vzorca daje informacijo o funkciji od $x$, ki manjka v modelu.
+
+Za uporabljene podatke na grafu linearnosti modela ne opazimo vzorca ali manjkajoče funkcije in lahko zaključimo, da je linearni model validen. Točke na grafu ne izgledajo popolnoma naključno razporejene, opažamo večjo koncentracijo točk za predvidene vrednosti od 1 do 4, kar je prisotno zaradi originalnih vrednosti v vzorcu meritev hitrosti in zavorne poti avtomobilov (poglej razsevni diagram).
+
+### 2) Graf normalnosti porazdelitve naključnih napak
+Normalnost porazdelitve naključnih napak preverjamo preko grafa porazdelitve standardiziranih ostankov. Na $x$-osi Q - Q grafa normalne porazdelitve so podani teoretični kvantili, na $y$ - osi pa kvantili standardiziranih ostankov. Če dobljene točke na Q-Q grafu tvorijo premico (z manjšimi odstopanji), zaključimo, da je porazdelitev naključnih napak (vsaj približno) normalna.
+
+Za podatke o hitrosti in zavorni poti avtomobilov lahko zaključimo, da so naključne napake normalno porazdeljene (ni večjih odstopanj od premice, razen za 41., 34., in 55. podatkovno točko).
+
+### 3) Graf homogenosti variance
+Učinkovit graf za registriranje nekonstantne variance je graf korena standardiziranih ostankov v odvisnosti od $x$ ali od predvidenih vrednosti
+$\hat{y} = \hat{a}x + \hat{b}$. Če variabilnost korena standardiziranih ostankov narašča ali pada s povečanjem vrednosti $\hat{y}$, je to znak, da varianca naključnih napak ni konstantna. Pri naraščanju variance je graf pogosto oblike $\triangleleft$, in pri padanju variance oblike $\triangleright$. Pri ocenjevanju lahko pomaga funkcija glajenja, v primeru konstantne variance se pričakuje horizontalna črta, okoli katere so točke enakomerno razporejene.
+
+Za naš primer, točke na grafu sugerirajo, da ni naraščanja ali padanja variance. Ničelna domneva konstantne variance se lahko formalno preveri s Breusch-Paganovim testom.
+
+```{r}
+suppressWarnings(library(car))
+ncvTest(model)
+```
+Na osnovi rezultata Breusch-Paganovega testa (testna statistika $\Large \chi^{2}=2.474247$, $df = 1$, p-vrednost $p$ = 0.11572 > 0.05), ne zavrnemo ničelne domneve. Ni dovolj dokazov, da varianca naključnih napak ni homogena.
+
+### 4) Graf vpliva posameznih točk na model
+Vpliv $i$-te točke na linearni regresijski model merimo s Cookovo razdaljo $D_{i}$, $1\le i\le n$. Če $i$-ta točka ne vpliva močno na model, bo $D_i$ majhna vrednost.
+Če je $D_i \geq c$, kjer je $c = F_{2,n-2;0.5}$ mediana Fisherjeve porazdelitve z $2$ in $n- 2$ prostostnima stopnjama, $i$-ta točka močno vpliva na regresijski model.
+
+<!-- \begin{enumerate} -->
+<!-- \item Vprašajmo se, ali so ti podatki neobičajni ali drugačni od ostalih podatkov? Če je odgovor pritrdilen, jih lahko poskusimo odstraniti in konstruirati linearni model brez njih. -->
+<!-- \item Vprašajmo se, ali je linearni regresijski model validen za naše podatke? Mogoče podatkom boljše ustreza neki drugi model. Poskusimo konstruirati neki drugi model, ki vključuje še druge spremenljivke ali poskusimo s transformiranjem Y ali X. -->
+<!-- \end{enumerate} -->
+
+Na grafu vpliva točk na linearni regresijski model so vedno označene tri točke z najvišjo Cookovo
+razdaljo. Za naše podatke, to so 55., 59., in 60. podatkovne točka. Spomnimo se, da smo te točke identificirali kot osamelce.
+Zdaj poglejmo na razsevnem diagramu po čem so te tri točke drugačne od ostalih. Kodi za razsevni diagram dodamo če dve vrstici, s katerima bomo dodali ocenjeno regresijsko premico in pobarvali te tri točke.
+
+```{r, fig.align="center",out.width="90%"}
+par(las=1, mar=c(4,4,2,3))
+plot(hitrost, sqrtPot, main="", xlim=c(0,70), ylim=c(0,8),xlab=
+"Hitrost (km/h)", ylab="Zavorna pot (m)",lwd=2, axes=FALSE)
+axis(1,pos=0,at=seq(0,70,by=10),tcl=-0.2)
+axis(2,pos=0,at=seq(0,8,by=1),tcl=-0.2)
+arrows(x0=70,y0=0,x1=71,y1=0,length=0.1)
+arrows(x0=0,y0=8,x1=0,y1=8.3,length=0.1)
+abline(model,lwd=2)
+points(hitrost[c(55,59,60)],sqrtPot[c(55,59,60)],col="blue",pch=19)
+text(hitrost[c(55,59,60)],sqrtPot[c(55,59,60)]+c(0.2,0,0.1),labels=
+hitrost[c(55,59,60)],pos=3,cex=0.8)
+```
+
+
+Na razsevnem diagramu opazimo, da so vse tri točke najbolj oddaljene od ocenjene regresijske premice (oziroma jim ustrezajo največji ostanki). Lahko preverimo še, ali je njihov vpliv velik, oziroma ali je njihova Cookova razdalja večja ali enaka od mediane Fisherjeve porazdelitve z 2
+in 30 prostostnimi stopnjami.
+
+```{r}
+any(cooks.distance(model)[c(55,59,60)]>=qf(0.5,2,nrow(zavor)-2))
+```
+Nobena od teh točk nima velikega vpliva na linearni regresijski model, zato jih ni potrebno odstraniti.
+
+## 7. Testiranje linearnosti modela in koeficient determinacije
+Poglejmo R-jevo poročilo o modelu.
+```{r}
+summary(model)
+```
+Vrednost testne statistike za preverjanje linearnosti modela je enaka $t= 27.119$, s $df= 60$ prostostnimi stopnjami in s p-vrednostjo $p = 2\cdot 10^{-16}$, ki je manjša od dane stopnje značilnosti $0.05$. Na osnovi rezultatov t-testa zavrnemo ničelno domnevo $H_0 : b = 0$, za dano stopnjo značilnosti in dobljeni vzorec. Drugače rečeno, s formalnim statističnim testiranjem smo pritrdili, da linearni model ustreza podatkom.
+
+Koeficient determinacije je enak $R^2 = 0.9246$, kar pomeni, da $92\%$ variabilnosti zavorne poti pojasnjuje linearni regresijski model.
+
+## 8. Intervala zaupanja za naklon in odsek regresijske premice
+Izračunajmo $95\%$ interval zaupanja za neznani naklon in odsek regresijske premice.
+```{r}
+round(confint(model),3)
+```
+Interval zaupanja za odsek je enak $I_a = [0.301, 0.739]$ in interval zaupanja za naklon $I_b = [0.080, 0.093]$.
+
+## 9. Interval predikcije za vrednost $Y$ pri izbrani vrednosti $X$
+Pri predvidevanju dolžine zavorne poti nas zanima bodoča vrednost spremenljivke Y pri izbrani vrednosti spremenljivke $X = x_0$. Ne zanima nas le predvidena vrednost $\hat{y}=0.52000 - 0.08661$ zavorne poti avtomobilov z doloceno hitrostjo $x_0$, ampak želimo tudi oceniti spodnjo in zgornjo mejo, med katerima se  verjetno nahaja dolžina zavorne poti različnih avtomobilov teh hitrosti.
+```{r}
+xhitrost = data.frame(hitrost=c(20,40,60))
+predict(model, xhitrost, interval="predict")^2
+```
+Predvidena vrednost porabe goriva za avtomobil mase (na celi populaciji avtomobilov)
+\begin{enumerate}
+\item 20 km/h je 5.072153 m, s $95\%$ intervalom predikcije porabe goriva [2.085231, 9.365162],
+\item 40 km/h je 15.874536 m, s $95\%$ intervalom predikcije porabe goriva [10.090572, 22.963323],
+\item 60 km/h je 32.677551 m, s $95\%$ intervalom predikcije porabe goriva [23.903569, 42.820384]
+\end{enumerate}
+
+## 10. Zaključek
+Zanimala nas je funkcionalna odvisnost med hitrostjo avtomobilov in njihovo zavorno potjo, merjeno v metrih. Zbrali smo vzorec 62 avtomobilov, jim izmerili hitrost in zabeležili zavorno pot. Ugotovili smo, da je enostavni linearni model odvisnosti zavorne poti od hitrosti dober. Diagnostični grafi in statistični testi niso
+pokazali na težave z linearnim regresijskim modelom. Koeficient determinacije je $92\%$, kar pomeni, da tolikšen delež variabilnosti
+dolzine zavorne poti zajamemo z linearnim modelom. Napoved dolzine zavorne poti na osnovi njegove hitrosti je zadovoljiva, vendar bi vključevanje dodatnih neodvisnih spremenljivk zagotovo dala še boljši model in bolj zanesljivo napoved.

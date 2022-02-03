@@ -1,0 +1,98 @@
+\section{Zvezne slucajne spremenljivke}
+
+
+\subsection{Zvezna slucajna spremenljivka}
+Realna funkcija, za katero obstaja integrabilna funkcija $p_X:\mathbb{R}\rightarrow[0,\infty)$\\
+$F_X(x)=P(X\leq x)=\int^x_{-\infty}p_X(t)dt$\\
+$p_X(x)$ funkcija gostote verjetnosti\\
+$F_X(x)$ porazdelitvena funkcija\\
+$Z_X$ zaloga vrednosti (vse mozne X)\\
+$P(a<X<b)=\int^b_a p_X(x)dx\\=F_X(b)-F_X(a)$\\
+$\int^{\infty}_{-\infty}p_X(x)dx=1$\\
+
+
+\subsection{Enakomerna zvezna}
+$X\sim U[a,b]$
+\begin{itemize}[leftmargin=*]
+\item V poskusu so vsi izidi na intervalu $[a,b]$ enako verjetni.
+\item $\displaystyle p_X(x)=
+    \left\{\begin{array}{ll} 
+    \tfrac{1}{b-a},  &	x\in [a,b],\\
+    0,				&	\text{sicer},
+    \end{array}\right.$\\
+    $\displaystyle 	F_X(x)=
+    \left\{\begin{array}{ll} 
+    0,				&	x<a,\\
+    \tfrac{x-a}{b-a},  &	x\in [a,b],\\
+    1,				&	x>b.
+    \end{array}\right.$
+\item R: $p_X(x)=\text{dunif}(x,a,b)\\ F_X(x)=\text{punif}(x,a,b)$.
+\end{itemize}
+    
+
+
+\subsection{Eksponentna}
+$X\sim Exp(\lambda)$
+\begin{itemize}[leftmargin=*]
+    \item V povpre\v cju imamo na \v casovno enoto $\lambda$ ponovitev dogodka $A$, $X$ pa je \v cas med dvema zaporednima dogodkoma.
+    \item $\displaystyle p_X(x)=\left\{\begin{array}{ll} 
+    0,	&	x < 0, \\
+    \lambda\cdot e^{-\lambda x}, & x\geq 0,
+    \end{array}\right.$
+    \item $\displaystyle F_X(x)=
+    \left\{\begin{array}{ll} 
+    0,	&	x < 0, \\
+    1- e^{-\lambda x}, & x\geq 0.
+    \end{array}\right.$
+    \item R: $p_X(x)=\text{dexp}(x,\lambda)\\
+     F_X(x)=\text{pexp}(x,\lambda)$.
+\end{itemize}
+
+
+
+\subsection{Normalna}
+$X\sim N(\mu,\sigma)$
+\begin{itemize}[leftmargin=*]
+
+\item $\displaystyle p_X(x)=\tfrac{1}{\sigma\sqrt{2\pi}}\cdot
+e^{-\tfrac{(x-\mu)^2}{2\sigma^2}}$ za $x\in \mathbb{R}$.
+\item V primeru $\mu=0$ in $\sigma=1$ dobimo \textit{standardno normalno porazdelitev}.
+\item $P(a\leq X\leq b)=F_X(b)-F_X(a)=\phi(\frac{b-\mu}{\sigma})-\phi(\frac{a-\mu}{\sigma})$
+\item $F(-x)=1-F(x)$
+\item $P(\mu - \sigma\leq X \leq \mu + \sigma)=0.683$
+\item $P(\mu - 2\sigma\leq X \leq \mu + 2\sigma)=0.954$
+\item $P(\mu - 3\sigma\leq X \leq \mu + 3\sigma)=0.997$
+\item Lihi momenti $E(X^3)=E(X^5)=\dots=0$
+\item R: $p_X(x)=\text{dnorm}(x,\mu,\sigma)\\ F_X(x)=\text{pnorm}(x,\mu,\sigma)$.
+\end{itemize}
+
+
+
+\subsection{Gamma}
+$X\sim \Gamma(n,\lambda)$
+\begin{itemize}[leftmargin=*]
+\item  V povpre\v cju imamo na \v casovno enoto $\lambda$ ponovitev dogodka $A$, $X$ pa je \v cas med prvo in $(n+1)$. ponovitvijo dogodka $A$.
+\item $\displaystyle p_X(x)=
+\left\{\begin{array}{ll} 
+0,	&	x\leq 0,\\
+\tfrac{\lambda^n x^{n-1} e^{-\lambda x}}{\Gamma(n)}, & x>0.
+\end{array}\right.$
+\item R: $p_X(x)=\text{dgamma}(x,n,\lambda)\\
+ F_X(x)=\text{pgamma}(x,n,\lambda)$.
+\end{itemize}
+
+
+\subsection{Hi kvadrat}
+$X\sim \chi^2(n)=\Gamma\left(\tfrac{n}{2},\tfrac{1}{2}\right)$
+\begin{itemize}[leftmargin=*]
+\item Je vsota kvadratov $n$ neodvisnih standardnih normalnih slu\v cajnih spremenljivk.
+\item $\displaystyle p_X(x)=
+\left\{\begin{array}{ll} 
+0,	&	x\leq 0,\\
+\tfrac{x^{\tfrac{n}{2}-1} 
+e^{-\tfrac{x}{2}}}{2^{\tfrac{n}{2}}
+\cdot\Gamma\left(\tfrac{n}{2}\right)},
+	& x>0.
+\end{array}\right.$
+\item R: $p_X(x)=\text{dchisq}(x,n), F_X(x)=\text{pchisq}(x,n)$.
+\end{itemize}

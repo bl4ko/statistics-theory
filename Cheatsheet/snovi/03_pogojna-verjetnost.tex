@@ -1,0 +1,18 @@
+\section{Pogojna Verjetnost}
+\subsection{Pogojna verjetnost}
+$P(A\mid B)=\frac{P(A\cap B)}{P(B)}$\\
+$P(A\cap B)=P(A\mid B)P(B)$
+
+\subsection{Popolna verjetnost}
+$H_1$ ... $H_n$ so popolen sistem dogodkov ce:\\
+$\Omega = H_1 \cup H_2 \cup ... \cup H_n \text{ in } H_i \cap H_j = \emptyset$\\
+Sledi:\\
+$P(A)=P(A\cap H_1) + ... + P(A\cap H_n)$\\
+$P(A)=P(A|H_1)P(H_1)+...+P(A|H_n)P(H_n)$\\
+$P(A\mid H_2)=1-P(\overline{A}\mid H_2)$\\
+
+\subsection{Unija Hipotez}
+$P(A\mid H_1\cup H_2)=\\\frac{P(A|H_1)P(H_1)+P(A|H_2)P(H_2)}{P(H_1)+P(H_2)}$
+
+\subsection{Bayesova formula}
+$P(H_i\mid A)=\frac{P(H_i)P(A|H_i)}{P(A)}=\\=\frac{P(H_i)P(A|H_i)}{\Sigma^n_{k=1}P(H_k)P(A|H_k)}$\\

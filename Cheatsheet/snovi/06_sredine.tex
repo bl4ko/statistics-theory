@@ -1,0 +1,69 @@
+\section{Sredine}
+
+\subsection{Matematicno upanje}
+Diskretna spremenljivka\\
+$E(X)=\sum\limits_{x\in Z_x}x\cdot P(X=x)$\\
+Zvezna spremenljivka\\
+$E(X)=\int\limits_{-\infty}^{\infty}x\cdot p_X(x)dx$\\
+
+\subsection{Matematicno upanje funkcije}
+Diskretna:\\
+$E(f(X))=\sum\limits_{k=0}^\infty f(x_k)$\\
+Zvezna\\
+$E(f(X))=\int\limits_{-\infty}^\infty f(x)\cdot p_X(x)dx$\\
+
+\subsection{Matematicna upanja standardnih spremenljivk}
+\begin{center}
+\begin{TAB}(r,0cm,0cm)[3pt]{|c|c|}{|c|c|c|c|c|c|c|c|c|c|c|}
+        Porazdelitev & $E(X)$ \\
+        $B(p)$ & $p$ \\
+        $B(n,p)$ & $n\cdot p$ \\
+        $G(p)$ & $\frac{1}{p}$\\
+        $P(n,p)$ & $\frac{n}{p}$\\
+        $H(R,B,n)$ & $\frac{nR}{R+B}$\\
+        $P(\lambda)$ & $\lambda$ \\
+        $E([a,b])$ & $\frac{a+b}{2}$\\
+        $Exp(\lambda)$ & $\frac{1}{\lambda}$\\
+        $N(\mu,\sigma)$ & $\mu$\\
+        $\chi^2(n)$ & $n$\\
+\end{TAB}
+\end{center}
+
+\subsection{Linearnost slucajnih spremenljivk}
+Za vsaki slucajni spremenljivki X in Y (lahko sta odvisni, lahko je ena zvezna in druga diskretna)
+ter $a,b \in\mathbb{R} $ velja:\\
+$E(aX+bY)=aE(X)+bE(Y)$\\
+$E(4X+2)=4E(X)+E(2)$\\
+Ce sta X in Y nedovisni $\Rightarrow E(XY)=E(X)E(Y)$
+
+
+\subsection{Disperzija in standardni odklon}
+\textbf{Disperzija-Varianca}\\
+$D(X)=E((X-E(X))^2)=E(X^2)-E(X)^2$\\
+$D(aX+b)=a^2D(X)$\\
+$D(X+Y)=D(X)+D(Y)+2Cov(X,Y)$\\
+Neodvisne spremenljivke:\\
+$D(X+Y)=D(X)+D(Y)$\\
+$D(X-Y)=D(X+(-Y))=D(X)+D(Y)$\\
+\textbf{Standardni odklon}\\
+$\sigma (X)=\sqrt{D(X)}$\\
+
+
+\subsection{Disperzije standardnih spremenljivk}
+\begin{center}
+\begin{TAB}(r,0cm,0cm)[3pt]{|c|c|}{|c|c|c|c|c|c|c|c|c|c|c|}
+        Porazdelitev & $D(X)$ \\
+        $B(p)$ & $p(1-p)$ \\
+        $B(n,p)$ & $n\cdot p(1-p)$ \\
+        $G(p)$ & $\frac{1-p}{p^2}$\\
+        $P(n,p)$ & $\frac{n\cdot(1-p)}{p^2}$\\
+        $H(R,B,n)$ & $\frac{nRB\cdot(R+B-n)}{(R+B)^2(R+B-1)}$\\
+        $P(\lambda)$ & $\lambda$ \\
+        $D([a,b])$ & $\frac{(b-a)^2}{12}$\\
+        $Exp(\lambda)$ & $\frac{1}{\lambda^2}$\\
+        $N(\mu,\sigma)$ & $\sigma^2$\\
+        $\chi^2(n)$ & $2n$\\
+\end{TAB}
+\end{center}
+        
+

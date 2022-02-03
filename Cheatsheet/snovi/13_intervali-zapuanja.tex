@@ -1,0 +1,55 @@
+\section{Intervali zaupanja}
+Naj bo $(X_1, X_2, ..., X_n)$ prost slucajni vzorec.\\
+Za $(x_1, x_2, ..., x_n)$ oznacimo dobljeni vzorec konkretnih vrednosti.
+
+\begin{center}
+\scalebox{0.8}{
+\begin{tabular}{|c|c|c|}
+\hline
+Parameter & Cenilka $f(X_1,..,X_n)$ & Ocena $f(x_1,..x_n)$ \\
+\hline
+$\mu$ & $\overline{X}=\frac{1}{n}\sum\limits^n_{i=1}X_i$ & $\overline{x}=\frac{1}{n}\sum\limits^n_{i=1}x_i$\\
+\hline
+$\sigma$ & $S=\sqrt{\frac{1}{n-1}\sum\limits^n_{i=1}(X_i-\overline{X})^2}$ & $S=\sqrt{\frac{1}{n-1}\sum\limits^n_{i=1}(x_i-\overline{x})^2}$\\
+\hline
+p & $\overline{X}=\frac{1}{n}\sum\limits^n_{i=1}X_i$ & $\overline{X}=\frac{1}{n}\sum\limits^n_{i=1}X_i$ \\
+\hline
+\end{tabular}}
+\end{center}
+
+\subsection{Interval zaupanja za $\mu$ ($\sigma$ je znan)}
+Za konstrukcijo intervala zaupanja uporabljamo dejstvo\\
+$$\frac{\overline{X}-\mu}{\frac{\sigma}{\sqrt{n}}}\sim N(0,1)$$\\
+Slucajna spremenljivka X je normalno porazdeljena ali imamo dovolj veliki vzorec (za uporabo CLI).\\
+Z verjetnostjo $1-\alpha$ se $\mu$ nahaja v intervalu $$[\overline{X}-\epsilon, \overline{X}+\epsilon]$$\\
+Dobimo $$\epsilon=c\frac{\sigma}{\sqrt{n}}$$, kjer je $\underline{c=F^{-1}(1-\frac{\alpha}{2})}$ (kvantil standardne normalne porazdelitve)\\
+Interval zaupanja za $\mu$\\
+$$I_\mu = \left[\overline{X}-c\frac{\sigma}{\sqrt{n}},\overline{X}+c\frac{\sigma}{\sqrt{n}}\right]$$    
+
+
+\subsection{Interval zaupanja za $\mu$ ($\sigma$ ni znan)}
+Za konstrukcijo intervala zaupanja uporabimo dejstvo:\\
+$$\frac{\overline{X}-\mu}{\frac{S}{\sqrt{n}}}\sim t_{n-1}$$
+Slucajna spremenljivka X je normalno porazdeljena ali imamo dovolj veliki vzorec.\\
+Interval zaupanja za $\mu$ stopnjo zaupanja $1-\alpha$ je enak\\
+$$I_\mu = \left[ \overline{X}- c\frac{S}{\sqrt{n}}, \overline{X}+ c\frac{S}{\sqrt{n}}\right]$$\\
+kjer je $c=t_{n-1;1-\frac{\alpha}{2}}$ kvantil Studentovo porazdelitve z n-1 prostosnimi stopnjami.\\
+
+
+\subsection{Interval zaupanja za delez p}
+Za konstrukcijo intervala zaupanja uporabljamo dejstvo:\\
+$$\hat{p}\sim N(p, \sqrt{\frac{p(1-p)}{n}})$$
+p je delez populacije z doloceno lastnostjo.\\
+Naj bo $(X_1,...,X_n)$ enostavni slucajni vzorec, kjer je $X_i$ indikatorska slucajna spremenljivka.
+\begin{equation*}
+X_i \sim
+\begin{pmatrix}
+   0 & 1\\
+   1-p & p 
+\end{pmatrix}
+\end{equation*}
+Neznani delez p ocenjujemo z vzorcnim delezom.\\
+$$ \hat{p} \sim \overline{X}=\frac{1}{n}\sum\limits^n_{i=1} X_i$$
+$$I_p = \left[\hat{p}-c \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}, \hat{p} + c \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}\right]$$
+$c=F^{-1}(1-\frac{\alpha}{2})$
+

@@ -1,0 +1,33 @@
+\section{CLI}
+
+\subsection{Vsota normalnih spremenljivk}
+Naj bodo:\\
+$X_1\sim N(\mu_1,\sigma_1),\; X_2\sim N(\mu_2,\sigma_2),\; \ldots,\; X_n\sim N(\mu_n,\sigma_n)$\\
+\textbf{neodvisne}. Potem velja:\\
+$$X_1+X_2\ldots + X_n\sim N\left( \sum_{i=1}^n \mu_i, \sqrt{\sum_{i=1}^n \sigma_i^2}\right).$$
+
+\subsection{Centralni limitni izrek}
+Naj bodo $X_1$, ... $X_n$ \underline{neovidsne} in \underline{enako porazdeljene} slucajne spremenljivke s pricakovoano vrednostjo $\mu$ in standardnim odklonom $\sigma$.
+Potem za dovolj velik $n$ velja, da je porazdelitev vsote $S=X_1+X_2+\dots X_n$ priblizno normalna:\\
+$$S\sim N(n\cdot \mu, \sigma \cdot \sqrt{n})$$
+
+Pri aproksimaciji \underline{diskretne porazdelitve vsote} uporabljamo popravek za zvezonst $0.5$\\
+$P(a\leq S\leq b)\approx P(a-0.5\leq Y\leq b+0.5)=F(b+0.5)-F(a-0.5)$\\
+
+\subsection{Normalno porazdeljen vzorec}
+\textbf{Enostavni slucajni vzorec} je slucajni vekotor $(X_1,...,X_n)$ za katerega velja:
+\begin{itemize}[leftmargin=*]
+    \item vsi $X_i$ imajo enako porazdelitev
+    \item $X_i$ so med sabo neodvisni
+\end{itemize}
+\textbf{Vzorcno povprecje normalno porazdeljenega vzorca}
+Naj bo enostavni $(X_1,...,X_n)$ slucajni vzorec, kjer $X_i\sim N(\mu, \sigma)$. Potem je:\\
+$\overline{X}=\frac{1}{n}\sum\limits^n_{i=1} X_i$ tudi normalna\\
+$$\overline{X}\sim N(\mu, \frac{\sigma}{\sqrt{n}})$$
+
+
+\subsection{Centralni limitni izrek za vzorncno povprecje}
+Naj bo enostavni $(X_1,...,X_n)$ slucajni vzorec in:\\
+$E(X_i)=\mu$ ter  $D(X_i)=\sigma^2 < \infty$\\
+potem za dovolj veliki vzorec $n \ge 30$:\\
+$$\overline{X}\sim N (\mu, \frac{\sigma}{\sqrt{n}})$$
