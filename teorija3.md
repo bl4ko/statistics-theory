@@ -3,15 +3,7 @@
 ## 1. Vzorcenje in cenilke
 
 - `Definicija enostavnega slucajnega vzorca`
-  - Recimo da merimo spremenljivko X, tako da n-krat nakljucno izberemo neko enoto in na njej izmerimo vrednost spremenljivke X.
-    Postopku usterza slucajni vektor
-    $$(X_1,\dots,X_n)$$
-    vrednostim meritem $(x_1,...x_n)$ pa recemo **vzorec**. Stevilo n je velikost vzorca. Ker v vzorcu merimo isto
-    spremenljivko in posamezna meritev ne sme vplivate na ostale lahko predpostavimo:
-    - vsi cleni $X_i$ vektorja imajo isto porazdelitev, kot spremenljivka X
-    - cleni vektorja $X_i$ so med seboj neodvisni
-  - Takemu vzorcu recemo **enostavni slucajni vzorec**. Ce je populacija koncna lahko dobimo enostavni slucajni vzorec
-    tako, da slucajno izbiramo (z vracanjem) enote z enako verjetnostjo.
+  - Naj bo X slucajna spremenljivka. **Enostavni slucajni vzorec** je slucajni vektor
 - `Vzorcne sredinske mere (modus, mediana, povprecje)`
   - **vzorcni modus** je najpogostejsa vrednost
   - **vzorcna mediana** je srednja vrednost glede na urejenost

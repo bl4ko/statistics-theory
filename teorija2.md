@@ -25,24 +25,26 @@
 </div>
 
 - `motivacija za definicijo (utezeno povprecje), tj. tezisce`
-  - povprecje vrednosti diskretne spremenljivke (verjetnost \* vrednost)
+  - povprecje vrednosti diskretne spremenljivke (verjetnost $\cdot$ vrednost)
   - predstavlja $\mu$ pri CLI
     $$E(X)=\sum\limits^n_{i=1}x_i \cdot p_i$$
 - `definicija za diskretne slucajne spremenljivke (kdaj obstaja)`
-  - diskretan slucjan spremenljivka je slucajna spremenljivka, ki ima stevno zalogo vrednosti
+  - diskretna slucjna spremenljivka je slucajna spremenljivka, ki ima stevno zalogo vrednosti
   - $E(X)=\sum\limits^n_{i=1}x_i \cdot p_i$
   - **pogoj** $\sum\limits^n_{i=1} |x_i| \cdot p_i < \infty$
 - `definicija za zvezne slucajne spremenljivke (kdaj obstaja)`
-  - zvezna slucajna spremenljivka je slucajna spremenljivaka ki lahko zavzameo katerkoli vrednost iz nekega intervala
+  - zvezna slucajna spremenljivka je slucajna spremenljivka ki lahko zavzameo katerokoli vrednost iz nekega intervala
   - $E(X) = \int\limits_{-\infty}^{\infty} x\cdot p_X(x) dx$
   - **pogoj**: $\int\limits_{-\infty}^{\infty} |x|p_X(x)dx < \infty$
 - `primer slucajne spremenljivke za katero ne obstaja E(X)`
-  - $X\sim p(x) = \frac{1}{\pi (1+x^2)}$ (Caucheyeva porazdelitev)
+  - $X\sim p(x) = \frac{1}{\pi (1+x^2)}$ <u>**Caucheyeva porazdelitev**</u>
+  - $\int\limits_{-\infty}^{\infty} \frac{x}{\pi (1+x)^2} \rightarrow$ divergira
 - `lastnosti: linearnost, z dokazom za homogenost`
   - **linearnost**: $E(aX+bY)=aE(x)+bE(Y)$
-  - **homogenost**: $E(aX)=aE(X)$: dokaz:
+  - **homogenost**: $E(aX)=aE(X)$:
+    - `Dokaz`: homogenost in linearnost **integriranja** ter **vsote** (po definiciji)
+    - $\sum\limits_{i=1}^{\infty} a\cdot x_i p_{Xi}+ \sum\limits_{i=1}^{\infty} b\cdot y_i p_{Yi}=a\cdot b\sum\limits_{i=1}^{\infty} x_ip_{Xi}+y_ip_{Yi}$
     - E(X) je definirana kot povprecje diskretnih spremenljivk, ce vse to pomnozis s konstanto se mnozi tudi povprecje
-    - homogenost in linearnost **integriranja** ter **vsote** (po definiciji)
 - `Skica dokaz aditivnosti E(X+Y) = E(X)+E(Y) = ali Trditev 7.1: E(|XY|) ≤ √E(X2)E(Y 2)`
   - skripta str 90 // TODO
 
@@ -67,11 +69,11 @@
 </div>
 
 - `definicija s pricakovano vrednostjo in obstoj`
-  - **Definicija**: $D(X) = E(X-E(X))^2=E(X^2)-E^2(X)$
+  - **Definicija**: $D(X) = E((X-E(X))^2)=E(X^2)-E^2(X)$
   - $D(X)\geq 0$
   - **Pogoj**: nesme biti neskoncna
 - `D(X) = 0 ⇐⇒ X je konstanta`
-  - $D(X)=E(X-E(X))^2=E(X-X)^2=E(0)=0$
+  - $D(X)=E((X-E(X))^2)=E((X-X)^2)=E(0)=0$
   - Torej ce je npr $P(X=a)=c$, Bo odklon vseh ostalih posameznih vzorcev od povprecja = 0;
 - `lastnosti (aditivnost za neodvisni slucajni spremenljivki)`
   - Aditivnost disperzije: $D(X+Y)=D(X)+D(Y)+2 \text{Cov}(X,Y)$
@@ -91,13 +93,25 @@
 
 - `meri algebraicno povezanost dveh stevilskih slucajnih spremenljivk`
   - predstavlja mero povezanosti med dvema spremenljivkama
-  <p align="center"><img src="./images/korelacija.png" width="70%"></p>
-- `definicij korelacije in njen obstoj (CS E(|XY|) ≤ √E(X2)E(Y2))`
+    - os y predstavlja slucajno spremenljiko Y
+    - os x predstavlja slucajno spremenljivko X
+    <p align="center"><img src="./images/korelacija.png" width="80%"></p>
+- `definicija kovariance in njen obstoj (CS E(|XY|) ≤ √E(X2)E(Y2))`
+  - **Kovarianca** $\text{Cov}(X,Y)=E((X-E(X))\cdot(Y-E(Y)))=E(XY)-E(X)E(Y)$
+  - $|Cov(X,Y)| \leq \sqrt{D(X)D(Y)}=\sigma_X \sigma_Y$
+  - spremenljivki za katerei velja da:
+    - $\text{Cov}(X,Y) \neq 0$ sta **korelirani**
+      - $\text{Cov}(X,Y) > 0 \rightarrow X\uparrow Y\uparrow$ (pozitivno korelirani)
+      - $\text{Cov}(X,Y) < 0 \rightarrow X\uparrow Y\downarrow$ (negativno korelirani)
+    - $\text{Cov}(X,Y) = 0$ sta **nekorelirani**
+  - **Primer** $X \equiv$ telesna visina osebe, $Y\equiv$ teza osebe
+    - X in Y sta korelirani (pozitivno)
 - `lastnosti korelacije`
-  - $r(X,Y)=0\Leftrightarrow$ X in Y nekorelirani
-  - $r(X,Y)=\pm 1 \Leftrightarrow$ X in Y sta v linearni zvezi
+  - Ce sta slucajni spremenljivki X in Y neodvisni $\rightarrow E(XY)=E(X)E(Y) \rightarrow \text{Cov}(X,Y)=0$
 - `definicij korelacijskega koeficienta, vedno na [−1, 1]`
   - $r(X,Y)= \frac{\text{Cov}(X,Y)}{\sigma(X)\sigma(Y)}=\frac{E(XY)-E(X)E(Y)}{\sqrt{E(X^2)-E^2(X)}\cdot\sqrt{E(Y^2)-E^2(Y)}}$
+  - $r(X,Y)=0\Leftrightarrow$ X in Y nekorelirani
+  - $r(X,Y)=\pm 1 \Leftrightarrow$ X in Y sta v linearni zvezi
 - `kdaj lahko zakljucimo linearno odvisnost`
   - Dve slucajni spremenljivki sta **linearno odvisni** ce lahko eno zapisemo kot linearno funkcijo druge $\rightarrow$
     korelacijski koeficient med njima bo 1 ali -1.
@@ -107,6 +121,8 @@
   - Naj bo X stolpicni vektor $X=(X_1,X_2,...X_n)^T$ (kjer so $X_i$ slucajne spremenljivke)
   - Potem definiramo kovariancno matriko $K_{XX}$, $(i,j)$ element je (kovarianca):
     - $K_{X_iX_j}=\text{cov}[X_i, X_j]= E[(X_i-E[X_i])(X_j-E[X_j])]$
+  - Kovariancna matrika je **simetricna**
+  - Diagonalne vrednosti so **disperzije** $K_{X_iX_i}=E((X_i-E(X_i))(X_i-E(X_i)))=E((X_i-E(X_i))^2)=D(X_i)$
 - `povezava z regresijsko premico`
   - $K_{YX}K^{-1}_ {XX}$ je matrika regresijskih koeficientov
 
@@ -114,11 +130,11 @@
 
 - `definicija slucajnega vektorja (primer)`
   - Slucajni vektor je n-terica slucajnih spremenljiv $X=(X_1,....,X_n)$
-  - Primer slucajni vektor $(X_1, X_2)$:
+  - Primer slucajni vektor $X=(X_1, X_2)$:
     - $X_1$ stevilo metov ko pade sestica, pri 3 metih kocke
     - $X_2$ stevilo metov ko pade stevilo manjse od 3, pri 3 metih kocke
 - `definicija porazdelitvene funkcije (primer)`
-  - $F(x_1,x_2,...,x_n)=P(X_1 \leq x_1, \dots, X_n \leq  x_n)$
+  - $F(x_1,x_2,...,x_n)=P(X_1 \leq x_1, X_2\leq x_2, \dots, X_n \leq  x_n)$
   - Primer za metanje kock
     - $F_{X,Y}(x,y)=P(X\leq x, Y\leq y)= \sum\limits_{i=1}^{\infty}\sum\limits_{j=1}^{\infty}p_{ij}\cdot 0/1$ (1 ce je i <= x in j <= y 0 sicer
   - Za zvezni vektor uporabimo integrale
@@ -126,16 +142,22 @@
 - `verjetnostna in kontingencna tabela, verjetnostna funkcija (primer)`
 
   $$
-  \begin{array}{c|ccc|c}
-      X,Y & y_1 & \dots & y_m & X \\
+  \begin{array}{c|cccc|c}
+      X,Y & y_1 & y_2 & \dots & y_m & X \\
       \hline
-      x_1 & p_{11} & \dots & p_{1m} & p_1 \\
-      \dots & \dots & \dots  & \dots & \dots \\
-      x_n & p_{n1} & \dots & p_{nm} & p_n\\
+      x_1 & p_{11} & p_{12} & \dots & p_{1m} & p_1 \\
+      x_2 & p_{21} & p_{22} & \dots & p_{2m} & p_2 \\
+      \dots & \dots & \dots  & \dots & \dots & \dots \\
+      x_n & p_{n1} & p_{n2} & \dots  & p_{nm} & p_n \\
       \hline
-      Y & q_1 & \dots & q_m & 1
+      Y & q_1 & q_2 & \dots & q_m & 1
   \end{array}
   $$
+
+  - kjer:
+    - $P(X=x_i, Y=y_j)=p_{ij}$
+    - $P(X=x_i)=p_i$, **robna porazdelitev** za X
+    - $P(Y=y_i)= q_i$, **robna porazdelitev** za Y
 
 - `gostota verjetnosti (primer)`
   - funkciji $p_{X,Y}$ pravimo (dvorazsezna) gostota verjetnosti (doloca vektor zveznih spremenlijvk)
@@ -143,8 +165,8 @@
 - `robne porazdelitvene funkcije`
   - Funkciji $F_i(x_i)=F(\infty,\dots,\infty,x_i,\infty,\dots,\infty)$ pravimo **robna porazdelitvena funkcija** spremenljivke $X_i$
   - Npr za diskretne
-    - $P(X=x_i)=\sum\limits_{j=1}^\infty p_{ij}$
-    - $P(Y=y_i)=\sum\limits_{i=1}^{\infty}p_{ij}$
+    - $P(X=x_i)=\sum\limits_{j=1}^\infty p_{ji}$
+    - $P(Y=y_i)=\sum\limits_{j=1}^{\infty}p_{ij}$
 - `Ali se da iz verjetnostne funkcije slucajnega vektorja ugotoviti neodvisnost njegovih komponent?`
   - **DA**, npr za diskretni vektor:
     - $\forall x,y: P(X=x, Y=y)=P(X=x)P(Y=y)$
@@ -164,28 +186,57 @@
 
 ## 5. Polinomska porazdelitev
 
-- TODO
 - `primeri`
   - Imamo volitve z 3 izbirami (A,B,C). Kandidat A prejme 20% glasov, B 30%, C 50% glasov. Ce so glasovalci izbrani
     randomly, kaksna je verjetnost da bomo izmed 6 izbranih izbrali natanko enega volivca za kandidata A, dva za B in tri za C.
     $$X\sim P(6;0.2,0.3,0.5)$$
     $$P(A=1,B=2,C=3)=\frac{6!}{1!2!3!}(0.2^1)(0.3^2)(0.5^3)$$
-- `zaloga vrednosti`
+  - Iz kupa igralnih kart (52) na slepo izberemo eno karto in jo nato vrnemo nazaj. Postopek ponovimo 5-krat. Koliksna je verjetnost da bomo videli dvakrat srce, po enkrat pa pika kriza in karo
+    $$X\sim P(5, 0.25, 0.25, 0.25, 0.25)$$
+    $$P(X_1=2, X_2=1, X_3=1, X_4=1)=\frac{5!}{2!1!1!1!}0.25^2 0.25^1 0.25^1 0.25^1=0.05859$$
 - `definicija`
+  - Polinomska porazdelitev $\sim P(n;p_1,\dots,p_r)$ je dolocena s predpisom
+    - $P(X_1=k_1,\dots, X_r=k_r)=\frac{n!}{k_1!\cdots k_r!}p_1^{k_1}\cdots p_r^{k_r}$
+- `zaloga vrednosti`
+  - $\sum\limits_{i=1}^r p_i = 1$
+  - $\sum\limits_{i=1}^{r} k_i = n$
 - `verjetnostna funkcija (zapisi pi,j,...,k)`
   - Polinomska porazdelitev $\sim P(n;p_1,\dots,p_r)$
     - $\sum p_i = 1$, $\sum k_i = n$
     - spremenljivke $X_i$ opisujejo stevilo pojavitev rezultata i
   - $P(X_1=k_1, \dots, X_r=k_r)=\frac{n!}{k_1! \cdots k_r!}p_1^{k_1}\cdots p_r^{k_r}$
 - `povezava z binomsko`
-  - za r=1 dobimo binomsko porazdelitev B(n,p)=P(n;p,q)
+  - za r=2 dobimo binomsko spremenjivko $B(n,p)=P(n,p,q)$
 - `pricakovana vrednost in disperzija`
   - $E(X_i)= np_i$
-  - $D(X_i)=\sqrt{np_i(1-p_i)}$
+  - $D(X_i)=np_i(1-p_i)$
 
 ## 6. Funkcije slucajnih spremenljivk
 
 - `primeri enostavnih funkcij`
+
+  - Imamo $X\sim \begin{pmatrix} -1 & 0 & 1 \\ \frac{1}{2} & \frac{1}{3} & \frac{1}{6} \end{pmatrix}$
+  - Potem $5X \sim \begin{pmatrix} -5 & 0 & 5 \\ \frac{1}{2} & \frac{1}{3} & \frac{1}{6} \end{pmatrix}$
+  - Imamo podano porazdelitveno shemo
+    $$
+    \begin{array}{c|ccc|c}
+      Y,X & 0 & 1 & 2 & X\\
+      \hline
+      0 & \frac{2}{50} & \frac{2}{50} & \frac{1}{50} & \frac{5}{50} \\
+      1 & \frac{6}{50} & \frac{6}{50} & \frac{3}{50} & \frac{15}{50}\\
+      2 & \frac{12}{50} & \frac{12}{50}  & \frac{6}{50} & \frac{30}{50} \\
+      \hline
+      Y & \frac{20}{50} & \frac{20}{50} & \frac{10}{50} & 1
+    \end{array}
+    $$
+  - $Z= X^2 \sim \begin{pmatrix} 0 & 1 & 4 \\ 0.1 & 0.3 & 0.6\end{pmatrix}$
+  - $W=X+Y \sim \begin{pmatrix} 0 & 1 & 2 & 3 & 4 \\ 0.04 & 0.16 & 0.38 & 0.30 & 0.12 \end{pmatrix}$
+    - $P(W=0)=P(X=0, Y=0)=0.04$
+    - $P(W=1)= P(X=0,Y=1)+P(X=1, Y=0)= 0.16$
+    - $P(W=2)= P(X=0, Y=2) + P(X=1,Y=1) + P(X=2, Y=0)=0.38$
+    - $P(W=3)=P(X=1, Y=2)+P(X=2,Y=1)=0.30$
+    - $P(W=4)= P(X=2,Y=2)=0.12$
+
 - `definicija in povezava med ustreznima porazdelitvenima funkcijama`
   - Naj bo X porazdeljena z gostoto p(x)
   - Novo slucajno spremenljivka Y dobimo tako, vse vrednosti v $Z_X$ preslikamo z g, torej: <br>
@@ -207,36 +258,42 @@
 ## 7. Funkcije slucajnih vektorjev
 
 - `primer`
+  - Naj bo $Z=X+Y$, kjer je (X,Y) zvezno porazdeljen slucajni vektor z gostoto $p(x,y)$. tedaj je:
+    $F_Z(z)=
 - `definicija`
-  - Funkcija slucajnega vektorja je slucajni vektor.
+  - Naj bo $f:(x,y)\rightarrow (u,v)$ transofrmacija slucajnega vektorja (X,Y) v slucajni vektor (U,V) dolocena z zvezama
+    $U=u(X,Y)$ in $V=v(X,Y)$. Porazdelitveni zakon za nov slucajni vektor $(U,V)$ je
+  - $F_{U,V}(u,v)=P(U < u, V < v)=P((U,V)\in A(u,v))=P(X,Y)\in f^{-1}(A(u,v))$
 - `definicija konvolucije`
-  - Definiramo $Z=X+Y$, verjetnostna funkcija (diskretni)
-    $$P(Z=z)=\sum\limits^\infty_{k=-\infty} P(X=k)P(Y=z-k)$$
+  - Definiramo $Z=X+Y$, kjer je (X,Y) zvezno porazdljen slucajni vektor z gostoto $p(x,y)$verjetnostna funkcija (diskretni)
+  - $F_Z(z)=P(Z\leq z)=P(X+Y \leq z)=\int \int_{x+y\leq z} p(x,y) dx dy=\int\limits^{\infty} _ {-\infty}dx \int\limits_{-\infty}^{z-x}p(x,y)dy$
   - za slucajni dobimo gostoto verjetnosti:
     $$p_Z(z)=\int\limits^\infty_{-\infty}f_{XY}(x,z-x)dx$$
+  - za diskretni pa dobimo
+    $$P(Z=z)=\sum\limits^\infty_{k=-\infty} P(X=k)P(Y=z-k)$$
     - ce sta neovidsni pa
       $$p_Z(z)=\int\limits^\infty_{-\infty}p_X(x)p_Y(z-x)dx$$
   - In tej formuli pravimo **konvolucija** slucajnih distribucij
 - `uporaba za vsoto dveh neodvisnih normalnih porazdelitev`
-
   - $X\sim N(\mu_X, \sigma^2_X)$
   - $Y\sim N(\mu_Y, \sigma^2_Y)$
   - $Z = X + Y \rightarrow Z\sim N(\mu_X+\mu_Y, \sigma_X^2+\sigma_Y^2)$
-
 - `uporaba za vsoto dveh neodvisnih Gama porazdelitev`
-  - $X\sim \text{Gamma}(a, \theta)$, in $Y\sim \text{Gamma}(b,\theta)$ potem $X+Y\sim \text{Gamma}(a+b, \theta)$
+  - $X\sim \Gamma(n_1, \lambda)$, in $Y\sim \Gamma(n_2,\lambda)$ potem $X+Y\sim \Gamma(n_1+n_2, \lambda)$
 - `formula za pricakovano vrednost produkta`
   - $E(XY)= E(E(XY | Y))$
   - ce sta neovidsni
     - $E(XY)=E(X)\cdot E(Y)$
 - `Jacobijeva determinanta in prehod na nove spremenljivke`
+  - Ce je funkcija f bijektivna z zveznimi parcialnimi odvodi lahko nadaljujemo
+    $$F_{U,V}(u,v)= \int\int_{A(u,v)} p(x(u,v), y(u,v)) \left| \text{det} \begin{pmatrix} \frac{\partial u}{\partial x} & \frac{\partial u}{\partial y} \\ \frac{\partial{v}}{\partial x}  & \frac{\partial v}{\partial y}\end{pmatrix}\right| du dv$$
 
 ## 8. Pogojna porazdelitev
 
 - `primer za diskretni slucajni vektor`
   - Imamo porazdelitveno shemo. Zapisi pogojno verjetnostno porazdelitev slucajne spremenljivke X, glede na pogoj y=2
       <p align="center"><img src="./images/pogojna-shema.png" width="60%"></p>
-  - Verjetnost v vrstici pri y= 2, moramo deliti s $P(Y=2) = 0.2$
+  - Verjetnost v vrstici pri $y=2$, moramo deliti s $P(Y=2) = 0.2$
     $$X|y=2\sim \begin{pmatrix}1 & 2 & 3 & 4 \\ 0.25 & 0.5 & 0.25 & 0 \end{pmatrix}$$
 - `definicija v diskretnem primeru in v zveznem primeru`
   - diskretni primer:
@@ -282,7 +339,7 @@
 
 - `definicija momenta reda k glede na tocko a`
   - $m_k(a)=E((X-a)^k)$
-  - Moment obstaja, ce obstaja pricakovana vrednost $E(|X-a|^k) < \infty$
+  - Moment obstaja, ce obstaja pricakovana vrednost, ki ni neskoncna $E(|X-a|^k) < \infty$
 - `zacetni moment, centralni moment`
   - zacetni moment ko je a =0
   - centralni moment ko je a = povprecna vrednost
@@ -299,7 +356,19 @@
 
 ## 10. Studentova porazdelitev
 
-- `Kako lahko pridemo do te porazdelitve, primer`
+- `Primer`
+
+  - Povprecna teza 20 studentov je bila 165lbs z vzorcnim standardnim odklonom $\sigma$ = 4.5. Konstruiraj 95% interval zaupanja za populacijsko povprecje.
+  - $\overline{x}=165$, $n=20$, $s=4.5$
+  - Ker nimamo standardnega odklona populacije $\sigma$, ne moremo izracunati normalne porazdelitve, ampak uporabimo studentovo
+    - Poleg tega imamo tudi n<20 (za normalno rabimo n>=30)
+
+- `Kako lahko pridemo do te porazdelitve?`
+  - Uporablja se kadar imamo na voljo majhno stevilo podatkov, in je priblizek normalne porazdelitve
+  - $$t_{n-1,\alpha}=\frac{\overline{x}-\mu}{s/\sqrt{n}}$$
+  - Podbna normalni z "debelimi kraki" (vecja dispersija - manj podatkov - mansa zaneslivost)
+  - za $n>30$ je ze skor enaka z-statistiki (normalni porazdelitvi)
+  <p align="center"><img src="./images/student-distribution.png" width="90%"></p>
 - `zaloga vrednosti`
 - `kaj predstavlja njen paramter`
 - `predpostavke`
