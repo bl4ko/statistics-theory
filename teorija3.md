@@ -3,7 +3,9 @@
 ## 1. Vzorcenje in cenilke
 
 - `Definicija enostavnega slucajnega vzorca`
-  - Naj bo X slucajna spremenljivka. **Enostavni slucajni vzorec** je slucajni vektor
+  - Naj bo X slucajna spremenljivka. **Enostavni slucajni vzorec** je slucajni vektor $(X_1, X_2,\dots, X_n)$ za katerega velja:
+    1.  vsi cleni vektorja $X_i$ imajo **enako porazdelitev** kot spremenljivka X
+    1.  cleni $X_i$ so med seboj **neodvisni**
 - `Vzorcne sredinske mere (modus, mediana, povprecje)`
   - **vzorcni modus** je najpogostejsa vrednost
   - **vzorcna mediana** je srednja vrednost glede na urejenost
@@ -22,14 +24,21 @@
   > cenilka je pravilo ali formula, ki nam pove, kako izracunati numericno oceno parametra populacije na osnovi merjenj vzorca.
   - **Cenilka** parametra $\zeta$ je vzorcna statistika $C=C(X_1,\dots,X_n)$, katere porazdelitveni zakon je odvisen
     le od parametra $\zeta$, njene vrednosti pa lezijo v prostoru parametrov. SEveda je odvisna tudi od velikosti vzorca n.
-  - Primer: Vzorcna mediana $\tilde{X}$ in vzorcno povprecje $\overline{X}$ sta cenilki za populacijsko povprecje
-    $\mu$; popravljena vzorcna disperzija $S^2$ pa je cenilka za populacijsko disperzijo $\sigma^2$
+    |Parameter | Cenilka $f(X_1,X_2,\dots, X_n)$ | Ocena $f(x_1,x_2,\dots, x_n)$|
+    | - | - | - |
+    | Pricakovana vrednost $\mu$ | $\overline{X}=\frac{1}{n} \sum\limits_{i=1}^n X_i$ | $\overline{x}=\frac{1}{n} \sum\limits_{i=1}^n x_i$ |
+    | Standardni odklon $\sigma$ | $S=\sqrt{\frac{1}{n-1}\sum\limits_{i=1}^n(X_i-\overline{X})^2}$ | $s=\sqrt{\frac{1}{n-1}\sum\limits_{i=1}^n (x_i-\overline{x})^2}$
+    | Verjetnost $p$ | $\overline{X}=\frac{1}{n} \sum\limits_{i=1}^n X_i$ | $\overline{x}=\frac{1}{n}\sum\limits_{i=1}^n x_i$ |
 - `Vpelji nepristranskost in doslednost cenilke`
   - Cenilka $C_n$ parametra $\zeta$ je **nepristranska**, ce je $E(C_n)=\zeta, \forall n$
-  - Cenilka C parametra $\zeta$ je **dosledna** ce z rastocim n zaporedje $C_n$ verjetnostno konvergira k parametru
+  - Cenilka $C_n$ parametra $\zeta$ je **dosledna** ce z rastocim n zaporedje $C_n$ verjetnostno konvergira k parametru
     $\zeta$, tj. za vsak $\epsilon > 0$, velja
     $$\lim\limits_{n\rightarrow \infty} P(|C_n - \zeta)< \epsilon) = 1$$
 - `CLI`
+  - Naj bo $(X_1, X_2, \dots, X_n)$ normlano porazdeljen enostavni slucajni vzorec.
+    - $X_i \sim N(\mu, \sigma)$
+  - Potem je porazdelitev vzorcnega povprecja $\overline{X}= \frac{1}{n} \sum\limits_{i=1}^n X_i$ tudi normalna:
+    $$\overline{X}\sim N(\mu, \frac{\sigma}{\sqrt{n}})$$
 
 ## 2. CLI za $\overline{X}$
 
@@ -42,27 +51,36 @@ za dovolj velik vzorec $n\geq 30$:
 $$\overline{X}\sim N(\mu, \frac{\sigma}{\sqrt{n}})$$
 
 ## 3. CLI za delez
+Denimo, da zelimo na populaciji oceniti delez enot $\pi$ z doloceno lastnostjo. V ta namen poiscemo vzorcni delez p.
+Pokazati se da, da se za dovolj velike slucajne vzorce s ponavljanjem, vzorcni delezi poradeljujejo priblizno normalno s
+- pricakovano vrednostjo vzorcnih delezev enako delezu na populaciji $E(\hat{P})=\pi$
+- standardnim odklonom vzorcnih delezov $\text{SE}(\hat{P})=\sqrt{\frac{\pi(1-\pi)}{n}}$
 
-**Interval zaupanja za delez p**: Naj bo p delez populacije z doloceno lastnostjo in naj bo $(X_1,\dots, X_n)$ enostavni slucajni
-vzorec, pri cemer $X_i=1$ z verjetnostjo p in $X_i$ = 0 z verjetnostjo $1-p$.
-
-Neznani delez p ocenjujemo z vzorcnim delezom $\hat{p}=\frac{1}{n}\sum\limits_{i=1}^n X_i$. Interval zaupanja za delez
-p s stopnjo zaupanja $1-\alpha$ je enak
-$$I_p = \left[\hat{p}-c\sqrt{\frac{\hat{p}(1-\hat{p})}{n}} , \hat{p}+c\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}\right]$$
-kjer je $c=F^{-1}(1-\frac{\alpha}{2})$ kvantil standardne normalne porazdelitve.
-
-Za uporabo zgornjega izraza za interval zaupanja za p potrebujemo dovolj veliki vzorec, za aproksimacijo porazdelitve vzorcnega
-deleza z normalno porazdelitvijo.
-
-<p align="center"><img src="./images/cli-za-delez.webp" width="90%"></p>
+Za manjse vzorce se vzorcni delez porazdeljuje `binomsko`. Mimogrede, cenilka populacijskega deleza je nepristranska
+ker velja $E(\hat{P})=\pi$
+- cenilka za delez $\pi$
+    - $\hat{p}=\frac{\sum X_i}{n}=\overline{X}$
+- n > 20
+    - $\hat{p}\sim N(\pi, \sqrt{\frac{\pi (1-\pi)}{n}})$
+- n < 20
+    - $\hat{p}\sim B(\pi, \sqrt{\frac{\pi(1-\pi)}{n}})$
 
 ## 4. CLI za $S^2$
+Naj bo slucajna spremenljivka X na neki populaciji porazdeljena normalno $N(\mu, \sigma)$.
+> Kako bi dolocili porazdelitev za vzorcno disperzijo ali popravljeno vzorcno disperzijo tj.:
+- $S_0^2 = \frac{1}{n} \sum\limits_{i=1}^n (X_i-\overline{X})^2$ oziroma $S^2=\frac{1}{n-1} \sum\limits_{i=1}^n (X_i-\overline{X})^2$?
 
-Naj bo slucajna spremenljivka X na neki populaciji porazdeljena normalno tj. $N(\mu, \sigma)$
+Raje izracunamo porazdelitev za naslednjo vzorcno statistiko:
+$$\chi^2 = \frac{nS_0^2}{\sigma^2}=\frac{n-1S^2}{\sigma^2}=\frac{1}{\sigma^2} = \sum\limits_{i=1}^n (X_i-\overline{X})^2$$
+Ker vemo, da je $E(\chi^2(n))=n$  in $D(\chi^2(n))=2n$ lahko takoj izracunamo:
+- $E(S_0^2)=E(\frac{\sigma^2\chi^2}{n})=\frac{(n-1)\sigma^2}{n}$, $E(S^2)=E(\frac{\sigma^2 \chi^2}{n-1})=\sigma^2$
+- $D(S_0^2)=D(\frac{\sigma^2\chi^2}{n})=\frac{2(n-1)\sigma^4}{n^2}$, $D(S^2)=D(\frac{\sigma^2\chi^2}{n-1})=\frac{2\sigma^4}{n-1}$
+
 Za dovolj velike n je:
+- statistika $\chi^2$ porazdeljena priblizno normalno in sicer po zakonu $N(n-1, \sqrt{2(n-1)})$
+- vzorcna disperzija $S_0^2$ priblizno po $N(\frac{(n-1)\sigma^2}{n}, \frac{\sigma^2\sqrt{2(n-1)}}{n})$ in
+- popravljena vzorcna disperzija $S^2$ priblizno po $N(\sigma^2, \sigma^2 \sqrt{\frac{2}{n-1}})$
 
-- vzorcna disperzija $S^2_0$ prblizno $N(\frac{(n-1)\sigma^2}{n},\frac{\sigma^2\sqrt{2(n-1)}}{n})$
-- popravljena vzorcna disperzija $S^2$ priblizno $N(\sigma^2, \sigma^2 \sqrt{\frac{2}{n-1}})$
 
 ## 5. CLI za razliko vzorcnih povprecij
 
@@ -70,12 +88,12 @@ Denimo da imamo dve populaciji velikosti $N_1$ in $N_2$ in se spremenljivka X na
 na drugi populaciji pa $N(\mu_2,\sigma)$ (standardna odklona sta na obeh populacijah enaka). V vsaki od obeh populacij
 tvorimo neodvisno slucajne vzorce velikosti $n_1$ in $n_2$. Na vsakem vzorcu (s ponavljanjem) prve populacije izracunamo
 vzorcno povprecje $\overline{X}_ 1$ in podobno na vsakem vzorcu druge populacije $\overline{X}_ 2$. Po reprodukcijski
-lastnosti normalne porazdelitve je porazdelitev velikih vzorcnih povprecij normlana kjer je:
+lastnosti normalne porazdelitve __je porazdelitev velikih vzorcnih povprecij normalna__ kjer je:
 
 - **pricakovana vrednost razlik** vzorcnih povprecij enako
-  $$E(\overline{X}_1-\overline{X}_2)=E(\overline{X}_1)-E(\overline{X}_2)=\mu_1 - \mu_2$$
+ $$E(\overline{X}_ 1-\overline{X}_ 2)=E(\overline{X}_ 1)-E(\overline{X}_ 2)=\mu_1 - \mu_2$$
 - **disperzija razlik vzorcnih povprecij** enaka:
-  $$D(\overline{X}_1-\overline{X}_2)=D(\overline{X}_1)+D(\overline{X}_2)=\frac{\sigma^2}{n_1}+\frac{\sigma^2}{n_2}$$
+  $$D(\overline{X}_ 1-\overline{X}_ 2)=D(\overline{X}_ 1)+D(\overline{X}_ 2)=\frac{\sigma^2}{n_1}+\frac{\sigma^2}{n_2}$$
 
 ## 6. CLI za razliko delezev
 
@@ -84,16 +102,23 @@ enot z neko lastnostjo $\pi_1$ in $\pi_2$. Iz prve populacije tvorimo slucajne v
 enot s to lastnostjo $p_1$. Podobno naredimo tudi na drugi populaciji; tvorimo slucajne vzorce velikosti $n_2$ in na
 njih dolocimo deleze $p_2$.
 
-Pokazati se da, da se za dovolj velike vzorce razlike vzorcnih delezev porazdeljujejo priblizno normalno s
+Pokazati se da, __da se za dovolj velike vzorce razlike vzorcnih delezev porazdeljujejo priblizno normalno s__
 
-- pricakovano vrednostjo razlik vzorcnih delezev
+- __pricakovano vrednostjo__ razlik vzorcnih delezev
   $$E(\hat{P_1}-\hat{P_2})=E(\hat{P_1})-E(\hat{P_2})=\pi_1 - \pi_2$$
-- disperzijo razlik vzorcnih delezev
+- __disperzijo__ razlik vzorcnih delezev
   $$D(\hat{P_1}-\hat{P_2})=D(\hat{P_1})+D(\hat{P_2})=\frac{\pi_1(1-\pi_1)}{n_1}+\frac{\pi_2(1-\pi_2)}{n_2}$$
 
 ## 7. CLI za kvocient $S^2_1/ S^2_2$
+Po zakonu $F(m-1, n-1)$ je na primer razdeljena statistika
+$$F=\frac{S_X^2/ \sigma_X^2}{S_Y^2/ \sigma_Y^2}$$
+kjer sta X in Y neodvisni slucajni spremenljivki, saj vemo, da sta spremenljivki
+$$U=(m-1)S^2_X/\sigma_X^2 \text{ in } V=(n-1)S_Y^2 / \sigma_Y^2$$
+porazdeljeni po $\chi^2$ z m-1 oziroma n-1 prostostnimi stopnjami in sta tudi neodvisni.
 
-- TODO
+Za konec omenimo se dve koristni trditvi:
+- za $U\sim F(m,n)$, je $1/U \sim F(n,m)$
+- za $U\sim t(n)$, je $U^2\sim F(1,n)$
 
 - `Kako zacnemo (kaj nas pravzaprav zanima)?`
 - `predpostavke`
@@ -107,31 +132,66 @@ Pokazati se da, da se za dovolj velike vzorce razlike vzorcnih delezev porazdelj
 - `uporaba`
 
 ## 8. Intervali zaupanja
+- `interval zaupanja σ je znan`
+    - Za konstrukcijo intervala zaupanja uporabljamo dejstvo
+        $$\frac{\overline{X}-\mu}{\frac{\sigma}{\sqrt{n}}}\sim N(0,1)$$
+    - Slucajna spremenljivka X je normlano porazdeljena ali imamo dovolj veliki vzorec (za uporabo CLI)
+    - Z verjetnostjo $1-\alpha$ se $\mu$ nahaja na intervalu $\left[\overline{X}-\epsilon, \overline{X}+\epsilon\right]$
+    - Dobi se $\epsilon = c\frac{\sigma}{\sqrt{n}}$
+    - $I_\mu = \left[ \overline{X}-c \frac{\sigma}{\sqrt{n}}, \overline{X}+c\frac{\sigma}{\sqrt{n}}\right]$
+    - $c = F^{-1} (1-\frac{\alpha}{2})$
+    - $1-\alpha$ je __stopnja zaupanja__, $\alpha$ je __stopnja tveganja__
+    - __Sirina (dolzina)__ intervala zaupanja je $l=2c\frac{\sigma}{\sqrt{n}}$
+
+__Primer__: Signal intenzitete $\mu$ je poslan z lokacije A. Na lokaciji B se belezi sprejet signal.
+Zaradi sumenja signal zaznamo z nakljucno napako. Intenziteta signala na lokaciji B je normalno porazdeljena slucajna 
+spremenljivka s povprecjem $\mu$ in standardnim odklonm 3. Da bi zmanjsali napako, isti signal neodvisno belezimo 10-krat.
+Dobili smo naslednje vrednosti intenzitete signala na lokaciji:
+$$B:17,21,20,18,19,22,20,21,16,19$$
+Doloci 95% interval zaupanja za $\mu$
+- n = 10,$\sigma=3$, $\alpha$=0.05, $c=F^{-1}(1-\frac{\alpha}{2})$, $\overline{x}=19.3$
+    - c pogledamo v tabeli za $c=F^{-1}(0.975)=1.9$
+- Interval zaupanja $I_\mu = \left[17.5, 21.1 \right]$
+
+- `interval zaupanja σ ni znan`
+    - Za konstrukcijo intervala zaupanja uporabljamo dejstvo
+        $$\frac{\overline{X}-\mu}{\frac{S}{\sqrt{n}}}\sim t_{n-1}$$
+    - Interval zaupanja za $\mu$ s stopnjo zaupanja $1-\alpha$ je enak
+        $$I_\mu = \left[ \overline{X}-c\frac{S}{\sqrt{n}}, \overline{X}+c\frac{S}{\sqrt{n}}\right]$$
+    - kjer je $c=t_{n-1;1-\frac{\alpha}{2}}$ kvantil __Studentove porazdelitve__ z $n-1$ prostnostnimi stopnjami (stevilo vzorca)
+
+__Primer__: Na vzorcu 30 zensk so dobili povprecje 6 in popravljeni standardni odklon 5 kolicine PCB-jev. Doloci 
+99% interval zaupanja za povprecno kolicino PCB-jev.
+- $\overline{x}=6$, $s=5$, $\alpha=0.01$, $n=30$, $c=t_{29;0.995}$
+- $I_\mu = \left[ \overline{x}-c\frac{s}{\sqrt{n}}, \overline{x}+c\frac{s}{\sqrt{n}} \right]=\left[3.5, 8.5\right]$
+
+- `interval zaupanja za delez p`
+    - p je delez populacije z neko lastnostjo
+    - naj bo $(X_1, X_2, \dots, X_n)$ enostavni slucajni vzorec, kjer je $X_i \sim \begin{pmatrix} 0 & 1 \\ 1-p & p \end{pmatrix}$, $i=1,...,n$
+    - neznani delez p ocenjujemo z vzorcnim delezom $\hat{p}=\overline{X}=\frac{1}{n} \sum\limits_{i=1}^n X_i$
+    - za konstrukcijo intervala uporabimo dejstvo $\hat{p}\sim N(p, \sqrt{\frac{p(1-p)}{n}})$
+    - Interval zaupanja $I_p = \left[ \hat{p}-c\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}, \hat{p}+c\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}\right]$
+    - kjer je $c=F^{-1}(1-\frac{\alpha}{2})$ kvantil standardne normalne porazdelitve
 
 - `definicija tockovne ocene za parameter, primeri (vsaj 3)`
-  - Naj bo $\theta$ neznani parameter porazdelitve slucajne spremenljivke X in $(X_1,X_2,\dots, X_n)$ enostavni slucajni
-    vzorec. Iscemo interval vrednosti, v katerem se, z veliko verjetnostjo nahaja neznani parameter $\theta$. Na
-    osnovi vzorca se definirata statistiki (funkciji vzorca) L in U tako da velja $P(L\leq \theta \leq U)=1-\alpha$.
-    Potem recemo, da je $I\theta=[L,U]$ interval zaupanja za neznani parameter $\theta$ s stopnjo zaupanja $1-\alpha$. Stevilo se
-    imenuje stopnja tveganja.
 - `pomen stopnje zaupanja`
-  - **stopnja zaupanja**: obicajno med 95% in 99%, verjetnost, da se bo parameter v mnozici neodvisnih poskusov
-    znasel na intervalu. Vzemimo stopnjo tveganja $\alpha=0.05$. Denimo da smo zbrali 100 slucajnih vzorcev in
-    za vsakega izracunali interval zaupanja za parameter $\gamma$. Tedaj lahko pricakujemo, da 5 intervalov zaupanja od
-    100 ne bo pokrilo iskanega parametera $\gamma$.
-    $$\text{stopnja tveganja}=1-\text{stopnja zaupanja}
 - `postopek intervalskega ocenjevanja`
-  - Najprej dolocimo stopnjo zaupanja in nato uporabimo formulo za iskani parameter in na podlagi njega dolocimo stopnjo in zgornjo mejo intervala.
 - `kdaj uporabimo Studentovo porazdelitev`
-  - Iskanje pricakovane vrednosti, ko ni podana varianca
+    - ko nepoznamo standardnega odklona populacije $\sigma$ ter imamo dokaj majhen vzorec $n<30$
 - `kaj je drugace, ko imamo majhen vzorec`
-  - Prevzeti moramo, da je vzorec iz priblizno normalno porazdlejene populacije
+    - nemoremo uporabiti izreka za CLI
 - `izbira velikosti vzorca`
-  - vsaj 25
 - `izpeljava formule za interval zaupanja`
-  - TODO
 
 ## 9. Preverjanje domnev
+- Naj bo $(X_1, X_2, \dots, X_n)$ enostavni slucajni vzorec
+- Testiramo $H_0: \mu=\mu_0$ ($\mu_0$ je predpostavljena vrednost) proti eni od alternativnih domnev
+    - $H_1: \mu\neq \mu_0$
+    - $H_1: \mu < \mu_0$
+    - $H_1: \mu > \mu_0$
+- Predpostavka: Slucajna spremenljivka X je normalno porazdeljena ali je vzorec dovolj velik (za uporabo CLI)
+- Za testiranje $H_0$ uporabljamo testno statistiko
+    - $Z=\frac{\overline{X}-\mu_0}{\sigma} \sqrt{n}$
 
 - `Definicije (H0 in H1, testna statistika, α in β, kriticno obmocje)`
 - `Opis formalnega postopka`
