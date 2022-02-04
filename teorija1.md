@@ -82,7 +82,7 @@
   - V povprecju gre v 1h mimo 35 avtov -> $\lambda = 35$
   - $X\sim P(35)$
 - `zaloga vrednosti`
-  - stevna a **neomejena** (teoreticno se lahko zgodi neskoncno mnogo dogodkov)
+  - **stevna** a **neomejena** (teoreticno se lahko zgodi neskoncno mnogo dogodkov)
 - `predpostavke`
   - dogodki se pojavljajo neodvisno od dolzine interavla ter neodvisno od ostalih
   - povprecno stevilo dogodkov ki se pojavijo na nekem interavlu je konstantno
@@ -90,17 +90,20 @@
   - $p_k=P(X=k)=\lambda^k \frac{e^{-\lambda}}{k!}$
 - `povezava z binomsko porazdelitvijo`
   - Poissonova porazdelitev se lahko dobi kot limitni primer binomske porazdelitve (ce gre stevilo poskusov preko vseh mej)
-  - Torej Poissonova porazdelitev je aproksimacija binskoe porazdelitve ce je n dovolj velik in p dovolj majhen
+  - Torej Poissonova porazdelitev je aproksimacija binomske porazdelitve ce je n dovolj velik in p dovolj majhen
     - $X\sim B(n,p) \approx P(np)$
   - **Dokaz:**
     - imamo $P(X=k)=\lim\limits_{n\rightarrow \infty}\left(\frac{n!}{k!(n-k)!}p^k (1-p)^{n-k}\right)$
       - Vpeljemo $\lambda =np \rightarrow p = \frac{\lambda}{n}$
+        $$P(X=k)=\lim\limits_{n\rightarrow \infty}\left( \frac{n!}{k!(n-k)!}\cdot \frac{\lambda^k}{n^k}\cdot \left(1-\frac{\lambda}{n}\right)^n\cdot \left(1-\frac{\lambda}{n}\right)^{-k}\right)= $$
       - Upostevamo: $\lim\limits_{n\rightarrow \infty} (1-\frac{\lambda}{n})^n=e^{-\lambda}$ ter $\lim\limits_{n\rightarrow \infty} (1-\frac{\lambda}{n})^{-x}=1$
         $$P(X=k)=\lim\limits_{n\rightarrow \infty}\left( \frac{n!}{k!(n-k)!}\cdot \frac{\lambda^k}{n^k}\cdot e^{-\lambda}\right)= $$
-         $$=\frac{\lambda^k}{k!}e^{-\lambda}\lim\limits_{n\rightarrow \infty} \left(\frac{n!}{(n-k)!}\cdot\frac{1}{n^k}\right)=$$
+      - Konstante premaknemo ven iz limite.
+        $$=\frac{\lambda^k}{k!}e^{-\lambda}\lim\limits_{n\rightarrow \infty} \left(\frac{n!}{(n-k)!}\cdot\frac{1}{n^k}\right)=$$
         $$=\frac{\lambda^k}{k!}e^{-\lambda}\lim\limits_{n\rightarrow \infty} \left(\frac{n\cdot (n-1)\cdot (n-2)\cdots (n-k)!}{(n-k)!\cdot n^k}\right)=$$
         $$=\frac{\lambda^k}{k!}e^{-\lambda}\lim\limits_{n\rightarrow \infty} \left(\frac{n(n-1)(n-2)\cdots(n-k+1)}{n^k}\right)=$$
         $$=\frac{\lambda^k}{k!}e^{-\lambda}\lim\limits_{n\rightarrow \infty} \left((\frac{n}{n})(\frac{n-1}{n})\cdots(\frac{n-k+1}{n})\right)=$$
+      - Vidimo da v limiti grejo vsi cleni $\rightarrow 1$
         $$=\frac{e^{-\lambda}\lambda^k}{k!}$$
 - `razlaga parametra` $\lambda$
   - st. ponovitev dogodka A, ki jih imamo v povprecju na nekem intervalu
@@ -109,7 +112,7 @@
   - $D(X)=\lambda$
     - $D(X)=E((X-E(X))^2)=E(X^2+E^2(X)-2XE(X))=E(X^2)+E^2(X)-2E(X)E(X)=E(X^2)-E^2(X)$
     - Upostevali smo (linearnost in konstante):
-    - $E(E^2(X)))=E^2(X)$ (E(konstanta)=konstanta)
+    - $E(E^2(X)))=E^2(X)$, **E(konstanta)=konstanta**
     - $E(-2XE(X))=-2E(X)E(X)$ (konstanto premaknemo vn)
 - `Poissonov obrazec`
   - Zgoraj $B(n,p)\approx P(np)$
@@ -132,7 +135,7 @@
   - $E(X)=\frac{n}{p}$
   - $D(X)=\frac{n\cdot(1-p)}{p^2}$
 - `izpeljava pricakovane vrednosti za geometrijsko porazdelitev`
-  - Ce mecemo kovanec toliko casa, da pade grb in z X oznacimo stevilo potrebnih metov, vkljucno z zadnjim, potem je sluccajna spremenljivka X geometrijsko porazdeljena.
+  - Ce mecemo kovanec toliko casa, da pade grb in z X oznacimo stevilo potrebnih metov, vkljucno z zadnjim, potem je slucajna spremenljivka X geometrijsko porazdeljena.
   - Izracunajmo pricakovano vrednost
   - $E(X)=\sum\limits_{i=1}^\infty ipq^{i-1}=p\sum\limits_{i=1}^\infty (q^i)'=p \left(\sum\limits_{i=1}^\infty q^i\right)'=p(\frac{1}{1-q})'=\frac{1}{p}$
 - `uporaba pri problemu "zbiranja kuponov"`
@@ -146,19 +149,24 @@
 - `definicija (verjetnostna funkcija)`
   - $P(X=k)=\frac{\begin{pmatrix} R \\ k \end{pmatrix} \cdot \begin{pmatrix}B\\n-k\end{pmatrix}}{\begin{pmatrix}R+B \\ n\end{pmatrix}}$
 - `omejitve parametrov`
-  - $\text{max}(0,n-B)\leq k \leq \text{min}(R,n)$
-  - $n=R+B$
+  - $0\leq k \leq \text{min}(R,n)$
+  - $N=R+B$
+  - $n\leq N$
 - `primer uporabe`
-  - Iz vrece, ki ima 4 modre in 5 rdecih 3 kroglie.
+  - Iz vrece, ki ima 4 modre in 5 rdecih potegnemo 3 kroglie.
   - Koliksna je verjetnost da potegnemo 2 modri
+    - R=4, B=5, n=3
   - $P(X=22)=\frac{\begin{pmatrix} 4 \\ 2 \end{pmatrix} \cdot \begin{pmatrix}5\\1\end{pmatrix}}{\begin{pmatrix}9 \\ 3\end{pmatrix}}=0.357$
 - `Standardni odklon in upanje`
   - $E(X)=\frac{nR}{R+B}$
   - $D(X)=\frac{nRB\cdot(R+B-n)}{(R+B)^2(R+B-1)}$
 - `je vec parametrov boljse ali slabse`
+  - you tell me
+  - TODO
 - `povezava z binomsko`
   - Pri veliki seriji bi lahko vzeli binomsko porazdelitev (prakticno vseeno ali izbiramo vzorec z vracanjem ali brez)
-  - nastavimo $p=\frac{R}{R+B} \rightarrow B(n,p)$
+  - Imamo $H(R,B,n)$
+    - nastavimo $p=\frac{R}{R+B} \rightarrow B(n,p)$
 
 ## 6. Zvezne slucajne spremenljivke
 
@@ -167,16 +175,33 @@
   $p_X(x)=\Bigg\{ \begin{matrix}\frac{2x}{3}, && x\in [0,1] \\ -\frac{x}{3}+1, && x\in [1,3] \\ 0, && x\notin [0,3] \end{matrix}$
   <p align="center"><img src="./images/p(x).png" width="60%"></p>
 - `opisi primerov: enakomerna, normlano, eksponentna (in Gama), Caucheyeva`
+  - **enakomerna zvezna** $\sim U[a,b]$
+    - vsi poskusi na intervalu [a,b] so enako verjetni
+    - $p_X(x)= \Bigg\{ \begin{matrix}  \frac{1}{b-a}, && x\in [a,b] \\ 0, && sicer \end{matrix}$
+    - $F_X(x)= \Bigg\{ \begin{matrix}  0, && x\in [-\infty ,a) \\ \frac{x-a}{b-a}, && x\in[a,b] \\ 1, && x\in (b,\infty] \end{matrix}$
+  - **eksponentna** $\sim \text{Exp}(\lambda)$
+    - cas med dvema zaporednima dogodkoma na Poissonovem interavlu
+    - $p_X(x) = \Bigg\{ \begin{matrix} 0 && x\leq 0 \\ \lambda e^{-x\lambda}, && x\geq 0 \end{matrix}$
+    - $F_X(x) = \Bigg\{ \begin{matrix} 0, && x\leq 0 \\ 1-e^{-\lambda x}, && x \geq 0 \end{matrix}$
+  - **Gamma** $\sim \Gamma(n, \lambda)$
+    - cas med n zaporednimi dogodki na Poissonovem interavlu
+    - $p_X(x) = \Bigg\{ \begin{matrix} 0, && x \leq 0 \\ \frac{\lambda^n x^{n-1} e^{-\lambda x}}{\Gamma(x)}, && x > 0 \end{matrix}$
+    - $\Gamma(x)= (x-1)\Gamma(x-1)$
+    - $\Gamma(x)= \int\limits_{0}^{\infty} t^{x-1}e^{-t} dt$
+  - **Normalna** $\sim N(\mu,\sigma)$
+    - $p(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$ , za $x\in \mathbb{R}$
+    - $F_X(x)=\phi(\frac{x-\mu}{\sigma})$
 - `definicija zvezne z gostot verjetnosti`
   - Slucajna spremenljivka X je **zvezno porazdeljena** ce obstaja integrabilna funkcija $p_X$ imenovana **gostota verjetnosti**
-    - $F(X)=P(X\leq x)=\int\limits_{-\infty}^x p_X(t) dt$
-  - $\int\limits_{-\infty}^{\infty}p_X(x)dx=1$
+  - $F(X)=P(X\leq x)=\int\limits_{-\infty}^x p_X(t) dt$
   - $p_X(x)$ je integrabilna
   - $p_X: \mathbb{R}\rightarrow [0, \infty)$
+  - $\int\limits_{-\infty}^{\infty}p_X(x)dx=1$
 - `zveza med gostoto verjetnosti in porazdelitveno funkcijo`
-  - $P(a < X < b ) = \int\limits_{a}^b p_X(x)dx$
   - $p_X(x) = F_X'(x)$
+  - $F_X(x)= \int_{-\infty}^{x} p_X(x)$
 - `racunanje verjetnosti na podinetravlu`
+  - $P(a < X < b ) = \int\limits_{a}^b p_X(x)dx$
 - `izpeljava netrivialne pricakovane vrednosti ali odklona`
 
 ## 7. Normalna porazdelitev
@@ -191,8 +216,8 @@
 - `zaloga vrednosti, gostota verjetnosti, funkcija napake`
   - $X\sim N(\mu, \sigma)$
   - $Z_X = \mathbb{R}$
-  - $$p_X(x)=\frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2}$$
-  - **funkcija napake** $\phi(x)=F_X(x)=\int\limits_{-\infty}^x=\frac{1}{\sqrt{2\pi}} \int\limits_{-\infty}^{x} e^{-\frac{y^2}{2}}dy$
+  - $$p_X(x)=\frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$
+  - **funkcija napake** $\phi(x)=F_X(x)=\int\limits_{-\infty}^{x} e^{-\frac{y^2}{2}}dy$
   - **funkcija napake** $\phi(\frac{x-\mu}{\sigma})$
 - `standardizacija in tabela za N(0,1)`
   - Porazdelitev N(0,1) je standardizirana normalna porazdelitev
@@ -228,11 +253,11 @@
 <p align="center"><img src="./images/bernoulijev-zakon-velikih-stevil.png" width="90%"></p>
 
 - `uvod`
-  - Zakon velikih stevil je osnovni limitni izrek, ki opisuje rezultat izavajanje istega poskusa zelo velikokrat.
+  - Zakon velikih stevil je osnovni limitni izrek, ki opisuje rezultat izvajanja istega poskusa zelo velikokrat.
   - Po zakonu mora biti srednja vrednost rezultatov blizu pricakovane vrednosti (s stevilom poskusov se samo priblizuje)
   - $\overline{X_n}\rightarrow \mu$, ko gre $n\rightarrow \infty$
 - `podroben zapis izreka`
-  - Naj bo k frekvenca dogodka A v n nevodisnih ponovitvah danega poskusa, v katerem ima dogodek A verjetnost p.
+  - Naj bo k frekvenca dogodka A v n neodvisnih ponovitvah danega poskusa, v katerem ima dogodek A verjetnost p.
   - Torej za $\forall \epsilon >0$ velja:
     $$ \lim\limits\_{n\rightarrow \infty}P\left(\left| \frac{k}{n}-p\right|\leq \epsilon\right) = 1$$
   - zgornja enacba: as the number of trials n goes to infinity, the average of the observations converges to the expected value
@@ -257,7 +282,7 @@
 
 - `primer`
   - Studenti prihajajo v klub porazdeljni priblizno po Poissonu, s povprecno stopnjo 30 studentov na uro.
-  - Koliksna je veerjetnost, da bo vratar cakal vec kot 3 minute na naslednjega studenta?
+  - Koliksna je verjetnost, da bo vratar cakal vec kot 3 minute na naslednjega studenta?
     - $P(X>\frac{1}{20})=1-F(\frac{1}{20})=1-(1-e^{-30\cdot \frac{1}{20}})=0.223$
 - `definicija - povezava s Poissonovim procesom`
   - $X\sim Exp(\lambda)$
