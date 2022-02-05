@@ -258,8 +258,6 @@
 ## 7. Funkcije slucajnih vektorjev
 
 - `primer`
-  - Naj bo $Z=X+Y$, kjer je (X,Y) zvezno porazdeljen slucajni vektor z gostoto $p(x,y)$. tedaj je:
-    $F_Z(z)=
 - `definicija`
   - Naj bo $f:(x,y)\rightarrow (u,v)$ transofrmacija slucajnega vektorja (X,Y) v slucajni vektor (U,V) dolocena z zvezama
     $U=u(X,Y)$ in $V=v(X,Y)$. Porazdelitveni zakon za nov slucajni vektor $(U,V)$ je

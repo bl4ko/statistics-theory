@@ -184,25 +184,46 @@ __Primer__: Na vzorcu 30 zensk so dobili povprecje 6 in popravljeni standardni o
 - `izpeljava formule za interval zaupanja`
 
 ## 9. Preverjanje domnev
-- Naj bo $(X_1, X_2, \dots, X_n)$ enostavni slucajni vzorec
-- Testiramo $H_0: \mu=\mu_0$ ($\mu_0$ je predpostavljena vrednost) proti eni od alternativnih domnev
-    - $H_1: \mu\neq \mu_0$
-    - $H_1: \mu < \mu_0$
-    - $H_1: \mu > \mu_0$
-- Predpostavka: Slucajna spremenljivka X je normalno porazdeljena ali je vzorec dovolj velik (za uporabo CLI)
-- Za testiranje $H_0$ uporabljamo testno statistiko
-    - $Z=\frac{\overline{X}-\mu_0}{\sigma} \sqrt{n}$
+- `uvod`
+    - __Statisticna domneva__ je vsaka domneva o porazdelitvi slucajne spremenljivke X na populaciji
+    - Ce poznamo vrsto(obliko) porazdelitve in razkisujemo domnevo o parametru __a__ govorimo o __parametricni domnevi__
+    - Ce pa je vprasljiva vrsta porazdelitve govorimo o __neparametricni domnevi__
+    - Domneva je:
+        - __enostavna__: ce natancno doloca porazdelitev (vrsto in tocno vrednost parametra)
+        - __sestavljena__: sicer
+    - __Primer__: Naj bo $X\sim N(\mu, \sigma)$, ce poznamo $\sigma$ je domneva $H:\mu =0$ enostavna; ce pa parametra
+     $\sigma$ nepoznamo pa je sestavljena
+        - primer sestavljene je tudi $H: \mu>0$
+    - Domneva je lahko:
+        - __pravilna__ (podatki domnevo podpirajo)
+        - __napacna__ (podatki prevec odstobajo od domneve)
+- `Nicelna in alternativna domneva`
+    - __Nicelna domneva__ ($H_0$)
+        - je trditev o lastnosti populacije za katero predpostavimo da drzi (verjamemo da je resnicna)
+        - je trditev ki jo test zeli ovreci
+    - __Alternativna (nasprotna) domneva__ $H_a \text{ ali } H_1$
+        - trditev, ki ni zdruzljiva z nicelno domnevo
+        - trditev, ki jo s testiranjem skusamo dokazati
+    - __Primer__: Ameriski sodni sistem
+        - $H_0$: obtozenec je nedolzen (nicelna domneva)
+        - $H_a$: obtozenec je kriv (alternativna domneva)
 
-- `Definicije (H0 in H1, testna statistika, α in β, kriticno obmocje)`
-- `Opis formalnega postopka`
-- `Definiraj moc testa`
-- `Pregled enostavnih statisticnih testov`
-- `Vpelji P -vrednost in podaj primer racunanja te vrednosti`
-- `Opisi postopek preverjanje domneve o porazdelitvi slucajne spremenljivke`
+            <p align="center"><img src="./images/elementi-preverjanja-domneve.png" width="90%"></p>
+- `Napaka 1. vrste, 2. vrste`
+    - __Napaka 1. vrste__ je zavrnitev nicelne domneve, ce je le ta pravilna. Verjetnost da naredimo napako 1. vrste 
+    - __Napaka 2. vrste__ je ko ne zavrnemo nicelne domneve v primeru da je ta napacna. Verjetnost te napake je $\beta$
+- `P-vrednost`
+    - __P-vrednost__ oziroma __stopnja znacilnosti/signifikantnosti testa__ je najvecja vrednost parametra $\alpha$ 
+        ki jo je vodja eksperimenta pripravljen sprejeti glede na dan vzorec.
+- `Moc statisticnega testa`
+    - __Moc statisticnega testa__ (1-$\beta$) je verjetnost zavrnitve nicelne domneve v primeru, ko je ta v resnici napcna.
+
 
 ## 10. Bivariatna analiza in regresija
-
-- TODO
+- Gledamo odvisnost oziroma povezanost spremenljivk
+    - $X\leftrightarrow Y$ povezanost
+    - $X\rightarrow Y$ odvisnost
+- `Povezanost dveh imenskih spremenljivk`
 - `preverjanje povezanosti slucajnih spremenljivk (glede na tip slucajnih spremenljivk)`
   - Mere povezanosti locimo glede na tip spremenljivk:
     1. IMENSKI/NOMINALNI tip para spremenljivk (ena od spremenljik je imenska/nominalna) $\chi^2$ test, kontinguencni koeficienti, koeficineti asociacije
