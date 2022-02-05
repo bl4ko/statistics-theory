@@ -173,6 +173,7 @@ __Primer__: Na vzorcu 30 zensk so dobili povprecje 6 in popravljeni standardni o
     - Interval zaupanja $I_p = \left[ \hat{p}-c\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}, \hat{p}+c\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}\right]$
     - kjer je $c=F^{-1}(1-\frac{\alpha}{2})$ kvantil standardne normalne porazdelitve
 
+
 - `definicija tockovne ocene za parameter, primeri (vsaj 3)`
 - `pomen stopnje zaupanja`
 - `postopek intervalskega ocenjevanja`
@@ -217,7 +218,34 @@ __Primer__: Na vzorcu 30 zensk so dobili povprecje 6 in popravljeni standardni o
         ki jo je vodja eksperimenta pripravljen sprejeti glede na dan vzorec.
 - `Moc statisticnega testa`
     - __Moc statisticnega testa__ (1-$\beta$) je verjetnost zavrnitve nicelne domneve v primeru, ko je ta v resnici napcna.
+- `Preverjanje z P-testom`
+- `Preverjanje z Hi-kvadrat testom`<br>
+Ravnatelj bi rad izvedel odsotnost studentov na posamezen dan. Naredi vzorec z 100 nakljucnimi profesorji 
+in jih vprasa katere dni so studenti najvec manjkali. Rezultate je zbral v tabelo. __Ali se dnevi in odsotnosti povezani 
+z enako povprecno frekvenco__? Uporabi $\alpha=0.05$ (stopnja tveganja)
 
+| | Ponedeljek | Torek | Sreda | Cetrtek | Petek |
+| - | - | - | - | - | - |
+|Izmerjene frekvence | 23 | 16 | 14 | 19 | 28 |
+| Priackovane frekvence | 20 | 20 | 20 | 20 | 20 |
+
+- $H_0$: enake frekvence (neodvisno od dneva)
+- $H_a$: neneakovredne frekvence
+- $\chi^2$ je nesimetricna porazdelitev
+
+<p align="center"><img src="./images/chi-kvadrat-test.png" width="60%"></p>
+
+- Uporabimo tabelo za $\chi^2$
+    - stopnje prostosti = n-1 = 4, $\alpha=0.05$
+
+<p align="center"><img src="./images/degrees-of-freedom.png" width="60%"></p>
+
+- Dobimo kriticno vrednost $c=9.49$ 
+- izracunamo se $\chi^2_c = \sum \frac{(x_i - \overline{X})^2}{\overline{X}}=\frac{3^2}{20}+\frac{(-4)^2}{20}+\frac{(-6)^2}{20}+\frac{(-1)^2}{20}+\frac{8^2}{20}=6.3$
+
+<p align="center"><img src="./images/do-not-reject.png" width="60%"></p>
+
+- sprejmemo domnevo (relativno enake frekvence)
 
 ## 10. Bivariatna analiza in regresija
 - Gledamo odvisnost oziroma povezanost spremenljivk

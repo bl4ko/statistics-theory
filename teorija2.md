@@ -352,30 +352,48 @@
 - `povezava z inverzom porazdelitvene funkcije`
   - TODO
 
-## 10. Studentova porazdelitev
-
-- `Primer`
-
-  - Povprecna teza 20 studentov je bila 165lbs z vzorcnim standardnim odklonom $\sigma$ = 4.5. Konstruiraj 95% interval zaupanja za populacijsko povprecje.
+## 10. Studentova porazdelitev  t-test
+- [why](https://www.youtube.com/watch?v=32CuxWdOlow)
+- `Primer1`
+  - Povprecna teza 20 studentov je bila 165lbs z vzorcnim standardnim odklonom 4.5. Konstruiraj 95% interval zaupanja za populacijsko povprecje.
   - $\overline{x}=165$, $n=20$, $s=4.5$
-  - Ker nimamo standardnega odklona populacije $\sigma$, ne moremo izracunati normalne porazdelitve, ampak uporabimo studentovo
-    - Poleg tega imamo tudi n<20 (za normalno rabimo n>=30)
+  - Ker __nimamo standardnega odklona populacije__ $\sigma$, ne moremo izracunati normalne porazdelitve, ampak uporabimo studentovo
+    - Poleg tega imamo tudi $n\leq20$ (za normalno rabimo $n\geq30$)
+  - $\mu \rightarrow \overline{x} \pm t_{n-1, \alpha/2}$
+    - $n-1$ = degrees of freedom = 19
+    - $\frac{\alpha}{2}= \frac{0.05}{2}=0.025$
+    - $t_{19, 0.025}$ = pogledamo v tabeli = $2.093$
+  - $\mu \rightarrow 165 \pm 2.093 (\frac{4.5}{\sqrt{20}})=165\pm 2.106$
+  - Dobili smo 95% interval zaupanja $I_\mu=\left[ 162.894, 167.106\right]$
+    - z 95% lahko recemo da je povprecna teza v tem interavlu
+- `Primer2`
 
 - `Kako lahko pridemo do te porazdelitve?`
   - Uporablja se kadar imamo na voljo majhno stevilo podatkov, in je priblizek normalne porazdelitve
+  - Pridemo preko naslednjega obrazca:
   - $$t_{n-1,\alpha}=\frac{\overline{x}-\mu}{s/\sqrt{n}}$$
   - Podbna normalni z "debelimi kraki" (vecja dispersija - manj podatkov - mansa zaneslivost)
   - za $n>30$ je ze skor enaka z-statistiki (normalni porazdelitvi)
   <p align="center"><img src="./images/student-distribution.png" width="90%"></p>
 - `zaloga vrednosti`
+    - Enako kot pri normalni porazdelitvi $\mathbb{R}$
 - `kaj predstavlja njen paramter`
+    - degress of freedom
+    - stopnja tveganja
 - `predpostavke`
+    - Imamo enostavni slucajni vzorec
 - `gostota verjetnosti`
+    - $$p(x)=\frac{(1+\frac{x^2}{n-1})^{-\frac{n}{2}}}{\sqrt{n-1}B(\frac{n-1}{2}, \frac{1}{2})}$$
 - `definicja beta funkcije`
+    $$B(x,y)=\frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}=B(y,x)$$
 - `posebne vrednosti beta funkcije`
+    - $$B(\frac{1}{2}, \frac{1}{2})=\pi$$
+    - $$B(n_1,n_2)=\frac{(m-1)!(n-1)!}{(m+n-1)!} \text{ za } n_1, n_2 \in \mathbb{N}$$
 - `katero porazdelitev dobimo za eno prostostno stopnjo in katero, ce je stivlo prosotstnih stopenj dovolj veliko`
+    - __ena prostostna stopnja__: Caucheyeva porazdelitev
+    - __dovolj veliko stevilo prostostnih stopenj__: Normalna porazdelitev
 
-## 11. Fisherjeva porazdelitev
+## 11. Fisherjeva porazdelitev f-test
 
 - `kako lahko pridemo do te porazdelitve priemr`
 - `zaloga vrednosti`
