@@ -394,13 +394,27 @@
     - __dovolj veliko stevilo prostostnih stopenj__: Normalna porazdelitev
 
 ## 11. Fisherjeva porazdelitev f-test
+- `kako lahko pridemo do te porazdelitve primer`
 
-- `kako lahko pridemo do te porazdelitve priemr`
-- `zaloga vrednosti`
+Recimo da imamo dve populaciji. Populacijo1 bomo primerjali z Populacijo2.
+Recimo da naredimo __IQ__ test na obeh populacijah. Na vzorcih iz obeh populacij izracunamo vzorcno povprecje ter  (vzorcni odklon) $s_1^2$ ter $s_2^2$ 
+- <u>Primerjali bomo dva vzorcna odklona</u>
+- __Testna statistika__ (Fisherjeva) je $F=\frac{S_1^2}{S_2^2}$
+    - $s_1^2$ dobimo iz $n_1$ vzorcev 1. populacije
+    - $s_2^2$ dobimo iz $n_2$ vzorcev 2. populacije
+- `F-distribution`
+    - $Z_F = \mathbb{R}^+$
+    - parametri $F(n_1, n_2) \rightarrow$ prostonstne stopnje (degrees of freedom)
+        - oblika odvisna od degrees of freedom obeh vzorcov
+    <p align="center"><img src="./images/f-distribution.png" width="60%"></p>
 - `kaj predstavljajo njeni parametri`
 - `predpostavke`
 - `definicija - verjetnostna funkcija`
+    $$p(x)=\frac{m^{\frac{3}{2}}n^{\frac{n}{2}}}{B(\frac{m}{2},\frac{n}{2})}\cdot \frac{x^{\frac{(m-2)}{2}}}{(n+mx)^{\frac{m+n}{2}}}$$
 - `definicija beta funkcije`
+    - [zgoraj](#10.-studentova-porazdelitev-t-test)
 - `posebne vrednosti beta funkcije`
+    - [zgoraj](#10.-studentova-porazdelitev-t-test)
 - `primer statistike, ki se porazdeljuje po Fisherjevo`
+- $F=\frac{S_1^2}{S_2^2}$
 - `se kaksne lastnosti fisherjeve porazdelitve`
