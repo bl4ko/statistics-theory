@@ -330,7 +330,7 @@
     - $\frac{\Sigma x_i^3}{n}$ **tretji moment**
     - $\frac{\Sigma x_i^4}{n}$ **cetrti moment**
   - **Centralne** (merimo od sredine)
-    - average square distance from povprecna vrednost $\frac{\Sigma(x_i-\mu_1)^2}{n}\rightarrow$ **centriran drugi moment** predstavljka varianco $\sigma^2$
+    - average square distance from povprecna vrednost $\frac{\Sigma(x_i-\mu_1)^2}{n}\rightarrow$ **centriran drugi moment** predstavlja varianco $\sigma^2$
     - $\frac{\Sigma(x_i-\mu_1)^3}{n}\rightarrow$ **centriran tretji moment** (asimetrija skewness)
     - $\frac{\Sigma(x_i-\mu_1)^4}{n}\rightarrow$ **centriran cetrti moment** (sploscenost, kurtosis)
   - **Standardizirane**
