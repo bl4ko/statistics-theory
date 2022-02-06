@@ -47,6 +47,7 @@
     - E(X) je definirana kot povprecje diskretnih spremenljivk, ce vse to pomnozis s konstanto se mnozi tudi povprecje
 - `Skica dokaz aditivnosti E(X+Y) = E(X)+E(Y) = ali Trditev 7.1: E(|XY|) ≤ √E(X2)E(Y 2)`
   - skripta str 90 // TODO
+  - lastnosti vsot/integralov
 
 ## 2. Disperzija (razprsenost oz. varianca) slucajne spremenljivke, odklon in standardizacija
 
@@ -119,7 +120,7 @@
   - $D(X+Y)= D(X)+D(Y)+2\text{Cov}(X,Y)$
 - `kovariancna matrika`
   - Naj bo X stolpicni vektor $X=(X_1,X_2,...X_n)^T$ (kjer so $X_i$ slucajne spremenljivke)
-  - Potem definiramo kovariancno matriko $K_{XX}$, $(i,j)$ element je (kovarianca):
+  - Potem definiramo kovariancno matriko $K_{XX}$, $(i,j)$-ti element je (kovarianca):
     - $K_{X_iX_j}=\text{cov}[X_i, X_j]= E[(X_i-E[X_i])(X_j-E[X_j])]$
   - Kovariancna matrika je **simetricna**
   - Diagonalne vrednosti so **disperzije** $K_{X_iX_i}=E((X_i-E(X_i))(X_i-E(X_i)))=E((X_i-E(X_i))^2)=D(X_i)$
@@ -238,12 +239,12 @@
     - $P(W=4)= P(X=2,Y=2)=0.12$
 
 - `definicija in povezava med ustreznima porazdelitvenima funkcijama`
-  - Naj bo X porazdeljena z gostoto p(x)
-  - Novo slucajno spremenljivka Y dobimo tako, vse vrednosti v $Z_X$ preslikamo z g, torej: <br>
-    $Y=g(X)$
-  - $F_Y(y)=P(g(X)\leq y)$
+  - naj bo $Y=g(X)$
+  - $F_Y(y)=P(g(X)\leq y)=\Bigg\{\begin{matrix} P(X\leq g^{-1}(y)), & g^{-1} \text{ narascujoca} \\ P(X\geq g^{-1}(y)), & g^{-1} \text{ padajoca} \end{matrix}$
+  - __Primer__: naj bo $Y=X^2$
+    - $P(X^2\leq y)=P(|X|\leq \sqrt{y})=P(-\sqrt{y} \leq X \leq \sqrt{y})$
 - `zveza med gostatami verjetnosti`
-  - $F_Y(y)=\int\limits_{-\infty}^{f^{-1}(y)} p(x) dx$ in ce je f odvedljiva $p_Y(y)=p(f^{-1}(y))f^{-1}(y)'$
+  - $f_Y(y)=f_X(g^{-1}(y)) \left| \frac{dg^{-1}(y)}{dy}\right|$
 - `formula za pricakovano vrednost`
   - diskretna:
     $$E(f(X))=\sum\limits^{\infty}_{k=0} f(x_k)\cdot p_k$$
@@ -253,7 +254,14 @@
   - Ce so $X_1,X_2,\dots, X_n$ neodvisne standardizirane normalne slucajne spremenljivke, je slucajna spremenljivka
     $Y=X_1^2+\cdots+X^2_n$ porazdeljena po $\chi^2(n)$
 - `izpeljava zveze med N(0, 1) in χ2(1)`
-  - zgoraj??
+  - Naj bo X standardizirana normalna spremenljivka z $p_X(x)=\frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}$
+  - nastavimo $Y=X^2$
+    - $g^{-1}(x)=\sqrt{x}$
+    - $\frac{dg^{-1}}{dx}=\frac{1}{2} x^{-\frac{1}{2}}$
+  - $p_Y(x)=p_X(g^{-1}(x))\cdot \frac{dg^{-1}}{dx}=\frac{1}{\sqrt{2\pi}}e^{-\frac{x}{2}}\cdot \frac{1}{2} x^{-\frac{1}{2}}=\frac{1}{\sqrt{2\pi x}}e^{-\frac{x}{2}}$
+  - Dobili smo $\chi^2(1)$
+      - $X_i \sim N(0,1)$ 
+      - $\chi^2(k)=X_1^2+\dots + X_k^2$
 
 ## 7. Funkcije slucajnih vektorjev
 
@@ -263,7 +271,7 @@
     $U=u(X,Y)$ in $V=v(X,Y)$. Porazdelitveni zakon za nov slucajni vektor $(U,V)$ je
   - $F_{U,V}(u,v)=P(U < u, V < v)=P((U,V)\in A(u,v))=P(X,Y)\in f^{-1}(A(u,v))$
 - `definicija konvolucije`
-  - Definiramo $Z=X+Y$, kjer je (X,Y) zvezno porazdljen slucajni vektor z gostoto $p(x,y)$verjetnostna funkcija (diskretni)
+  - Definiramo $Z=X+Y$, kjer je $(X,Y)$ zvezno porazdljen slucajni vektor z gostoto $p(x,y)$verjetnostna funkcija (diskretni)
   - $F_Z(z)=P(Z\leq z)=P(X+Y \leq z)=\int \int_{x+y\leq z} p(x,y) dx dy=\int\limits^{\infty} _ {-\infty}dx \int\limits_{-\infty}^{z-x}p(x,y)dy$
   - za slucajni dobimo gostoto verjetnosti:
     $$p_Z(z)=\int\limits^\infty_{-\infty}f_{XY}(x,z-x)dx$$
@@ -311,7 +319,7 @@
   - Vpeljimo pogojno verjetnostno funkcijo $p_{i|k}=\frac{p_{ik}}{q_k}$. Tedaj je $F_X(x|y_k)=\sum\limits_{x_i\leq x}p_{i|k}$
 - `izpeljava pogojne gostote v zveznem primeru`
   - Naj bosta gostoti $p(x,y)$ in $p_Y(y)> 0$ zvezni. Tedaj je:
-    $$F*X(x|y)=\lim\limits*{h\rightarrow 0}\frac{\frac{F(x,y+h)-F(x,y)}{h}}{\frac{F*Y(y+h)-F_Y(y)}{h}}=\frac{\frac{\partial F}{\partial y}(x,y)}{F_Y'(y)}=\frac{1}{p_Y(y)}\int\limits^x*{-\infty}p(u,y)du
+    $$F_X(x|y)=\lim\limits_{h\rightarrow 0}\frac{\frac{F(x,y+h)-F(x,y)}{h}}{\frac{F_Y(y+h)-F_Y(y)}{h}}=\frac{\frac{\partial F}{\partial y}(x,y)}{F_Y'(y)}=\frac{1}{p_Y(y)}\int\limits^x_{-\infty}p(u,y)du
 - `primer za zvezni slucajni vektor`
 
 ## 9. Momenti in kvantili
@@ -333,7 +341,7 @@
     - $\frac{\Sigma(x_i-\mu_1)^4}{n}\rightarrow$ **centriran cetrti moment** (sploscenost, kurtosis)
   - **Standardizirane**
     - $\frac{1}{n}\frac{\Sigma(x-\mu)^3}{\sigma^3}$ (standardizeran tretji moment)
-    - $\frac{1}{n}\frac{\Sigma(x-\mu)^4}{\sigma^3}$ (standardizeran cetrti moment)
+    - $\frac{1}{n}\frac{\Sigma(x-\mu)^4}{\sigma^4}$ (standardizeran cetrti moment)
 
 - `definicija momenta reda k glede na tocko a`
   - $m_k(a)=E((X-a)^k)$
@@ -402,12 +410,15 @@ Recimo da naredimo __IQ__ test na obeh populacijah. Na vzorcih iz obeh populacij
 - __Testna statistika__ (Fisherjeva) je $F=\frac{S_1^2}{S_2^2}$
     - $s_1^2$ dobimo iz $n_1$ vzorcev 1. populacije
     - $s_2^2$ dobimo iz $n_2$ vzorcev 2. populacije
-- `F-distribution`
+- `F-distribution, parametri`
+    - $F(\nu_1, \nu_2)=\frac{\chi^2(\nu_1) / \nu_1}{\chi^2(\nu_2) / \nu_2}$
+        - $\nu_1$ prostostne stopnje prve $\chi^2$ spremenljivke
+        - $\nu_2$ prostostne stopnje druge $\chi^2$ spremenljivke
     - $Z_F = \mathbb{R}^+$
-    - parametri $F(n_1, n_2) \rightarrow$ prostonstne stopnje (degrees of freedom)
-        - oblika odvisna od degrees of freedom obeh vzorcov
+        - oblika odvisna od prostnostnih stopenj obeh vzorcov
     <p align="center"><img src="./images/f-distribution.png" width="60%"></p>
-- `kaj predstavljajo njeni parametri`
+    
+    - Pokazati se da $\mu = \frac{\nu_2}{\nu_2 -2}$
 - `predpostavke`
 - `definicija - verjetnostna funkcija`
     $$p(x)=\frac{m^{\frac{3}{2}}n^{\frac{n}{2}}}{B(\frac{m}{2},\frac{n}{2})}\cdot \frac{x^{\frac{(m-2)}{2}}}{(n+mx)^{\frac{m+n}{2}}}$$
