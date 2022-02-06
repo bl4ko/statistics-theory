@@ -6,15 +6,15 @@
 
    - Slucajna spremenljivka X je kolicina, katere vrednosti so rezultat slucajnega poskusa
    - <u>**numericne**</u>:
-     - **diskretne**: met kovanca, streljanje na tarco, ...
-     - **zvezne**: verjetnost da se pri 100 metih kovanca frekvenca grba ne razliku za vec kot 0.5
+     - **diskretne**: met kovanca, met kocke, streljanje na tarco
+     - **zvezne**: verjetnost da je cas prihoda dveh zaporednih vlakov pod 3min
    - <u>**kategoricne**</u>: (imajo kategorije za vrednosti)
      - **nominalne (imenske)**: kategorije brez vrstenga reda / urejenosti
-       - spol: 0 = moski, 1 = zenski
-       - barva las: 1 = crna, 2 = rjava, 3 = rdeca, 4 = blond, 5 = bela
+       - *spol*: 0 = moski, 1 = zenski
+       - *barva las*: 1 = crna, 2 = rjava, 3 = rdeca, 4 = blond, 5 = bela
      - **ordinalne** (urejenostne): kategorije z vrstnim redom / urejenostjo
-       - stopnja bolecine: 0 = ni, 1 = blaga, 2 = srednja, 3 = mocna
-       - stopnja izobrazbe: 1 = brez, 2 = osnovna sola, 3 = srednja sola, 4 = fakulteta
+       - *stopnja bolecine*: 0 = ni, 1 = blaga, 2 = srednja, 3 = mocna
+       - *stopnja izobrazbe*: 1 = brez, 2 = osnovna sola, 3 = srednja sola, 4 = fakulteta
 
 1. `Frekvenca porazdelitev`
 
@@ -32,7 +32,7 @@
    - **Histogram**
      - podatke razdelimo v **razrede (intervale)** in prestejemo stevilo podatkov v vsakem razredu
      - z $n$ podatkov je potrebno stevilo razredov: $\lceil \log_2(n) \rceil + 1$
-     - dolzina razreda: h = $\frac{max-min}{k}$
+     - dolzina razreda: $h = \frac{max-min}{k}$
      - npr. imamo 45 podatkov o tezi (n=45)
        - minimalna teza = 52.3kg, maksimalna = 86kg
        - potrebujemo $k=\lceil \log_2(45)\rceil+1=7$ rezredov
@@ -77,67 +77,68 @@
     - Podatke razvrstimo po vrsti $Y_1 \leq Y_2 \leq \dots \leq Y_n$
       - npr stopnje bolecine: $0,0,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,3,3,3$
     - <u>Modus</u> (najpogostejsa vrednost) = 2
-    - <u>Mediana</u> predstavlja srednji podatek = 2
+    - <u>Mediana</u> (drugi kvartil $Q_2$) predstavlja srednji podatek = 2
     - <u>Prvi kvartil</u> $Q_1$ je mediana prve polovice sortiranih podatkov = 1
     - <u>Tretji kvartil</u> $Q_3$ je mediana druge polovice sortiranih podatkov = 2
 - **zvezne slucajne spremenljivke**:
-  - Vzorcno povprecje: $\overline{X}=\frac{1}{n} \sum\limits_{i=1}^n X_i$
-  - Popravljeni vzorcni standardni odklon $S=\sqrt{\frac{1}{n-1} \sum\limits_{i=1}^n (X_i-\overline{X})^2}$
+  - Vzorcno povprecje: $\overline{x}=\frac{1}{n} \sum\limits_{i=1}^n x_i$
+  - Popravljeni vzorcni standardni odklon $s=\sqrt{\frac{1}{n-1} \sum\limits_{i=1}^n (x_i-\overline{x})^2}$
   - povzetek s petimi stevili: minimum, maksimum, mediana, prvi in tretji kvartil
-  - itn.
 - **diskretne slucajne spremenljivke**:
-
   - enako kot zvezne (vzorcno povprecje, vzorcni standardni odklon, povzetek s petimi stevili)
 
-- **Slucajni vzorec**: slucajno zbranih n enot populacije v vzorec
-
 ## 2. Kombinatorika in prestevanje
-
 - `Pojasni pravili za vsoto in produkt, ki ju uporabljamo pri stetju`
   - <u>**vsota**</u>:
     - Kadar se pri izbiranju odlocamo za eno od $n_1$ moznosti iz prve mnozice <u>ali</u> za eno od $n_2$ moznosti iz druge,
       .... <u>ali</u> za eno od $n_k$ moznosti iz tretje in so te mnozice paroma disjkunktne, potem je stevilo **vseh moznih izidov**
       $$\sum\limits_{i=1}^k n_i=n_1+n_2+n_3+\dots n_k$$
+    - __Primer__: Iz Ajdove gore do Brezic vodi 5 poti, iz Brezic do Cvetocoega dola pa 4. Na koliko nacinov lahko pridemo 
+    z Ajdove gore do Cvetocega dola, ce imamo med njima se 3 direktne poti? $5\cdot 4 + 3 = 23$
   - <u>produkt</u>
     - Izbiranje poteka v k korakih, na vsakem koraku imamo $n_i$ moznosti.
     - Vseh moznosti: $\prod\limits_{i=1}^{k} n_i = n_1 \cdot n_2\cdot n_3 \cdots n_k$
+    - __Primer__: Koliko je vseh tri-mestnih stevil: $9\cdot 10 \cdot 10$
 - `Definiraj permutacije (in omeni kaksen primer)`
-  - vrstni red je pomemben
+  - <u>vrstni red je pomemben</u>
   - `brez ponavljanja`
     - So vse mozne razporeditve n razlicnih elementov na n prostih mest
     - $n!=n\cdot(n-1)\cdot(n-2)\cdots 2\cdot 1$
-    - Primer: Imamo 5 mest in 5 stevil {1,2,3,4,5}, koliko razlicnih stevil lahko sestavimo ce moremo vsako stevko uporabiti natanko enkrat
+    - __Primer__: Imamo 5 mest in 5 stevil {1,2,3,4,5}, koliko razlicnih stevil lahko sestavimo ce moremo vsako stevko uporabiti natanko enkrat?
   - `s ponavljanjem`
     - razporeditve $n$ **ne nujno razlicnih** elementov
     - Elemente razdelimo v **skupine** enakih
     - Ce je teh skupin m, in ima vsaka skupin $k_i$ elementov
       $$\begin{pmatrix} n \\ k_1, k_2,\dots k_m\end{pmatrix} = \frac{n!}{k_1!\cdots k_m!}$$
+    - __Primer__: Na koliko nacinov lahko razporedimo na polici 3 romane, 4 ucbenike in 2 vodica, ce knjig iste vrste ne razlikujemo?
+        $$\begin{pmatrix} 9 \\ 3,4,2 \end{pmatrix} = \frac{9!}{3!\cdot 4!\cdot 2!}=1260$$
 - `Definiraj variacije (in omeni kaksen primer)`
-  - Vrstni red je pomemben
+  - <u>Vrstni red je pomemben</u>
   - `brez ponavaljanja`
     - Razporeditev $n$ razlicnih elementov na $k$ prostih mest vsak element najvec enkrat nastopi
-    - $$\frac{n!}{(n-k)!}=n\cdot (n-1) \cdot (n-2) \cdots (n-k+1)$$
-    - Imamo 3 mesta ter 5 stevil. Koliko razlicnih stevil lahko sestavimo ce lahko vsako stevko uporabimo najvec enkrat
-    - $5\cdot 4\cdot 3$
+         $$\frac{n!}{(n-k)!}=n\cdot (n-1) \cdot (n-2) \cdots (n-k+1)$$
+    - __Primer__: Imamo 3 mesta ter 5 stevil $\left\{1,2,3,4,5\right\}$. Koliko razlicnih stevil lahko sestavimo ce lahko vsako stevko uporabimo najvec enkrat?
+         $$5\cdot 4\cdot 3$$
   - `s ponavaljanjem`
     - Razporeditve $n$ razlicnih elementov na $k$ mest vsak element uporabimo poljubno krat
     - $n^k= n \cdot n \cdots n$
+    - __Primer__: Na koliko nacinov lahko izberemo 3 izmed 5ih kroglic ce kroglice vracamo ter upostevamo vrstni red?
+        $$5\cdot 5 \cdot 5$$
 - `Definiraj kombinacije (in omeni kaksen primer)`
-  - vrstni red ni pomemben
+  - <u>vrstni red ni pomemben</u>
   - `brez ponavljanja`
     - So izbire k elementov izmed n razlicnih elementov (vsak element lahko izberemo najvec enkrat)
       $$\begin{pmatrix}n \\ k\end{pmatrix}=\frac{n!}{k!(n-k)!}$$
     - Imamo 4 razlicne kroglice. Na koliko razlicnih nacinov lahko izberemo 2.
-      - $\begin{pmatrix}4 \\ 2\end{pmatrix}= \frac{4\cdot 3\cdot 2!}{2! \cdot (4-2)!}=\frac{12}{2}=6$
-        - 12, 13, 14, 23, 24, 34
+       $$\begin{pmatrix}4 \\ 2\end{pmatrix}= \frac{4\cdot 3\cdot 2!}{2! \cdot (4-2)!}=\frac{12}{2}=6$$
   - `s ponavljanjem`
     - So izbire k elementov izmed n razlicnih elementov (vsak element lahko izberemo veckrat)
     - **Loterija**: zreb 7 stevil izmed 39 kroglic, ki se po vsakem krogu vracajo v boben.
-    - Z crticami oznacimo 39 predalckov, vsakic ko vlecemo neko kroglico jo dodamo v predalcek
+    - Z crticami oznacimo 39 predalckov, vsakic ko vlecemo neko kroglico jo dodamo v pripadajoc predalcek (predalcek 1 = stevilka 1, predalcek 2 = stevilka 2, ...)
         <p align="center"><img src="./images/predalcki.png" width="60%"></p>
-    - S takim nizom lahko predstavimo vse mozne kombinacije (bijekcija)
+    - S takim nizom lahko predstavimo vse mozne kombinacije (niz crtic in kroglic) 
       - presteti moramo vse nize take oblike **k=7 krogcev**, **n+1=40 crtic** $\rightarrow$ prve in zadnje se znebimo ker sta fiksni $\rightarrow$ dobimo 38 crtic (n-1))
-      - torej izmed k+n-1 mest moramo izbrati k mest kamor narisemo krogec (oz n-1 mest za crtico)
+      - torej izmed k+n-1 moznih mest moramo izbrati k mest kamor narisemo krogec ali pa izmed k+n-1 mest izbremo n-1 mest kamor narisemo crtico 
       - Torej dobimo $\begin{pmatrix} k+n-1 \\ k\end{pmatrix}=\begin{pmatrix}7+38 \\ 7\end{pmatrix}$
     - $\begin{pmatrix}\begin{pmatrix}n \\ k\end{pmatrix}\end{pmatrix}=\begin{pmatrix}k+n-1 \\ k\end{pmatrix}$
 - `Iz zgornje definicije izpelji posebna primera: permutacije, kombinacije`
@@ -153,24 +154,32 @@
   - $e=\lim\limits_{n\rightarrow \infty} (1+\frac{1}{n})^n$
   - Razpisemo $(1+\frac{1}{n})^n= 1 + \begin{pmatrix}n \\ 1 \end{pmatrix} \frac{1}{n} + \begin{pmatrix}n \\ 2 \end{pmatrix} \frac{1}{n^2} + \cdots \begin{pmatrix} n \\ n \end{pmatrix} \frac{1}{n^n}$
   - Vsota celotnega torej: $1+\frac{1}{1!}+\frac{1}{2!}+\dots + \frac{1}{n!}=e$
+    - Taylorjeva vrsta za $e^x= \sum\limits_{n=0}^\infty \frac{x^n}{n!}$
 - `Podaj primer, kjer pridemo do tega stevila v kombinatoriki`
   - poissonova porazdelitev
-  - $p_k= \lambda^k \cdot \frac{e^{-\lambda}}{k!}$
+    - dobimo jo kot limitni primer binomske porazdelitve (binomski obrazec)
+      - $p_k=  \frac{e^{-\lambda}\cdot \lambda^k}{k!}$
 
 ## 3. Racunanje z dogodki
 
 - `Definiraj prostor dogodkov (tudi nemogoc, gotov in nasproten)`
   - $\Omega \equiv$ verjetnostni prostor $\equiv$ mnozica vseh izidov
-  - **Dogodek** A $\subseteq \Omega$
-  - **verjetnost** $P(A)=\frac{|A|}{|\Omega|}=\frac{\text{st. ugodnih izidov}}{\text{st. vseh izidov}} \in [0,1]$
-  - **Gotov** dogodek: $P(\Omega)$ = 1, dogodek ki se zgodi ob vsakem poskusu
-  - **Nemogoc** dogodoek: $P(\emptyset)$ = 0
-  - **Nasproten** dogodek: $P(A^C)=1-P(A)$ (komplementarna mnozica)
+  - <u>**Dogodek**</u> A $\subseteq \Omega$ (mnozica)
+  - <u>**Gotov** dogodek</u>: $A\cap \Omega = \Omega$
+    - $P(A)=P(\Omega)=1$
+    - __dogodek ki se zgodi ob vsakem poskusu__
+  - <u>**Nemogoc** dogodek</u>: $A\cap \Omega=\emptyset$,  
+    - $P(A)=P(\emptyset)$ = 0 
+    - __dogodek ki se ne zgodi ob nobenem poskusu__
+  - <u>**Nasproten** dogodek</u>: $A^C$, 
+    - $A^C\cap A=\emptyset$, $P(A^C)=1-P(A)$ (komplementarna mnozica)
     - v vsakem poskusu se zgodi ali $A$ ali $A^C$
 - `Definiraj vsoto dveh dogodkov`
-  - Vsota dogodkov je predstavljena z **unijo** (ali se zgodi en ali drug)
-    - $P(A\cup B)=P(A)+P(B)-P(A\cap B)$
+  - Vsota dogodkov je predstavljena z **unijo**  $A+B=A\cup B$
+  - ali se zgodi en ali se zgodi drug
+      - $P(A\cup B)=P(A)+P(B)-P(A\cap B)$
 - `Definiraj Produkt dveh dogodkov`
+  - $AB=A\cap B$
   - Produkt dveh dogodkov je verjetnost da se zgodita oba dogodka hkrati (presek)
     - $P(A\cap B)=P(A)+P(B)-P(A\cup B)$
 - `Nastej lastnosti za vsoto dveh dogodkov`
@@ -184,19 +193,19 @@
   - $P(A\Omega)=P(A)$
   - $P(A\emptyset)=\emptyset$
 - `Podaj pravilo o vkljucitvi/izkljucitvi`
-  - $P(A\cup B \cup C)=P(A)+P(B)+P(C)-P(A\cap B)-P(B\cap C)-P(A\cap C)+P(A\cap B \cap C)$
+  - $P(\bigcup\limits_{i=1}^n A_i)= \sum\limits_{i=1}^n P(A_i)- \sum\limits_{1\leq i <j \leq n}P(A_i\cap A_j)+\sum\limits_{1\leq i < j < k\leq n}P(A_i\cap A_j \cap A_k)- \cdots +(-1)^{n-1}P(A_1\cap\cdots \cap A_n)$
+      - $P(A\cup B)= P(A) + P(B) - P(A\cap B)$
+      - $P(A\cup B \cup C)=P(A)+P(B)+P(C)-P(A\cap B)-P(B\cap C)-P(A\cap C)+P(A\cap B \cap C)$
 
 ## 4. Popoln sistem dogodkov in definicije vrjetnosti
-
 - `Podaj najmanjsi popoln sistem dogodkov`
   - $\Omega$ (samo 1 gotov dogodek)
 - `Kdaj je mnozica dogodkov popoln sistem`
-  - imamo mnozico dogodkov $H_1, H_2 \dots, H_n$
-  - da je popoln sistem mora veljati
+  - mnozica dogodkov $H_1, H_2 \dots, H_n$, kjer velja:
     - $\bigcup\limits_{i=1}^n H_i = \Omega$
-    - $H_i \cap H_j =\emptyset, \forall i,j \land i\neq j$
+    - $\bigcap\limits_{1\leq i < j \leq n} H_i \cap H_j =\emptyset$
 - `Statisticna definicja verjetnosti`
-  - Verjetnost dogodka A v danem poskusu je stevilo P(A) pri katerem se navadno ustali relativna frekvenca dogodka A v velikem stevilu ponovitev poskusa
+  - Verjetnost dogodka A v danem poskusu je stevilo P(A) h kateremu __konvergira relativna frekvenca__ dogodka A v velikem stevilu ponovitev poskusa
     - relativna: $f(A) = \frac{k}{n}$, k stevilo ugodnih, n stevilo poskusov
 - `Klasicna definicija verjetnosti (izpeljava)`
   - $P(A)=\frac{|A|}{|\Omega|}=\frac{\text{st. izidov v A}}{\text{st. vseh izidov}}$
@@ -223,9 +232,10 @@
 - `Podaj formulo, ki poveze obicajno in pogojno verjetnost`
   - $P(A\cap B)=P(B)P(A\mid B)$
   - $P(A\cap B)=P(A)P(B\mid A)$
-  - $P(A)P(B\mid A)=P(B)P(A \mid B)$
+      - $P(A)P(B\mid A)=P(B)P(A \mid B)$
 - `Zakaj je pomembna graficna predstavitev z drevesom`
   <p align="center"><img src="./images/predstavitev-z-drevesom.png" width="60%"></p>
+
   - TODO
 - `Izpelji formulo za racunanje pogojne verjetnosti (z uporabo statisticne definicije verjetnosti in/ali geometrijske definicije verjetnosti)`
   - TODO
@@ -237,27 +247,31 @@
 - `formula za pogojno verjetnost`
   - [zgoraj](#5.-pogojna-verjetnost)
 - `primer`
-  - Redko nalezljivo bolezen dobi ena oseba na 1000. Imamo dober a nepopolen test za to bolezen: ce imam neka oseba to bolezen potem test pokaze to v 99% primerih
-  - Test napacno pokaze 2% pacientov za bolanih
-  - A: pacient je dobil nalezjlivo bolezen
-  - B: pacientov test je bil pozitiven
+
+Redko nalezljivo bolezen dobi ena oseba na 1000. Imamo dober a nepopolen test za to bolezen: ce ima neka oseba to bolezen potem test potrdi to v 99% primerih
+<br>Test napacno pokaze 2% negativnih pacientov kot bolanih.
+  - dogodek A: pacient je dobil nalezjlivo bolezen
+  - dogodek B: pacientov test je bil pozitiven
   - $P(A)=0.001$
   - $P(B|A)=0.99$
   - $P(B|\overline{A})=0.02$ (dogodek "napacno pooizitven")
-  - Zanima nas $P(A|B)$, verjetnost da smo se nalezli ce je test pozitiven
+<br>Zanima nas $P(A|B)$, verjetnost da smo se nalezli ce je test pozitiven?
+$$P(A|B)=\frac{P(A\cap B)}{P(B)}=\frac{A\cap B}{P(A\cap B)+P(\overline{A}\cap B)}=\frac{P(B|A)P(A)}{P(B|A)P(A)+P(B|\overline{A})P(A)}$$
+
 - `drevesna struktura`
 
     <p align="center"><img src="./images/drevesna-struktura.png" width="90%"></p>
 
 - `nepopolna formula`
+    - TODO 
 - `formula za popolno verjetnost`
   1. $A=(A_1\cap H_1) \cup (A_1\cap H_2) \cup \dots \cup (A_1 \cap H_n)$
   1. $P(A)= P(A \cap H_1) + \dots + P(A\cap H_n)$
-     - $P(A \mid H_1) = \frac{P(A\cap H_1)}{P(H_1)} \rightarrow P(A\cap H_1)= P(A\mid H_1)\cdot P(H_1)$
+     - uporabimo: $P(A \mid H_i) = \frac{P(A\cap H_i)}{P(H_i)} \rightarrow P(A\cap H_i)= P(A\mid H_i)\cdot P(H_i)$
   1. $P(A)=P(A|H_1)P(H_1)+P(A|H_2)P(H_2)+\dots P(A|H_n)P(H_n)=\sum\limits_{i=1}^nP(A|H_i)P(H_i)$
 - `Bayesov obrazec`
   - za popoln sistem dogodkov $H_i$
-  - $P(H_i\mid A)=\frac{P(H_i)\cdot P(A\mid H_i)}{P(A)}=\frac{P(H_k)\cdot P(A\mid H_i)}{\sum\limits_{k=1}^nP(H_k)\cdot P(A\mid H_k)}$
+  - $P(H_i\mid A)=\frac{P(H_i)\cdot P(A\mid H_i)}{P(A)}=\frac{P(H_i)\cdot P(A\mid H_i)}{\sum\limits_{k=1}^nP(H_k)\cdot P(A\mid H_k)}$
 - `Dokaz za Beysov obrazec in formulo za popolno verjetnost`
   - zgornja izpeljava samo po definiciji (mnozic)
 
@@ -278,11 +292,8 @@
   - verjetnost da se dogodek A zgodi k krat v n zaporednih poskusih:
     $$P_n(k)=\begin{pmatrix}n \\ k \end{pmatrix} p^k (1-p)^{n-k}$$
 - `racunanje verjetnosti in/ali Laplacoev tockovni obrazec`
-  - TODO
 - `zveza med binomsko in normalno porazdelitvijo i/ali Poissonovo porazdelitvijo`
-  - TODO
 - `Dokazovanje pricakovane vrednosti z indikatorji`
-  - TODO
 
 ## 8. Sredine
 
