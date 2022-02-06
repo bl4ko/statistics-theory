@@ -408,17 +408,15 @@ Recimo da imamo dve populaciji. Populacijo1 bomo primerjali z Populacijo2.
 Recimo da naredimo __IQ__ test na obeh populacijah. Na vzorcih iz obeh populacij izracunamo vzorcno povprecje ter  (vzorcni odklon) $s_1^2$ ter $s_2^2$ 
 - <u>Primerjali bomo dva vzorcna odklona</u>
 - __Testna statistika__ (Fisherjeva) je $F=\frac{S_1^2}{S_2^2}$
-    - $s_1^2$ dobimo iz $n_1$ vzorcev 1. populacije
-    - $s_2^2$ dobimo iz $n_2$ vzorcev 2. populacije
+    - $s_1^2$ dobimo iz $n$ vzorcev 1. populacije
+    - $s_2^2$ dobimo iz $m$ vzorcev 2. populacije
 - `F-distribution, parametri`
-    - $F(\nu_1, \nu_2)=\frac{\chi^2(\nu_1) / \nu_1}{\chi^2(\nu_2) / \nu_2}$
-        - $\nu_1$ prostostne stopnje prve $\chi^2$ spremenljivke
-        - $\nu_2$ prostostne stopnje druge $\chi^2$ spremenljivke
+    - $F(n, m)=\frac{\chi^2(n) / n}{\chi^2(m) / m}$
+        - $n$ prostostne stopnje prve $\chi^2$ spremenljivke
+        - $m$ prostostne stopnje druge $\chi^2$ spremenljivke
     - $Z_F = \mathbb{R}^+$
         - oblika odvisna od prostnostnih stopenj obeh vzorcov
     <p align="center"><img src="./images/f-distribution.png" width="60%"></p>
-    
-    - Pokazati se da $\mu = \frac{\nu_2}{\nu_2 -2}$
 - `predpostavke`
 - `definicija - verjetnostna funkcija`
     $$p(x)=\frac{m^{\frac{3}{2}}n^{\frac{n}{2}}}{B(\frac{m}{2},\frac{n}{2})}\cdot \frac{x^{\frac{(m-2)}{2}}}{(n+mx)^{\frac{m+n}{2}}}$$
@@ -429,3 +427,9 @@ Recimo da naredimo __IQ__ test na obeh populacijah. Na vzorcih iz obeh populacij
 - `primer statistike, ki se porazdeljuje po Fisherjevo`
 - $F=\frac{S_1^2}{S_2^2}$
 - `se kaksne lastnosti fisherjeve porazdelitve`
+
+| Statisticni parameter | enacba |
+| - | - | 
+| Pricakovana vrednost $\mu$ | $\frac{m}{m-2}, m>2$
+| Modus | $\frac{n-2}{n}\cdot \frac{m}{m+2}$
+| varianca | $\frac{2m^2\cdot(n+m-2)}{n(m-2)^2(m-4)}$|
