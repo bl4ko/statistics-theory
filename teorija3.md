@@ -251,17 +251,43 @@ z enako povprecno frekvenco__? Uporabi $\alpha=0.05$ (stopnja tveganja)
 - Gledamo odvisnost oziroma povezanost spremenljivk
     - $X\leftrightarrow Y$ povezanost
     - $X\rightarrow Y$ odvisnost
+- `Tipi spremenljivk in testi za povezanost`
+    - __Imenski/nominalni__: $\chi^2$, kontingencni koeficienti, koeficient asociacije
+    - __Ordinalni__: koeficient korealcije rangov
+    - __Stevilski__: koeficient korelacije
 - `Povezanost dveh imenskih spremenljivk`
+
+Zanima nas ali sta spol in stanovanje v casu studija povezana. Izmerimo podatke za nakljucni vzorec. 
+Naredimo __kontingencno tabelo__ (relativne frekvence po stolpcih)
+<div align="center">
+
+| | starsi | st. dom | zasebno | skupaj 
+| - | - | - | - | - |
+| moski | 20 | 50 | 30 | 100 |
+| zenske | 40 | 30 | 30 | 100 |
+| skupaj | 32 | 38 | 30 | 100| 
+
+
+
+</div>
+
+Moramo preveriti ali so razlike v porazdelitvi tipa stanovanja v casu studija po spolu __statisiticno znacilne__ in ne le ucinek vzorca
+- $H_0$: spremenljiki nista povezani
+- $H_1$: spremenljivki sta povezani
+
+Za preverjanje domneve o povezanosti med dveme __imenskima__ spremenljivkama lahko uporabimo  $\chi^2$ test.
+- Testna statistika $\chi^2$, ki primerja dejanske in teoreticne frekvence je 
+    $$\chi^2= \sum\limits_{i=1}^k \frac{(f_i-f_i')^2}{f_i'}$$
+    - k je stevilo razredov (celic) v kontingencni tabeli
+    - testna statistika se porazdeljuje po $\chi^2$ porazdelitvi s $(s-1)(v-1)$ prostostnimi stopnjami, kjer je s stevilo vrstic v kontingencni tabeli in s stevilo stolpcev
+Nicelna in osnovna domneva sta v primeru tega testa:
+- $H_0: \chi^2 = 0$ (spremenljivki nista povezani)
+- $H_1: \chi^2 > 0$ (spremenljivki sta povezani)
+
+
 - `preverjanje povezanosti slucajnih spremenljivk (glede na tip slucajnih spremenljivk)`
-  - Mere povezanosti locimo glede na tip spremenljivk:
-    1. IMENSKI/NOMINALNI tip para spremenljivk (ena od spremenljik je imenska/nominalna) $\chi^2$ test, kontinguencni koeficienti, koeficineti asociacije
-    1. ORDINALNI tip para spremenljivk (ena spremenljivka je ordinalna druga ordinalna ali boljsa) **koeficient korelacije rangov**
-    1. STEVILSKI tip para spremenljivk (spremenljivki sta stevilski): **koeficient korelacije**
 - `preverjanje neodvisnosti imenskih slucajnih spremenljivk`
 - `koeficient korelacije (Pearsonov, Spearmanov), preverjanje domneve o parametru ρ`
-  - **Pearsonov koeficient**: $\phi=\chi^2/n$, ki ima zgornjo mejo $\phi_{\text{max}}^2=k-1$
-  - \_\_
 - `linearna regresija (definicije, predpostavke, metoda najmanjsih kvadratov)`
-  - The goal of simple linear regression is to create a linear model that minimizes the sum of squares of the residuals / error (SSE)
 - `casovne vrste in definicija trenda`
 - `Staticni test linearnosti mo`

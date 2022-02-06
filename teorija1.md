@@ -3,12 +3,12 @@
 ## 1. Slucajne spremenljivke
 
 - `primeri`
-  - Imamo nek poskus katerega izidi so stevila (npr. met kocke). Se pravi da je poskusom prirejena neka kolicina ki more imeti rezlicne vrednosti.
-  - Torej je spremenljivka, katero vrednost zavzame v doloceni ponovitvni poskusa pa je odvisno od slucaja.
+  - Imamo nek poskus katerega izidi so stevila (npr. met kocke). Se pravi da je poskusom prirejena neka kolicina ki mora zavzeti rezlicne vrednosti.
+      -  Vrednost, ki jo zavzame v doloceni ponovitvni poskusa je odvisno od slucaja.
   - Primer: Vrzemo kocko, pade lahko od 1-6 pik, vsi izidi so enako vrjetni
   - $X \sim \begin{pmatrix}1 && 2 && 3 && 4 && 5 && 6 \\ \frac{1}{6} && \frac{1}{6} && \frac{1}{6} && \frac{1}{6} && \frac{1}{6} && \frac{1}{6} \end{pmatrix}$
 - `definicija (zaloga vrednosti in porazdelitveni zakon)`
-  - Zaloga vrednosti - vrednosti ki jih slucajna spremenljivka lahko zavzame $Z_X$
+  - __Zaloga vrednosti__ $Z_X$: vrednosti ki jih slucajna spremenljivka lahko zavzame
 - `porazdelitvena funkcija`
   - $F_X(x)=P(X\leq x)$
 - `lastnosti porazdelitvene funkcije`
@@ -22,7 +22,7 @@
   1. $P(X>x)=1-F(x)$
   1. $P(X=x)=F(x)-F(x-)$
 - `diskretna, zvezna`
-  - **diskretna**: zaloga vrednosti je stevna mnozicca
+  - **diskretna**: zaloga vrednosti je stevna mnozica
   - **zvezna**: lahko zavzame vsako realno stevilo znotraj dolocenega intervala (koncnega/neskoncnega)
 - `primer mesane slucajne spremenljivke`
   - kombinirana: na nekem obmocju diskretna na nekem zvezna
@@ -47,7 +47,7 @@
     - X je stevilo ponovitev poskusa do (vkljucno) prve pojavitve izida A
     - X = st. poskusov da prvic pade 6
     - $P(X=k)=(1-p)^{k-1}p$
-  - `Pascalova/Negativna binomska` $\sim P(N,p)$
+  - `Pascalova/Negativna binomska` $\sim P(n,p)$
     - X je stevilo ponovitev poskusa do (vkljucno) n-te pojavitve izida A
       - npr. koliko poskusov rabimo do 10. sestice
     - $P(X=k)=\begin{pmatrix}k-1 \\ n-1\end{pmatrix}p^{k-n}p^n$
@@ -77,15 +77,20 @@
 
 ## 3. Poissonova porazdelitev
 
-- `primer npr. stetje prometa`
-  - St. avtov ki gre mimo vrtca v eni uri
-  - V povprecju gre v 1h mimo 35 avtov -> $\lambda = 35$
-  - $X\sim P(35)$
+- `primer`
+    - Neka rokometna ekipa da v __povprecju 30 golov__ na tekmo (tekma traja __60min__).
+        - Koliko verjetno ekipa na naslednji tekmi v prvi minuti doseze vsaj en gol?
+            - $t = 1\text{min}, \rightarrow \lambda = 0.5$
+            - $P(X\geq 1)= 1 - F_X(0)= 1 - \frac{0.5^0\cdot e^{-0.5}}{0!}=1-e^{0.5}$
+        - Koliko verjetno ekipa v zadnjih 3min tekme doseze natanko dva gola? 
+            - $t=3\text{min}\rightarrow  \lambda=\frac{3}{2}$
+            - $P(X=2)= \frac{(\frac{3}{2})^2 \cdot e^{-\frac{3}{2}}}{2!}\approx 0.251$
 - `zaloga vrednosti`
-  - **stevna** a **neomejena** (teoreticno se lahko zgodi neskoncno mnogo dogodkov)
+  - **stevna** a **neomejena** (teoreticno se lahko zgodi neskoncno mnogo dogodkov na danem intervalu)
 - `predpostavke`
-  - dogodki se pojavljajo neodvisno od dolzine interavla ter neodvisno od ostalih
-  - povprecno stevilo dogodkov ki se pojavijo na nekem interavlu je konstantno
+  - dogodki morajo biti porazdeljeni po Poissonu
+    - dogodki se pojavijo __neodvisno__ od casa, ki je potekel od zadnjega dogodka
+    - povprecno stevilo dogodkov ki se pojavijo na nekem intervalu je __konstnatno__ - $\lambda$
 - `definicija - verjetnostna funkcija`
   - $p_k=P(X=k)=\lambda^k \frac{e^{-\lambda}}{k!}$
 - `povezava z binomsko porazdelitvijo`
@@ -103,7 +108,7 @@
         $$=\frac{\lambda^k}{k!}e^{-\lambda}\lim\limits_{n\rightarrow \infty} \left(\frac{n\cdot (n-1)\cdot (n-2)\cdots (n-k)!}{(n-k)!\cdot n^k}\right)=$$
         $$=\frac{\lambda^k}{k!}e^{-\lambda}\lim\limits_{n\rightarrow \infty} \left(\frac{n(n-1)(n-2)\cdots(n-k+1)}{n^k}\right)=$$
         $$=\frac{\lambda^k}{k!}e^{-\lambda}\lim\limits_{n\rightarrow \infty} \left((\frac{n}{n})(\frac{n-1}{n})\cdots(\frac{n-k+1}{n})\right)=$$
-      - Vidimo da v limiti grejo vsi cleni $\rightarrow 1$
+      - Vidimo da v limiti grejo vsi notranji cleni $\rightarrow 1$
         $$=\frac{e^{-\lambda}\lambda^k}{k!}$$
 - `razlaga parametra` $\lambda$
   - st. ponovitev dogodka A, ki jih imamo v povprecju na nekem intervalu
@@ -115,14 +120,14 @@
     - $E(E^2(X)))=E^2(X)$, **E(konstanta)=konstanta**
     - $E(-2XE(X))=-2E(X)E(X)$ (konstanto premaknemo vn)
 - `Poissonov obrazec`
-  - Zgoraj $B(n,p)\approx P(np)$
-
+  - $B(n,p)\approx P(np)$
+    - dokaz zgoraj 
 ## 4. Pascalova porazdelitev
 
 - `primeri (npr. geometrijska)`
   - Naj bo X stevilo metov postenega kovanca, ki ga mecemo dokler ne pade cifra in takoj nato grb.
   - $X_1\sim G(\frac{1}{2}) \dots$ pade prva cifra
-  - $X_2\sim G(\frac{1}{2}) \dots$ pade prvi grb (po cifri)
+  - $X_2\sim G(\frac{1}{2}) \dots$ pade prvi grb (po cifri - torej neodvisen)
   - $X = X_1 + X_2$
     - $X\sim P(2,\frac{1}{2})$
 - `definicija, verjetnostna funkcija`
@@ -140,13 +145,15 @@
   - $E(X)=\sum\limits_{i=1}^\infty ipq^{i-1}=p\sum\limits_{i=1}^\infty (q^i)'=p \left(\sum\limits_{i=1}^\infty q^i\right)'=p(\frac{1}{1-q})'=\frac{1}{p}$
 - `uporaba pri problemu "zbiranja kuponov"`
   - TODO
-  - LMAO
 
 ## 5. Hipergeometrijska porazdelitev
 
 - `zaloga vrednosti`
   - $0,1, \dots, \min(n,R)$
 - `definicija (verjetnostna funkcija)`
+  - $X\sim (R,B,n)$
+  - X je stevilo rdecih kroglic med izbranimi n kroglicami.
+    - V posodi imamo R rdecih in B belih kroglic. Iz posode izvlecemo n kroglic.
   - $P(X=k)=\frac{\begin{pmatrix} R \\ k \end{pmatrix} \cdot \begin{pmatrix}B\\n-k\end{pmatrix}}{\begin{pmatrix}R+B \\ n\end{pmatrix}}$
 - `omejitve parametrov`
   - $0\leq k \leq \text{min}(R,n)$
@@ -156,12 +163,11 @@
   - Iz vrece, ki ima 4 modre in 5 rdecih potegnemo 3 kroglie.
   - Koliksna je verjetnost da potegnemo 2 modri
     - R=4, B=5, n=3
-  - $P(X=22)=\frac{\begin{pmatrix} 4 \\ 2 \end{pmatrix} \cdot \begin{pmatrix}5\\1\end{pmatrix}}{\begin{pmatrix}9 \\ 3\end{pmatrix}}=0.357$
+  - $P(X=2)=\frac{\begin{pmatrix} 4 \\ 2 \end{pmatrix} \cdot \begin{pmatrix}5\\1\end{pmatrix}}{\begin{pmatrix}9 \\ 3\end{pmatrix}}=0.357$
 - `Standardni odklon in upanje`
   - $E(X)=\frac{nR}{R+B}$
   - $D(X)=\frac{nRB\cdot(R+B-n)}{(R+B)^2(R+B-1)}$
 - `je vec parametrov boljse ali slabse`
-  - you tell me
   - TODO
 - `povezava z binomsko`
   - Pri veliki seriji bi lahko vzeli binomsko porazdelitev (prakticno vseeno ali izbiramo vzorec z vracanjem ali brez)
@@ -173,7 +179,7 @@
 - `primer - slika gostote verjetnosti`
   - Vsaka paleta paketov riza vsebuje 100kg. Slucajna spremenljivka ki steje kolicino prodanih palet riza ima gostoto
   $p_X(x)=\Bigg\{ \begin{matrix}\frac{2x}{3}, && x\in [0,1] \\ -\frac{x}{3}+1, && x\in [1,3] \\ 0, && x\notin [0,3] \end{matrix}$
-  <p align="center"><img src="./images/p(x).png" width="60%"></p>
+  <p align="center"><img src="./images/p(x).png" width="80%"></p>
 - `opisi primerov: enakomerna, normlano, eksponentna (in Gama), Caucheyeva`
   - **enakomerna zvezna** $\sim U[a,b]$
     - vsi poskusi na intervalu [a,b] so enako verjetni
@@ -191,7 +197,7 @@
   - **Normalna** $\sim N(\mu,\sigma)$
     - $p(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$ , za $x\in \mathbb{R}$
     - $F_X(x)=\phi(\frac{x-\mu}{\sigma})$
-- `definicija zvezne z gostot verjetnosti`
+- `definicija zvezne z gostoto verjetnosti`
   - Slucajna spremenljivka X je **zvezno porazdeljena** ce obstaja integrabilna funkcija $p_X$ imenovana **gostota verjetnosti**
   - $F(X)=P(X\leq x)=\int\limits_{-\infty}^x p_X(t) dt$
   - $p_X(x)$ je integrabilna
@@ -203,6 +209,7 @@
 - `racunanje verjetnosti na podinetravlu`
   - $P(a < X < b ) = \int\limits_{a}^b p_X(x)dx$
 - `izpeljava netrivialne pricakovane vrednosti ali odklona`
+  - TODO
 
 ## 7. Normalna porazdelitev
 
@@ -210,9 +217,11 @@
   - N($\mu,\sigma$)
       <p align="center"><img src="./images/normalna-porazdelitev.png" width="90%"></p>
 - `povezava z vsoto slucajnih spremenljivk in/ali CLI`
-  - Naj bodo $X_1, \dots , X_n$ **neodvisne** in **enako porazdeljene** slucajne spremenljivke s $E(X)=\mu$ in D(X) = $\sigma$
+  - Naj bodo $X_1, \dots , X_n$ **neodvisne** in **enako porazdeljene** slucajne spremenljivke s: 
+    - $E(X_i)=\mu$, 
+    - $D(X_i) = \sigma^2$
   - Potem za dovolj velik n velja $S=X_1+\dots+X_n$
-    - $S\sim N(n\cdot \mu, \sigma \cdot \sqrt{n})$
+    - $S\sim N(n\cdot \mu, \sqrt{n}\cdot\sigma)$
 - `zaloga vrednosti, gostota verjetnosti, funkcija napake`
   - $X\sim N(\mu, \sigma)$
   - $Z_X = \mathbb{R}$
@@ -220,8 +229,8 @@
   - **funkcija napake** $\phi(x)=F_X(x)=\int\limits_{-\infty}^{x} e^{-\frac{y^2}{2}}dy$
   - **funkcija napake** $\phi(\frac{x-\mu}{\sigma})$
 - `standardizacija in tabela za N(0,1)`
-  - Porazdelitev N(0,1) je standardizirana normalna porazdelitev
-  - N(0,1)
+  - Porazdelitev $N(0,1)$ je standardizirana normalna porazdelitev
+  - $N(0,1)$
       <p align="center"><img src="./images/zvonasta-krivulja.png" width="90%"></p>
 - `kje sta` $\mu$ `in` $\sigma$ `na grafu y=p(x) in pravilo 68-95-99,7`
   - $\mu$ se nahaja na simetrali zvonaste krivulje
@@ -259,7 +268,8 @@
 - `podroben zapis izreka`
   - Naj bo k frekvenca dogodka A v n neodvisnih ponovitvah danega poskusa, v katerem ima dogodek A verjetnost p.
   - Torej za $\forall \epsilon >0$ velja:
-    $$ \lim\limits\_{n\rightarrow \infty}P\left(\left| \frac{k}{n}-p\right|\leq \epsilon\right) = 1$$
+    $$ \lim\limits_{n\rightarrow \infty}P\left(\left| \frac{k}{n}-p\right|\leq \epsilon\right) = 1$$
+    $$
   - zgornja enacba: as the number of trials n goes to infinity, the average of the observations converges to the expected value
 - `skica dokaza`
   - ker je n naravno stevilo, lahko oba izraza v neenakosti iz zgornje verjetnosti pomnozimo z n, in z
@@ -267,9 +277,11 @@
     $$P\left( -\epsilon \leq \left|\frac{k}{n}-p\right|\leq \epsilon\right)=P(np-n\epsilon \leq k \leq np+n\epsilon)=P_n(k_1)+P_n(k_1+1)+\cdots+P_n(k_2)$$
   - kjer so $k_1 < k_1 +1 < \cdots < k_2$ vsa cela stevila na intervalu $\left[np-n\epsilon, np+n\epsilon\right]$
   - Dobljeno vsoto oznacimo s $P(k_1-1, k_2)$ in jo ocenimoo s funkcjo napake kar nam da
-    $$P(k_1, k_2)\approx \phi (\frac{k_2-np}{\sqrt{npq}})-\phi(\frac{k_1-1-np}{\sqrt{npq}})\approx 2\phi(\frac{n\epsilon}{\sqrt{npq}})$$
+    $$P(k_1-1, k_2)\approx \phi (\frac{k_2-np}{\sqrt{npq}})-\phi(\frac{k_1-1-np}{\sqrt{npq}})\approx 2\phi(\frac{n\epsilon}{\sqrt{npq}})$$
 - `statisticna in klasicna definicija verjetnosti`
+    - [del-0](./teorija0.md/1#4.-popoln-sistem-dogodkov-in-definicije-vrjetnosti) 
 - `definicija funkcije napake`
+    - [zgoraj](./1#7.-normalna-porazdelitev)
 - `uporaba/primer za izracun verjetnosti ali velikost n`
   - Kolikokrat moramo vreci posten kovanec, da bo verjetnost dogodka, da se relativna rekvenca grba razlikuje od 0.5 za manj kot 0.05 vecja od 0.997
   - Iz tabele vidimo $2\phi(x)>0.997$ za x = 3
@@ -285,7 +297,7 @@
   - Koliksna je verjetnost, da bo vratar cakal vec kot 3 minute na naslednjega studenta?
     - $P(X>\frac{1}{20})=1-F(\frac{1}{20})=1-(1-e^{-30\cdot \frac{1}{20}})=0.223$
 - `definicija - povezava s Poissonovim procesom`
-  - $X\sim Exp(\lambda)$
+  - $X\sim \text{Exp}(\lambda)$
   - Opisuje cas med dvema zaporednima dogodkoma v Poissonovem procesu
     - tj. proces kjer se dogodki pojavljajo zvezno in neodivisno pri povprecni hitrosti ponavljanja
 - `slika, zaloga vrednosti, gostota verjetnosti`
@@ -298,16 +310,18 @@
   - $E(X)=\frac{1}{\lambda}$
   - $D(X)=\frac{1}{\lambda^2}$
 - `karakterizacija: zvezna slucajna spremenljivka brez spomina`
+    - Poissonova porazdelitev: pojavitev dogodka je nedovisna od tega kdaj se pojavi dogodek pred tem
 
 ## 10. Gama porazdelitev
 
-- `posebni primeri (npr. eksponentna, hi-kvadrat), kako lahko iz eksponentne pridemo do Gama porazdelitve`
+- `posebni primeri (npr. eksponentna, hi-kvadrat)`
   - Eksponentno porazdelitev lahko se posplosimo: pri Poissonovem procesu merimo cas da se zgodi k zaporednih dogodkov.
   - Naj bosta k,$\lambda > 0$. Tedaj imamo `Gama Porazdelitev` $X\sim \Gamma(k,\lambda)$
     - k parameter oblike
     - $\lambda$ paramter raztega
     - na sliki $\theta= \frac{1}{\lambda}$, za k = 1 dobimo eksponentno porazdelitev
       <p align="center"><img src="./images/gamma-porazdelitev.png" width="60%"></p>
+- `Kako lahko iz eskponentne pridemo do Gama porazdelitve`
   - Ce $X_i \sim \text{Exp}(\lambda)$
   - potem $\Gamma(k, \lambda)= X_1+X_2+\dots+X_k$
 - `slika, zaloga vrednosti, gostota verjetnosti in kako pridemo do zgornjih primerov iz Gama porazdelitve`
