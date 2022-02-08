@@ -272,12 +272,13 @@
     $$
   - zgornja enacba: as the number of trials n goes to infinity, the average of the observations converges to the expected value
 - `skica dokaza`
-  - ker je n naravno stevilo, lahko oba izraza v neenakosti iz zgornje verjetnosti pomnozimo z n, in z
-    upostevanjem da je tudi k celo stevilo med 0 in n, dobimo oceno
-    $$P\left( -\epsilon \leq \left|\frac{k}{n}-p\right|\leq \epsilon\right)=P(np-n\epsilon \leq k \leq np+n\epsilon)=P_n(k_1)+P_n(k_1+1)+\cdots+P_n(k_2)$$
-  - kjer so $k_1 < k_1 +1 < \cdots < k_2$ vsa cela stevila na intervalu $\left[np-n\epsilon, np+n\epsilon\right]$
-  - Dobljeno vsoto oznacimo s $P(k_1-1, k_2)$ in jo ocenimoo s funkcjo napake kar nam da
-    $$P(k_1-1, k_2)\approx \phi (\frac{k_2-np}{\sqrt{npq}})-\phi(\frac{k_1-1-np}{\sqrt{npq}})\approx 2\phi(\frac{n\epsilon}{\sqrt{npq}})$$
+    - uporabimo __Chebyshevo neenakost__
+        - $P(|X-\mu|>a)\leq \frac{\text{Var}(X)}{a^2}$
+        - ta se dokaze z __Markovo neenakostjo__
+            - $P(|X|\geq a) \leq \frac{E(X)}{a}$
+                - dokaz: $a I_{|X|\geq a} \leq |X| \rightarrow aE(I_{|X|>a})\leq E(X)$
+    - ter dejstvo: $\text{Var}(\overline{X}_ n)= \text{Var}(\frac{1}{n}(X_1+\cdots +X_n))=\frac{\sigma^2 n}{n^2}$
+    $$P(|\overline{X}_n-\mu| > \epsilon)\leq \frac{\text{Var}(\overline{X}_n)}{\epsilon^2}=\frac{\sigma^2}{n\epsilon^2}\rightarrow 0$$
 - `statisticna in klasicna definicija verjetnosti`
     - [del-0](./teorija0.md/1#4.-popoln-sistem-dogodkov-in-definicije-vrjetnosti) 
 - `definicija funkcije napake`
@@ -288,7 +289,14 @@
   - Poiscemo tak n, da bo $\frac{n\epsilon}{\sqrt{npq}}>3$
   - $\frac{0.05\cdot \sqrt{n}}{\sqrt{0.5\cdot 0.5}}>3 \rightarrow \frac{0.0025n}{0.25}>9\rightarrow n =900$
 - `dokaz z aproksimacijo prek zveze med binomsko in normalno porazdelitvijo`
+  - ker je n naravno stevilo, lahko oba izraza v neenakosti iz zgornje verjetnosti pomnozimo z n, in z
+    upostevanjem da je tudi k celo stevilo med 0 in n, dobimo oceno
+    $$P\left( -\epsilon \leq \left|\frac{k}{n}-p\right|\leq \epsilon\right)=P(np-n\epsilon \leq k \leq np+n\epsilon)=P_n(k_1)+P_n(k_1+1)+\cdots+P_n(k_2)$$
+  - kjer so $k_1 < k_1 +1 < \cdots < k_2$ vsa cela stevila na intervalu $\left[np-n\epsilon, np+n\epsilon\right]$
+  - Dobljeno vsoto oznacimo s $P(k_1-1, k_2)$ in jo ocenimoo s funkcjo napake kar nam da
+    $$P(k_1-1, k_2)\approx \phi (\frac{k_2-np}{\sqrt{npq}})-\phi(\frac{k_1-1-np}{\sqrt{npq}})\approx 2\phi(\frac{n\epsilon}{\sqrt{npq}})$$
 - `Zakaj to smatramo za prvo verzijo CLI?`
+    - enaka ideja
 
 ## 9. Eksponentna porazdelitev
 

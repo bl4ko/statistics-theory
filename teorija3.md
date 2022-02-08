@@ -43,84 +43,65 @@
 - `CLI`
   - Naj bo $(X_1, X_2, \dots, X_n)$ normlano porazdeljen enostavni slucajni vzorec.
     - $X_i \sim N(\mu, \sigma)$
-  - Potem je porazdelitev vzorcnega povprecja $\overline{X}= \frac{1}{n} \sum\limits_{i=1}^n X_i$ tudi normalna:
-    $$\overline{X}\sim N(\mu, \frac{\sigma}{\sqrt{n}})$$
+    $$\sum\limits_{i=1}^n X_i \sim N(n\mu, \sigma \sqrt{n})$$
 
 ## 2. CLI za $\overline{X}$
 - `teorija`
 
-Denimo da se spremenljivka X na populaciji porazdeljuje normalno $N(\mu, \sigma)$. Na vsakem vzorcu (s ponavljanjem)
-izracunamo vzorcno povprecje $\overline{X}$. Po reprodukcijski lastnosti normalne porazdelitve je __porazdelitev vzorcnih 
+    - Denimo da se spremenljivka X na populaciji porazdeljuje normalno $N(\mu, \sigma)$. Na vsakem vzorcu (s ponavljanjem)
+    izracunamo vzorcno povprecje $\overline{X}$. Po reprodukcijski lastnosti normalne porazdelitve je __porazdelitev vzorcnih 
 povprecij normalna__ kjer je:
-- pricakovana vrednost vzorcnih povprecij enaka pricakovani vrednosti spremenljivke na populaciji 
-$$E(\overline{X})=\mu$$
-- standardni odklon vzorcnih povprecij
-$$\text{SE}(\overline{X})=\frac{\sigma}{\sqrt{n}}$$
-Za dovolj velike vzorce ($n>30$) je porazdelitev vzorcnih povprecij priblizno normalna, tudi ce spremenljivka X ni 
-normalno porazdeljena. Ce se spremenljivka X porazdeljuje vsaj priblizno normalno s standardno napako $\text{SE}(X)$,
-potem se:
-$$Z=\frac{X-E(X)}{\text{SE}(X)}$$
-porazdeljuje __standardizirano normalno__.
+        $$E(\overline{X})=\mu$$
+        $$\text{SE}(\overline{X})=D(\overline{X})=\frac{\sigma}{\sqrt{n}}$$
 
-<br>
-
-Naj bo $X\sim N(\mu, \sigma)$. Tedaj je 
-- $\sum\limits_{i=1}^n X_i \sim N(n\mu, \sigma \sqrt{n})$
-$$\overline{X}\sim N(\mu, \frac{\sigma}{\sqrt{n}})$$
-Torej je vzorcna statstika 
-$$Z= \frac{\overline{X}-\mu}{\sigma} \sqrt{n} \sim N(0,1)$$
-
-__Kaj pa ce porazdelitev X ni normalna?__. Pri vecjih vzorcih (n>30), lahko uporabimo centralni limitni izrek, ki 
-zagotavlja, da je spremenljivka Z porazdeljena standardizirano normalno. Vzorcno povprecje ima tedaj porazdelitev priblizno
-$$\overline{X}\sim N(\mu, \frac{\sigma}{\sqrt{n}})$$
+    - __Kaj pa ce porazdelitev X ni normalna?__. Pri vecjih vzorcih (n>30), lahko uporabimo centralni limitni izrek, ki 
+    zagotavlja, da je spremenljivka \overline{X} porazdeljena standardizirano normalno. Vzorcno povprecje ima tedaj porazdelitev priblizno
+    $$\overline{X}\sim N(\mu, \frac{\sigma}{\sqrt{n}})$$
 
 - `primer`
-
-Koliksna je verjetnost, da bo pri 36 metih igralne kocke povprecno stevilo pik vecje ali enako 4? X je slucajna 
-spremenljivka z vrednostmi 1,2,3,4,5,6 in verjetnostmi $1/6$. Zanjo je $\mu=3.5$ in $\sigma=1.7$. Vseh 36 ponovitev 
-meta lahko obravnavamo kot slucajni vzorec velikosti 36.
-$$P(\overline{X}\geq 4)=1-\phi\left(\frac{E(\overline{X})-\mu}{\frac{\sigma}{\sqrt{n}}}\right)=1-\phi\left(\frac{4-3.5}{\frac{1.7}{6}}\right)\approx 0.04$$
+    - Koliksna je verjetnost, da bo pri 36 metih igralne kocke povprecno stevilo pik vecje ali enako 4? X je slucajna 
+    spremenljivka z vrednostmi 1,2,3,4,5,6 in verjetnostmi $1/6$. Zanjo je $\mu=3.5$ in $\sigma=1.7$. Vseh 36 ponovitev 
+    meta lahko obravnavamo kot slucajni vzorec velikosti 36.
+    $$P(\overline{X}\geq 4)=1-\phi\left(\frac{E(\overline{X})-\mu}{\frac{\sigma}{\sqrt{n}}}\right)=1-\phi\left(\frac{4-3.5}{\frac{1.7}{6}}\right)\approx 0.04$$
 
 ## 3. CLI za delez
 - `izrek`
 
-Denimo, da __zelimo na populaciji oceniti delez enot $\pi$ z doloceno lastnostjo__. V ta namen poiscemo vzorcni delez p.
-<u>Pokazati se da, da se za dovolj velike slucajne vzorce s ponavljanjem (za deleze okoli 0.5 je dovolj 20 enot ali vec), vzorcni delezi poradeljujejo priblizno normalno s</u>
-- pricakovano vrednostjo vzorcnih delezev enako delezu na populaciji $E(\hat{P})=\pi$
-- standardnim odklonom vzorcnih delezov $\text{SE}(\hat{P})=\sqrt{\frac{\pi(1-\pi)}{n}}$
+    - Denimo, da __zelimo na populaciji oceniti delez enot $\pi$ z doloceno lastnostjo__. V ta namen poiscemo vzorcni delez p.
+    <u>Pokazati se da, da se za dovolj velike slucajne vzorce s ponavljanjem (za deleze okoli 0.5 je dovolj 20 enot ali vec), vzorcni delezi poradeljujejo priblizno normalno s</u>
+    $$E(\hat{P})=\pi$$
+    $$\text{SE}(\hat{P})=\sqrt{\frac{\pi(1-\pi)}{n}}$$
+    $$\hat{P}\sim N(\pi, \sqrt{\frac{\pi (1-\pi)}{n}})$$
 
-Za manjse vzorce se vzorcni delez porazdeljuje `binomsko`. Mimogrede, cenilka populacijskega deleza je nepristranska
-ker velja $E(\hat{P})=\pi$
-- cenilka za delez $\pi$
-    - $\hat{P}=\frac{\sum X_i}{n}=\overline{X}$
-- n > 20
-     $$\hat{P}\sim N(\pi, \sqrt{\frac{\pi (1-\pi)}{n}})$$
-- n < 20
+    - Za manjse vzorce (n<20) se vzorcni delez porazdeljuje `binomsko`. Mimogrede, cenilka populacijskega deleza je nepristranska
+    ker velja $E(\hat{P})=\pi$
     $$\hat{P}\sim B(\pi, \sqrt{\frac{\pi(1-\pi)}{n}})$$
+    - cenilka za delez $\pi$
+        - $\hat{P}=\frac{\sum X_i}{n}=\overline{X}$
 
 - `primer`
 
-V izbrani populaciji je polovica zensk $\pi = 0.5$. Ce tvorimo vzorce po n = 25 enot, nas zanima, koliksna je 
-verjetnost, da je v vzorcu vec kot 55% zensk? To pomeni da iscemo verjetnost $P(p>0.55)$.
-Uporabimo dejstvo da se vzorcni delezi p porazdeljujejo priblizno normalno
-$$\hat{P} \approx N(0.5, \sqrt{\frac{0.5\cdot 0.5}{25}})=N(0.5,0.1)$$
-Zato je
-$$P(\hat{P}> 0.55) = 1-\phi(\frac{0.55-0.5}{0.1})\approx 0.31$$
-Torej pri priblizno 31% vzorcih zensk bo delez zensk vecji od 55%.
+    - V izbrani populaciji je polovica zensk $\pi = 0.5$. Ce tvorimo vzorce po n = 25 enot, nas zanima, koliksna je 
+    verjetnost, da je v vzorcu vec kot 55% zensk? To pomeni da iscemo verjetnost $P(p>0.55)$.
+    Uporabimo dejstvo da se vzorcni delezi p porazdeljujejo priblizno normalno
+    $$\hat{P} \approx N(0.5, \sqrt{\frac{0.5\cdot 0.5}{25}})=N(0.5,0.1)$$
+    - Zato je
+    $$P(\hat{P}> 0.55) = 1-\phi(\frac{0.55-0.5}{0.1})\approx 0.31$$
+    - Torej pri priblizno 31% vzorcih zensk bo delez zensk vecji od 55%.
 
 
 ## 4. CLI za $S^2$
-Naj bo slucajna spremenljivka X na neki populaciji porazdeljena normalno $N(\mu, \sigma)$.
-> Kako bi dolocili porazdelitev za vzorcno disperzijo ali popravljeno vzorcno disperzijo tj.:
-- $S_0^2 = \frac{1}{n} \sum\limits_{i=1}^n (X_i-\overline{X})^2$ oziroma $S^2=\frac{1}{n-1} \sum\limits_{i=1}^n (X_i-\overline{X})^2$?
+- Naj bo slucajna spremenljivka X na neki populaciji porazdeljena normalno $N(\mu, \sigma)$.
+Kako bi dolocili porazdelitev za vzorcno disperzijo ali popravljeno vzorcno disperzijo tj.:
+$$S_0^2 = \frac{1}{n} \sum\limits_{i=1}^n (X_i-\overline{X})^2 \text{ oziroma } S^2=\frac{1}{n-1} \sum\limits_{i=1}^n (X_i-\overline{X})^2$$
 
-<u>Dobimo ju iz vzorcne statistike</u> $\chi^2$:
+- <u>Dobimo ju iz vzorcne statistike</u> $\chi^2$:
 $$\chi^2 = \frac{nS_0^2}{\sigma^2}=\frac{(n-1)S^2}{\sigma^2}=\frac{1}{\sigma^2}\sum\limits_{i=1}^n (X_i-\overline{X})^2$$
-Ker vemo, da je $E(\chi^2(n))=n$  in $D(\chi^2(n))=2n$ lahko takoj izracunamo:
-- $E(S_0^2)=E(\frac{\sigma^2\chi^2}{n})=\frac{(n-1)\sigma^2}{n}$, $E(S^2)=E(\frac{\sigma^2 \chi^2}{n-1})=\sigma^2$
-- $D(S_0^2)=D(\frac{\sigma^2\chi^2}{n})=\frac{2(n-1)\sigma^4}{n^2}$, $D(S^2)=D(\frac{\sigma^2\chi^2}{n-1})=\frac{2\sigma^4}{n-1}$
+- Ker vemo, da je $E(\chi^2(n))=n$  in $D(\chi^2(n))=2n$ lahko takoj izracunamo:
+    - $E(S_0^2)=E(\frac{\sigma^2\chi^2}{n})=\frac{(n-1)\sigma^2}{n}$, $E(S^2)=E(\frac{\sigma^2 \chi^2}{n-1})=\sigma^2$
+    - $D(S_0^2)=D(\frac{\sigma^2\chi^2}{n})=\frac{2(n-1)\sigma^4}{n^2}$, $D(S^2)=D(\frac{\sigma^2\chi^2}{n-1})=\frac{2\sigma^4}{n-1}$
 
-Torej za dovolj velike n je:
+- Torej za dovolj velike n je:
 $$\chi^2 \approx N(n-1, \sqrt{2(n-1)})$$
 $$S_0^2 \approx N(\frac{(n-1)\sigma^2}{n}, \frac{\sigma^2\sqrt{2(n-1)}}{n})$$
 $$S^2 \approx N(\sigma^2, \sigma^2 \sqrt{\frac{2}{n-1}})$$
@@ -129,71 +110,55 @@ $$S^2 \approx N(\sigma^2, \sigma^2 \sqrt{\frac{2}{n-1}})$$
 ## 5. CLI za razliko vzorcnih povprecij
 - `definicija`
 
-Denimo da imamo dve populaciji velikosti $N_1$ in $N_2$ in se spremenljivka X na prvi populaciji porazdeljuje noralno $N(\mu_1,\sigma)$
-na drugi populaciji pa $N(\mu_2,\sigma)$ (standardna odklona sta na obeh populacijah enaka). V vsaki od obeh populacij
-tvorimo neodvisno slucajne vzorce velikosti $n_1$ in $n_2$. Na vsakem vzorcu (s ponavljanjem) prve populacije izracunamo
-vzorcno povprecje $\overline{X}_ 1$ in podobno na vsakem vzorcu druge populacije $\overline{X}_ 2$. Po reprodukcijski
-lastnosti normalne porazdelitve __je porazdelitev velikih vzorcnih povprecij normalna__ kjer je:
-
-- **pricakovana vrednost razlik** vzorcnih povprecij enako
- $$E(\overline{X}_ 1-\overline{X}_ 2)=E(\overline{X}_ 1)-E(\overline{X}_ 2)=\mu_1 - \mu_2$$
-- **disperzija razlik vzorcnih povprecij** enaka:
-  $$D(\overline{X}_ 1-\overline{X}_ 2)=D(\overline{X}_ 1)+D(\overline{X}_ 2)=\frac{\sigma^2}{n_1}+\frac{\sigma^2}{n_2}$$
-
-Torej
+    - Denimo da imamo dve populaciji velikosti $N_1$ in $N_2$ in se spremenljivka X na prvi populaciji porazdeljuje noralno $N(\mu_1,\sigma)$
+    na drugi populaciji pa $N(\mu_2,\sigma)$ (standardna odklona sta na obeh populacijah enaka). V vsaki od obeh populacij
+    tvorimo neodvisno slucajne vzorce velikosti $n_1$ in $n_2$. Na vsakem vzorcu (s ponavljanjem) prve populacije izracunamo
+    vzorcno povprecje $\overline{X}_ 1$ in podobno na vsakem vzorcu druge populacije $\overline{X}_ 2$. Po reprodukcijski
+    lastnosti normalne porazdelitve __je porazdelitev velikih vzorcnih povprecij normalna__ kjer je:
+$$E(\overline{X}_ 1-\overline{X}_ 2)=E(\overline{X}_ 1)-E(\overline{X}_ 2)=\mu_1 - \mu_2$$
+$$D(\overline{X}_ 1-\overline{X}_ 2)=D(\overline{X}_ 1)+D(\overline{X}_ 2)=\frac{\sigma^2}{n_1}+\frac{\sigma^2}{n_2}$$
 $$\overline{X}_ 1 - \overline{X_2} \approx N\left(\mu_1 - \mu_2, \sqrt{\frac{\sigma^2}{n_1}+\frac{\sigma^2}{n_2}}\right)$$
 
 - `Primer`
 
-Populacijama studentov na neki univerzi (tehnikom in druzboslovcem) so izmerili neko sposobnost s priackovanima
-vrednostima $\mu_t = 70$ ter $\mu_d=80$ tock in standardnim odklonom, ki je na obeh populacijah enak $\sigma=7$ tock.
+    - Populacijama studentov na neki univerzi (tehnikom in druzboslovcem) so izmerili neko sposobnost s priackovanima
+    vrednostima $\mu_t = 70$ ter $\mu_d=80$ tock in standardnim odklonom, ki je na obeh populacijah enak $\sigma=7$ tock.
 
-Koliksna je verjetnost, da je pri nakljucnih vzorcih vzorcno povprecje druzboslovcev $(n_d=36)$ vezje za vec kot 
-12 tock od vzorcnega povprecja tehnikov ($n_t=64$)? Zanima nas torej verjetnost:
-$$P(\overline{X}_ d - \overline{X}_ t>12)=P\left(Z>\frac{12-10}{7\cdot \sqrt{\frac{36+64}{36\cdot 64}}}\right)=1-\phi(1.37)=0.085$$
+    - Koliksna je verjetnost, da je pri nakljucnih vzorcih vzorcno povprecje druzboslovcev $(n_d=36)$ vezje za vec kot 
+    12 tock od vzorcnega povprecja tehnikov ($n_t=64$)? Zanima nas torej verjetnost:
+$$P(\overline{X}_ d - \overline{X}_ t>12)=1-\phi\left(\frac{12-10}{7\cdot \sqrt{\frac{36+64}{36\cdot 64}}}\right)=1-\phi(1.37)=0.085$$
 
 ## 6. CLI za razliko delezev
+- `definicija`
+    - Podobno kot pri porazdelitvi razlik vzorcnih povprecij naj bosta dani dve populaciji velikosti $N_1$ in $N_2$ z delezema
+    enot z neko lastnostjo $\pi_1$ in $\pi_2$. Iz prve populacije tvorimo slucajne vzorce velikosti $n_1$ in na vsakem izracunamo delez
+    enot s to lastnostjo $p_1$. Podobno naredimo tudi na drugi populaciji; tvorimo slucajne vzorce velikosti $n_2$ in na
+    njih dolocimo deleze $p_2$.
 
-Podobno kot pri porazdelitvi razlik vzorcnih povprecij naj bosta dani dve populaciji velikosti $N_1$ in $N_2$ z delezema
-enot z neko lastnostjo $\pi_1$ in $\pi_2$. Iz prve populacije tvorimo slucajne vzorce velikosti $n_1$ in na vsakem izracunamo delez
-enot s to lastnostjo $p_1$. Podobno naredimo tudi na drugi populaciji; tvorimo slucajne vzorce velikosti $n_2$ in na
-njih dolocimo deleze $p_2$.
-
-Pokazati se da, __da se za dovolj velike vzorce razlike vzorcnih delezev porazdeljujejo priblizno normalno s__
-
-- __pricakovano vrednostjo__ razlik vzorcnih delezev
-  $$E(\hat{P_1}-\hat{P_2})=E(\hat{P_1})-E(\hat{P_2})=\pi_1 - \pi_2$$
-- __disperzijo__ razlik vzorcnih delezev
-  $$D(\hat{P_1}-\hat{P_2})=D(\hat{P_1})+D(\hat{P_2})=\frac{\pi_1(1-\pi_1)}{n_1}+\frac{\pi_2(1-\pi_2)}{n_2}$$
-
-Torej
+    - Pokazati se da, __da se za dovolj velike vzorce razlike vzorcnih delezev porazdeljujejo priblizno normalno s__
+    $$E(\hat{P_1}-\hat{P_2})=E(\hat{P_1})-E(\hat{P_2})=\pi_1 - \pi_2$$
+    $$D(\hat{P_1}-\hat{P_2})=D(\hat{P_1})+D(\hat{P_2})=\frac{\pi_1(1-\pi_1)}{n_1}+\frac{\pi_2(1-\pi_2)}{n_2}$$
 $$\hat{P}_ 1 - \hat{P}_ 2 \approx N\left(\pi_1 - \pi_2, \sqrt{\frac{\pi_1(1-\pi_1)}{n_1} + \frac{\pi_2(1-\pi_2)}{n_2}}\right)$$
 
 ## 7. CLI za kvocient $S^2_1/ S^2_2$
-Zelimo primerjati varianci teze prebivalcev dveh razlicnih populacij. Naj bo X teza odraslih moskih iz prve populacije,
-ter Y teza odraslih moskih iz druge populaciji. Nimamo moznosti da izmerimo tezo celotne prve in druge populacije, 
-zato bomo izbrali enostavni slucajni vzorec iz vsake od populacij in jim izmerimo tezo. Slucajni spremenljivki X in Y sta 
-neodvisni. Obe sta porazdeljeni normalno $X\sim N(\mu_1, \sigma_1)$, $Y\sim N(\mu_2, \sigma_2)$. Na njih tvorimo slucajne 
-vzorce $(X_1, \dots ,X_n)$ in $(Y_1, \dots, Y_m)$ ter izracunamo vzorcni povprecji in popravljeni vzorcni varianci za 
-obe spremenljivke. Nastavimo vzorcno statistiko za kvocient obe popravljeni vzorcni varianci:
-$$F=\frac{s_1^2}{s_2^2}$$
+- `uvod`
+    - Zelimo primerjati varianci teze prebivalcev dveh razlicnih populacij. Naj bo X teza odraslih moskih iz prve populacije,
+    ter Y teza odraslih moskih iz druge populaciji. Nimamo moznosti da izmerimo tezo celotne prve in druge populacije, 
+    zato bomo izbrali enostavni slucajni vzorec iz vsake od populacij in jim izmerimo tezo. Slucajni spremenljivki X in Y sta 
+    neodvisni. Obe sta porazdeljeni normalno $X\sim N(\mu_1, \sigma_1)$, $Y\sim N(\mu_2, \sigma_2)$. Na njih tvorimo slucajne 
+    vzorce $(X_1, \dots ,X_n)$ in $(Y_1, \dots, Y_m)$ ter izracunamo vzorcni povprecji in popravljeni vzorcni varianci za 
+    obe spremenljivke. Nastavimo vzorcno statistiko za kvocient obe popravljeni vzorcni varianci:
+    $$F=\frac{s_1^2}{s_2^2}$$
 - `fisherjeva porazdelitev`
     - porazdelitev $F=\frac{S_X^2/ \sigma_X^2}{S_Y^2/ \sigma_Y^2}$ je __fisherjeva__ $F(n-1, m-1)$
         - kjer sta parametra prostostne stopnje obeh vzorcev
 porazdeljeni po $\chi^2$ z m-1 oziroma n-1 prostostnimi stopnjami in sta tudi neodvisni.
         - $\chi^2(m-1)=(m-1) s^2_X / \sigma_X^2$
 
-- `Kako zacnemo (kaj nas pravzaprav zanima)?`
-- `predpostavke`
-- `izbira vzorca`
-- `slucajni vektor, ki spremlja nakljucno izbran vzorec`
-- `izbira cenilke`
-- `izrek, ki nam zagotovi normalno porazdelitev`
 - `parameter μ te normalne porazdelitve`
-    - $\frac{d_2}{d_2-2}$
+    - $\mu$ = $\frac{d_2}{d_2-2}$
 - `parameter σ te normalne porazdelitve`
     - $\sigma=\frac{2d_2^2 (d_1+d_2-2)}{d_1(d_2-2)^2(d_2-4)}$
-- `kaj je pomembno pri drugem parametru`
 - `uporaba`
     - Uporabljamo pri intervalu zuapanja in statisticnemu testu za kvocient 
 
@@ -210,15 +175,15 @@ porazdeljeni po $\chi^2$ z m-1 oziroma n-1 prostostnimi stopnjami in sta tudi ne
     - $1-\alpha$ je __stopnja zaupanja__, $\alpha$ je __stopnja tveganja__
     - __Sirina (dolzina)__ intervala zaupanja je $l=2c\frac{\sigma}{\sqrt{n}}$
 
-__Primer__: Signal intenzitete $\mu$ je poslan z lokacije A. Na lokaciji B se belezi sprejet signal.
-Zaradi sumenja signal zaznamo z nakljucno napako. Intenziteta signala na lokaciji B je normalno porazdeljena slucajna 
-spremenljivka s povprecjem $\mu$ in standardnim odklonm 3. Da bi zmanjsali napako, isti signal neodvisno belezimo 10-krat.
-Dobili smo naslednje vrednosti intenzitete signala na lokaciji:
-$$B:17,21,20,18,19,22,20,21,16,19$$
-Doloci 95% interval zaupanja za $\mu$
-- n = 10,$\sigma=3$, $\alpha$=0.05, $c=F^{-1}(1-\frac{\alpha}{2})$, $\overline{x}=19.3$
-    - c pogledamo v tabeli za $c=F^{-1}(0.975)=1.9$
-- Interval zaupanja $I_\mu = \left[17.5, 21.1 \right]$
+- __Primer__: Signal intenzitete $\mu$ je poslan z lokacije A. Na lokaciji B se belezi sprejet signal.
+    Zaradi sumenja signal zaznamo z nakljucno napako. Intenziteta signala na lokaciji B je normalno porazdeljena slucajna 
+    spremenljivka s povprecjem $\mu$ in standardnim odklonm 3. Da bi zmanjsali napako, isti signal neodvisno belezimo 10-krat.
+    Dobili smo naslednje vrednosti intenzitete signala na lokaciji:
+    $$B:17,21,20,18,19,22,20,21,16,19$$
+- Doloci 95% interval zaupanja za $\mu$
+    - n = 10,$\sigma=3$, $\alpha$=0.05, $c=F^{-1}(1-\frac{\alpha}{2})$, $\overline{x}=19.3$
+        - c pogledamo v tabeli za $c=F^{-1}(0.975)=1.9$
+    - Interval zaupanja $I_\mu = \left[17.5, 21.1 \right]$
 
 - `interval zaupanja σ ni znan`
     - Za konstrukcijo intervala zaupanja uporabljamo dejstvo
@@ -227,10 +192,10 @@ Doloci 95% interval zaupanja za $\mu$
         $$I_\mu = \left[ \overline{X}-c\frac{S}{\sqrt{n}}, \overline{X}+c\frac{S}{\sqrt{n}}\right]$$
     - kjer je $c=t_{n-1;1-\frac{\alpha}{2}}$ kvantil __Studentove porazdelitve__ z $n-1$ prostnostnimi stopnjami (stevilo vzorca)
 
-__Primer__: Na vzorcu 30 zensk so dobili povprecje 6 in popravljeni standardni odklon 5 kolicine PCB-jev. Doloci 
-99% interval zaupanja za povprecno kolicino PCB-jev.
-- $\overline{x}=6$, $s=5$, $\alpha=0.01$, $n=30$, $c=t_{29;0.995}$
-- $I_\mu = \left[ \overline{x}-c\frac{s}{\sqrt{n}}, \overline{x}+c\frac{s}{\sqrt{n}} \right]=\left[3.5, 8.5\right]$
+- __Primer__: Na vzorcu 30 zensk so dobili povprecje 6 in popravljeni standardni odklon 5 kolicine PCB-jev. Doloci 
+    99% interval zaupanja za povprecno kolicino PCB-jev.
+    - $\overline{x}=6$, $s=5$, $\alpha=0.01$, $n=30$, $c=t_{29;0.995}$
+    - $I_\mu = \left[ \overline{x}-c\frac{s}{\sqrt{n}}, \overline{x}+c\frac{s}{\sqrt{n}} \right]=\left[3.5, 8.5\right]$
 
 - `interval zaupanja za delez p`
     - p je delez populacije z neko lastnostjo
@@ -242,13 +207,12 @@ __Primer__: Na vzorcu 30 zensk so dobili povprecje 6 in popravljeni standardni o
 
 
 - `definicija tockovne ocene za parameter, primeri (vsaj 3)`
-- `pomen stopnje zaupanja`
-- `postopek intervalskega ocenjevanja`
+    - Za konkreten vzorec naredimo __numericno oceno neznage paramatera oz. "vrednost v tocki"__
+    - __Vzorcno povprecje, vzorcna varianca, vzorcni delez__
 - `kdaj uporabimo Studentovo porazdelitev`
     - ko nepoznamo standardnega odklona populacije $\sigma$ ter imamo dokaj majhen vzorec $n<30$
 - `kaj je drugace, ko imamo majhen vzorec`
     - nemoremo uporabiti izreka za CLI
-- `izbira velikosti vzorca`
 - `izpeljava formule za interval zaupanja`
 
 ## 9. Preverjanje domnev
@@ -323,38 +287,71 @@ z enako povprecno frekvenco__? Uporabi $\alpha=0.05$ (stopnja tveganja)
     - __Ordinalni__: koeficient korealcije rangov
     - __Stevilski__: koeficient korelacije
 - `Povezanost dveh imenskih spremenljivk`
+    - `teorija`
+    - Za preverjanje domneve o povezanosti med dveme __imenskima__ spremenljivkama lahko uporabimo  $\chi^2$ test.
+        - Testna statistika $\chi^2$, ki primerja dejanske in teoreticne frekvence 
+        $$\chi^2= \sum\limits_{i=1}^k \frac{(f_i-f_i')^2}{f_i'}$$
+        - k je stevilo razredov (celic) v kontingencni tabeli
+        - testna statistika se porazdeljuje po $\chi^2$ porazdelitvi s $(s-1)(v-1)$ prostostnimi stopnjami, kjer je s stevilo vrstic v kontingencni tabeli in s stevilo stolpcev
+    Nicelna in osnovna domneva sta v primeru tega testa:
+    - $H_0: \chi^2 = 0$ (spremenljivki nista povezani)
+    - $H_1: \chi^2 > 0$ (spremenljivki sta povezani)
+    - `primer`
+        - Zanima nas ali sta spol in stanovanje v casu studija povezana. Izmerimo podatke za nakljucni vzorec. 
+            <div align="center">
+    
+            | | starsi | st. dom | zasebno | skupaj |
+            | - |- |- |- | - |
+            | moski | 16 | 40 | 24 | 80 |
+            | zensek | 48 | 36 | 36 | 120 |
+            | skupaj | 64 | 76 | 60 | 200 |
+            </div>
 
-Zanima nas ali sta spol in stanovanje v casu studija povezana. Izmerimo podatke za nakljucni vzorec. 
-Naredimo __kontingencno tabelo__ (relativne frekvence po stolpcih)
-<div align="center">
+        - Naredimo __kontingencno tabelo__ (relativne frekvence po stolpcih)
+        <div align="center">
 
-| | starsi | st. dom | zasebno | skupaj 
-| - | - | - | - | - |
-| moski | 20 | 50 | 30 | 100 |
-| zenske | 40 | 30 | 30 | 100 |
-| skupaj | 32 | 38 | 30 | 100| 
+        | | starsi | st. dom | zasebno | skupaj 
+        | - | - | - | - | - |
+        | moski | 20 | 50 | 30 | 100 |
+        | zenske | 40 | 30 | 30 | 100 |
+        | skupaj | 32 | 38 | 30 | 100| 
+        </div>
 
+        - npr koliko moskih zivi pristarsih
+        $$P(M)=\frac{80}{200}, P(S)=\frac{64}{200}, P(MS)=P(M)P(S)=\frac{80}{200}\cdot\frac{64}{200}=0.128$$
+        $$f'(MS)=n\cdot P(MS)=200\cdot \frac{80}{200}\cdot\frac{64}{200}=25.6$$
+        - podobno izracunamo se ostale teoreticne frekvence
+        $$\chi^2_{1-\alpha}[(s-1)(v-1)]=\chi^2_{0.95}(2)=5.99$$
+        $$\chi^2=\frac{(16-26)^2}{26}+\frac{(40-30)^2}{30}+\dots = 12$$
+        - Izracunana vrednost je vecja od kriticne, zavrzemo osnovno domnevo
 
+- `povezanost dveh ordinalnih spremenljivk`
+    - Merimo s __koeficientom korelacije rangov__ $r_s$ (<u>Spearman</u>)
+    $$r_s := 1- \frac{6\cdot \sum\limits_{i=1}^n d_i^2}{n\cdot (n^2-1)}$$
+    - $d_i$ je razlika med __rangoma__ v i-ti enoti
 
-</div>
+- `povezanost dveh stevilskih spremenljivk`
 
-Moramo preveriti ali so razlike v porazdelitvi tipa stanovanja v casu studija po spolu __statisiticno znacilne__ in ne le ucinek vzorca
-- $H_0$: spremenljiki nista povezani
-- $H_1$: spremenljivki sta povezani
+Uporabimo __(Pearsonov) koeficient korelacije__
+$$r_{X,Y}=\frac{k(X,Y)}{s_Xs_Y}=\frac{\sum\limits_{i=1}^{n} (x_i-\overline{x}) \cdot (y_i-\overline{y}))}{\sqrt{\sum\limits_{i=1}^n(x_i-\overline{x})^2\sum\limits_{i=1}^n (y_i-\overline{y})^2}}$$
+Statisticno sklepanje:
+- $H_0$: $r=0$ (spremenljivki nista linearno povezani)
+- $H_1$: $r\neq 0$ (spremelnjivki sta linearno povezani)
 
-Za preverjanje domneve o povezanosti med dveme __imenskima__ spremenljivkama lahko uporabimo  $\chi^2$ test.
-- Testna statistika $\chi^2$, ki primerja dejanske in teoreticne frekvence je 
-    $$\chi^2= \sum\limits_{i=1}^k \frac{(f_i-f_i')^2}{f_i'}$$
-    - k je stevilo razredov (celic) v kontingencni tabeli
-    - testna statistika se porazdeljuje po $\chi^2$ porazdelitvi s $(s-1)(v-1)$ prostostnimi stopnjami, kjer je s stevilo vrstic v kontingencni tabeli in s stevilo stolpcev
-Nicelna in osnovna domneva sta v primeru tega testa:
-- $H_0: \chi^2 = 0$ (spremenljivki nista povezani)
-- $H_1: \chi^2 > 0$ (spremenljivki sta povezani)
+Izkaze se da se __testna statistika__:
+$$\frac{R_{X,Y}\cdot \sqrt{n-2}}{\sqrt{1-r^2_ {X,Y}}} \sim t_{n-2}$$
 
+`Primer`:
 
-- `preverjanje povezanosti slucajnih spremenljivk (glede na tip slucajnih spremenljivk)`
-- `preverjanje neodvisnosti imenskih slucajnih spremenljivk`
-- `koeficient korelacije (Pearsonov, Spearmanov), preverjanje domneve o parametru ρ`
+Preverimo domnevo, da sta izobrazba (stevilo priznanih let sole) in stevilo ur branja dnevnih casopisov na teden povezana med 
+seboj na 5% stopnji znacilnosti. Najprej izracunajmo vzorcni koeficient korelacije $r=r_{X,Y}$
+
+<p align="center"><img src="./images/povezanost-dveh-spremelnjivk.png" width="90%"></p>
+
+Kriticno obmocje je doloceno z kriticnima vrednostima $\pm t_{\alpha/2}(n-2)=\pm t_{0.025}(6)=\pm 2.447$
+
 - `linearna regresija (definicije, predpostavke, metoda najmanjsih kvadratov)`
+
+Linearno regresijsko funkcjo
 - `casovne vrste in definicija trenda`
 - `Staticni test linearnosti mo`

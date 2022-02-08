@@ -374,29 +374,21 @@
   - $\mu \rightarrow 165 \pm 2.093 (\frac{4.5}{\sqrt{20}})=165\pm 2.106$
   - Dobili smo 95% interval zaupanja $I_\mu=\left[ 162.894, 167.106\right]$
     - z 95% lahko recemo da je povprecna teza v tem interavlu
-- `Primer2`
-
 - `Kako lahko pridemo do te porazdelitve?`
   - Uporablja se kadar imamo na voljo majhno stevilo podatkov, in je priblizek normalne porazdelitve
   - Pridemo preko naslednjega obrazca:
   - $$t_{n-1,\alpha}=\frac{\overline{x}-\mu}{s/\sqrt{n}}$$
   - Podbna normalni z "debelimi kraki" (vecja dispersija - manj podatkov - mansa zaneslivost)
   - za $n>30$ je ze skor enaka z-statistiki (normalni porazdelitvi)
+  - $Z_X = \mathbb{R}$
   <p align="center"><img src="./images/student-distribution.png" width="90%"></p>
-- `zaloga vrednosti`
-    - Enako kot pri normalni porazdelitvi $\mathbb{R}$
-- `kaj predstavlja njen paramter`
-    - degress of freedom
-    - stopnja tveganja
-- `predpostavke`
-    - Imamo enostavni slucajni vzorec
 - `gostota verjetnosti`
-    - $$p(x)=\frac{(1+\frac{x^2}{n-1})^{-\frac{n}{2}}}{\sqrt{n-1}B(\frac{n-1}{2}, \frac{1}{2})}$$
+$$p(x)=\frac{(1+\frac{x^2}{n-1})^{-\frac{n}{2}}}{\sqrt{n-1}B(\frac{n-1}{2}, \frac{1}{2})}$$
 - `definicja beta funkcije`
     $$B(x,y)=\frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}=B(y,x)$$
 - `posebne vrednosti beta funkcije`
-    - $$B(\frac{1}{2}, \frac{1}{2})=\pi$$
-    - $$B(n_1,n_2)=\frac{(m-1)!(n-1)!}{(m+n-1)!} \text{ za } n_1, n_2 \in \mathbb{N}$$
+$$B(\frac{1}{2}, \frac{1}{2})=\pi$$
+$$B(n_1,n_2)=\frac{(m-1)!(n-1)!}{(m+n-1)!} \text{ za } n_1, n_2 \in \mathbb{N}$$
 - `katero porazdelitev dobimo za eno prostostno stopnjo in katero, ce je stivlo prosotstnih stopenj dovolj veliko`
     - __ena prostostna stopnja__: Caucheyeva porazdelitev
     - __dovolj veliko stevilo prostostnih stopenj__: Normalna porazdelitev
@@ -416,20 +408,19 @@ Recimo da naredimo __IQ__ test na obeh populacijah. Na vzorcih iz obeh populacij
         - $m$ prostostne stopnje druge $\chi^2$ spremenljivke
     - $Z_F = \mathbb{R}^+$
         - oblika odvisna od prostnostnih stopenj obeh vzorcov
-    <p align="center"><img src="./images/f-distribution.png" width="60%"></p>
-- `predpostavke`
+    <!-- <p align="center"><img src="./images/f-distribution.png" width="60%"></p> -->
 - `definicija - verjetnostna funkcija`
     $$p(x)=\frac{m^{\frac{3}{2}}n^{\frac{n}{2}}}{B(\frac{m}{2},\frac{n}{2})}\cdot \frac{x^{\frac{(m-2)}{2}}}{(n+mx)^{\frac{m+n}{2}}}$$
-- `definicija beta funkcije`
-    - [zgoraj](#10.-studentova-porazdelitev-t-test)
-- `posebne vrednosti beta funkcije`
-    - [zgoraj](#10.-studentova-porazdelitev-t-test)
-- `primer statistike, ki se porazdeljuje po Fisherjevo`
-- $F=\frac{S_1^2}{S_2^2}$
+- `beta funkcije`
+    $$B(x,y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}=B(y,x)$$ 
+    $$B(\frac{1}{2}, \frac{1}{2})= \pi$$
 - `se kaksne lastnosti fisherjeve porazdelitve`
+<div align="center">
 
 | Statisticni parameter | enacba |
 | - | - | 
 | Pricakovana vrednost $\mu$ | $\frac{m}{m-2}, m>2$
 | Modus | $\frac{n-2}{n}\cdot \frac{m}{m+2}$
 | varianca | $\frac{2m^2\cdot(n+m-2)}{n(m-2)^2(m-4)}$|
+
+</div>
