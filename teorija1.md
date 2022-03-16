@@ -8,7 +8,9 @@
   - Primer: Vrzemo kocko, pade lahko od 1-6 pik, vsi izidi so enako vrjetni
   - $X \sim \begin{pmatrix}1 && 2 && 3 && 4 && 5 && 6 \\ \frac{1}{6} && \frac{1}{6} && \frac{1}{6} && \frac{1}{6} && \frac{1}{6} && \frac{1}{6} \end{pmatrix}$
 - `definicija (zaloga vrednosti in porazdelitveni zakon)`
-  - __Zaloga vrednosti__ $Z_X$: vrednosti ki jih slucajna spremenljivka lahko zavzame
+  - __Zaloga vrednosti__ $Z_X$: vrednosti ki jih slucajna spremenljivka lahko zavzam
+  - __Porazdelitveni zakon__ - predpis, ki doloca verjetnost vsake izmed
+  moznih vednosti ali intervala vrednosti, ki ga s.s. lahko zavzame
 - `porazdelitvena funkcija`
   - $F_X(x)=P(X\leq x)$
 - `lastnosti porazdelitvene funkcije`
@@ -144,7 +146,10 @@
   - Izracunajmo pricakovano vrednost
   - $E(X)=\sum\limits_{i=1}^\infty ipq^{i-1}=p\sum\limits_{i=1}^\infty (q^i)'=p \left(\sum\limits_{i=1}^\infty q^i\right)'=p(\frac{1}{1-q})'=\frac{1}{p}$
 - `uporaba pri problemu "zbiranja kuponov"`
-  - TODO
+  - V trgovini lahko kupimo Kraseve cokoladice kraljestvo zivali. Vsaka
+  cokoladica ima prilozeno nalepko dolocene zivali. Vseh nalepk je 250,
+  posamezna pa stane okoli 0.4$. Pricakovana vrednost za takosno zbiranje pride $E(X) = \dfrac{250}{0.4}= 625 > 150$ (knjiga o zivalih).
+  - Nauk zgodbe: Bolj se splaca kupiti knjigo o zivalih, kot zbirati slicice, oz. ce se vseeno odlocimo da bomo zbirali slicice, se nam jih proti koncu splaca izmenjati z drugimi.
 
 ## 5. Hipergeometrijska porazdelitev
 
@@ -168,7 +173,8 @@
   - $E(X)=\frac{nR}{R+B}$
   - $D(X)=\frac{nRB\cdot(R+B-n)}{(R+B)^2(R+B-1)}$
 - `je vec parametrov boljse ali slabse`
-  - TODO
+  - Pri hipergeometrijski porazdelivi imamo le dve kategoriji (ima lastnost, nima lastonsti). Ampak lahko bi imeli vec kategorij, in
+  posledicno vec informacij. Na splosno je pri merjenju bolje izbrati vecje stevilo parametrov/kategorij, saj na tak nacin pridobimo vec informacij. Parametri dolocajo porazdelitev: nam pokazejo kje je povprecje(pricakovana vrednost), mediana, modus, oblika porazdelitve,..
 - `povezava z binomsko`
   - Pri veliki seriji bi lahko vzeli binomsko porazdelitev (prakticno vseeno ali izbiramo vzorec z vracanjem ali brez)
   - Imamo $H(R,B,n)$
@@ -180,6 +186,8 @@
   - Vsaka paleta paketov riza vsebuje 100kg. Slucajna spremenljivka ki steje kolicino prodanih palet riza ima gostoto
   $p_X(x)=\Bigg\{ \begin{matrix}\frac{2x}{3}, && x\in [0,1] \\ -\frac{x}{3}+1, && x\in [1,3] \\ 0, && x\notin [0,3] \end{matrix}$
   <p align="center"><img src="./images/p(x).png" width="80%"></p>
+
+  verjetnost je ploscina pod krivuljo, ki jo doloca $p_x(x)$
 - `opisi primerov: enakomerna, normlano, eksponentna (in Gama), Caucheyeva`
   - **enakomerna zvezna** $\sim U[a,b]$
     - vsi poskusi na intervalu [a,b] so enako verjetni
@@ -199,7 +207,7 @@
     - $F_X(x)=\phi(\frac{x-\mu}{\sigma})$
 - `definicija zvezne z gostoto verjetnosti`
   - Slucajna spremenljivka X je **zvezno porazdeljena** ce obstaja integrabilna funkcija $p_X$ imenovana **gostota verjetnosti**
-  - $F(X)=P(X\leq x)=\int\limits_{-\infty}^x p_X(t) dt$
+  - $F(X)=P(X\leq x)=\int\limits_{-\infty}^x p_X(t) dt$, $p_X(x) \geq 0$
   - $p_X(x)$ je integrabilna
   - $p_X: \mathbb{R}\rightarrow [0, \infty)$
   - $\int\limits_{-\infty}^{\infty}p_X(x)dx=1$
@@ -232,6 +240,8 @@
   - Porazdelitev $N(0,1)$ je standardizirana normalna porazdelitev
   - $N(0,1)$
       <p align="center"><img src="./images/zvonasta-krivulja.png" width="90%"></p>
+
+  - Spremenljivko $X \sim N(\mu, \sigma)$ pretvorimo s transformacijo $Z= \dfrac{X - \mu}{\sigma}$ v standardno spremenljivko $Z \sim N(0,1)$
 - `kje sta` $\mu$ `in` $\sigma$ `na grafu y=p(x) in pravilo 68-95-99,7`
   - $\mu$ se nahaja na simetrali zvonaste krivulje
   - $\mu + \sigma$ se nahaja za en standardni odklon naprej v pozitivni smeri x osi
@@ -269,7 +279,7 @@
   - Naj bo k frekvenca dogodka A v n neodvisnih ponovitvah danega poskusa, v katerem ima dogodek A verjetnost p.
   - Torej za $\forall \epsilon >0$ velja:
     $$ \lim\limits_{n\rightarrow \infty}P\left(\left| \frac{k}{n}-p\right|\leq \epsilon\right) = 1$$
-    $$
+    k = frekvenca dogodka A v n ponovitvah poskusa
   - zgornja enacba: as the number of trials n goes to infinity, the average of the observations converges to the expected value
 - `skica dokaza`
     - uporabimo __Chebyshevo neenakost__
@@ -296,7 +306,7 @@
   - Dobljeno vsoto oznacimo s $P(k_1-1, k_2)$ in jo ocenimoo s funkcjo napake kar nam da
     $$P(k_1-1, k_2)\approx \phi (\frac{k_2-np}{\sqrt{npq}})-\phi(\frac{k_1-1-np}{\sqrt{npq}})\approx 2\phi(\frac{n\epsilon}{\sqrt{npq}})$$
 - `Zakaj to smatramo za prvo verzijo CLI?`
-    - enaka ideja
+    - Pri velikem stevilu ponovitev poskusa, povprecje dobljenih vrednosti konvergira k pricakovani vrednosti.
 
 ## 9. Eksponentna porazdelitev
 
@@ -310,6 +320,7 @@
     - tj. proces kjer se dogodki pojavljajo zvezno in neodivisno pri povprecni hitrosti ponavljanja
 - `slika, zaloga vrednosti, gostota verjetnosti`
   - $p(x)=\lambda e^{-\lambda x}$, $x\geq 0$
+  - $Z_f = [0, \infty]$
 - `porazdelitvena funkcija`
   - $F(X)=\int\limits_0^x \lambda e^{-\lambda t} dt = 1 -e^{-\lambda x}$
 - `razlaga parametra λ`
@@ -319,7 +330,7 @@
   - $D(X)=\frac{1}{\lambda^2}$
 - `karakterizacija: zvezna slucajna spremenljivka brez spomina`
     - Poissonova porazdelitev: pojavitev dogodka je nedovisna od tega kdaj se pojavi dogodek pred tem
-
+    - $P(X > x + y | X > x) = P(X > y)$
 ## 10. Gama porazdelitev
 
 - `posebni primeri (npr. eksponentna, hi-kvadrat)`
@@ -348,4 +359,23 @@
 - `Uporaba hi-kvadrat porazdelitve`
   - Hi-kvadrat je poseben primer gama porazdeliteve
   - $\chi^2 (n) = \Gamma(\frac{n}{2}, \frac{1}{2})$
+  - $\chi^2$ test se uporablja za ugotavljanje razlike kategoricnih spremenljivk (npr. ali je kocka obtezena).
+    Uporabljamo jo v dveh primerih:
+      - kako dobro se opazovana/izmerjena porazdelitev prilega pricakovani
+      - ocenejevanje ali sta nakljucni spremenljivki neodvisni
+
+    Primer (ali je kocka obtezena?):
+    60x vrzemo kocko in primerjamo rezultate s pricakovanimi vrednostmi. Ce pride do velikega odstopanja,
+    lahko sklepamo, da je kocka nepostena.
+
+    | st. pik         | 1  | 2  | 3  | 4  | 5  | 6  | skupaj |
+    |-----------------|----|----|----|----|----|----|--------|
+    | opazovana kocka | 14 | 12 | 16 | 8  | 5  | 5  | 60     |
+    | teoreticno      | 10 | 10 | 10 | 10 | 10 | 10 | 60     |
+    |                 |    |    |    |    |    |    |        |
+
+    Uporabimo formulo $\chi^2(n-1) = \dfrac{(E_1 - O_1)^2}{E_1} + \dots + \dfrac{(E_n - O_n)^2}{E_n}$
+    , kjer je $E_i$ pricakovana vrednost posameznega izida, $O_i$ pa st. pojavitev posameznega izida opazovane kocke. Ce ustavimo podatke v formulo, dobimo rezultat 11 (odstopanje 5%). Odstopanje ni zadostno (morali bi vzetoi vecji vzorec), tako da ne moremo sklepati ali je kocka postena ali ne.
 - `Dedna lastnost gama porazdelitve, skica dokaza za aditivnost, tj. Γ(k, λ) + Γ(h, λ) = Γ(k + h, λ)`
+  - Ce sta $X \sim \Gamma (k_1, \lambda)$ in $Y \sim \Gamma (k_2, \lambda)$  neodvisni slucajni spremenljivki,
+    je tudi njuna vsota: $Z= X + Y$ porazdeljena po porazdelitvi $Z \sim \Gamma (k_1 + k_2, \lambda)$
