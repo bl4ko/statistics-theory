@@ -161,7 +161,7 @@
     - V posodi imamo R rdecih in B belih kroglic. Iz posode izvlecemo n kroglic.
   - $P(X=k)=\frac{\begin{pmatrix} R \\ k \end{pmatrix} \cdot \begin{pmatrix}B\\n-k\end{pmatrix}}{\begin{pmatrix}R+B \\ n\end{pmatrix}}$
 - `omejitve parametrov`
-  - $0\leq k \leq \text{min}(R,n)$
+  - $\text{max}(0, n - (R - B))\leq k \leq \text{min}(R,n)$
   - $N=R+B$
   - $n\leq N$
 - `primer uporabe`
