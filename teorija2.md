@@ -81,6 +81,7 @@
   - **Definicija**: $D(X) = E((X-E(X))^2)=E(X^2)-E^2(X)$
   - $D(X)\geq 0$
   - **Pogoj**: nesme biti neskoncna
+  - $D(aX) = a^2D(X) $ in $D(x + a) = D(X)$
 - `D(X) = 0 ⇐⇒ X je konstanta`
   - $D(X)=E((X-E(X))^2)=E((X-X)^2)=E(0)=0$
   - Torej ce je npr $P(X=a)=c$, Bo odklon vseh ostalih posameznih vzorcev od povprecja = 0;
@@ -118,6 +119,7 @@
 - `lastnosti korelacije`
   - Ce sta slucajni spremenljivki X in Y neodvisni $\rightarrow E(XY)=E(X)E(Y) \rightarrow \text{Cov}(X,Y)=0$
 - `definicij korelacijskega koeficienta, vedno na [−1, 1]`
+  - Korelacijski koefcient vpeljemo zato, ker je moc povzezanosti med dvema s.s. tezko ocentit preko kovariance, zato jo delimo s obema std. odklonoma
   - $r(X,Y)= \frac{\text{Cov}(X,Y)}{\sigma(X)\sigma(Y)}=\frac{E(XY)-E(X)E(Y)}{\sqrt{E(X^2)-E^2(X)}\cdot\sqrt{E(Y^2)-E^2(Y)}}$
   - $r(X,Y)=0\Leftrightarrow$ X in Y nekorelirani
   - $r(X,Y)=\pm 1 \Leftrightarrow$ X in Y sta v linearni zvezi
@@ -221,6 +223,7 @@
     - spremenljivke $X_i$ opisujejo stevilo pojavitev rezultata i
   - $P(X_1=k_1, \dots, X_r=k_r)=\frac{n!}{k_1! \cdots k_r!}p_1^{k_1}\cdots p_r^{k_r}$
 - `povezava z binomsko`
+  - je posplositev binomske porazdelitve
   - za r=2 dobimo binomsko spremenjivko $B(n,p)=P(n,p,q)$
 - `pricakovana vrednost in disperzija`
   - $E(X_i)= np_i$
@@ -360,12 +363,15 @@
 - `definicija momenta reda k glede na tocko a`
   - $m_k(a)=E((X-a)^k)$
   - Moment obstaja, ce obstaja pricakovana vrednost, ki ni neskoncna $E(|X-a|^k) < \infty$
+  - Za $a = 0$ dobimo zacetni moment $z_k = m_k(0)$
+  - Za $a = E(x)$ dobimo centralni moment $m_k = m_k(E(X))$
 - `zacetni moment, centralni moment`
   - zacetni moment ko je a =0
   - centralni moment ko je a = povprecna vrednost
 - `lastnosti`
   - Ce obstaja centralni moment reda n, potem obstaja vsi momenti reda k, $k\leq n$
   - Ce obstaja zacetni moment reda n, potem obstajaju tudi centralni momenti reda n za $\forall a \in \mathbb{R}$
+  - Ce sta $X$ in $Y$ neodvisni velja: $m_3(X+Y) = m_3(X) +m_3(Y)$
 - `definicija kvantila`
   - Kadar spremenljivka nima momentov uporabimo kvantile.
   - Kvantili so "linije" ki razdelijo podatke v skupine enake velikosti
@@ -428,7 +434,12 @@ Recimo da naredimo __IQ__ test na obeh populacijah. Na vzorcih iz obeh populacij
 - `beta funkcije`
     $$B(x,y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}=B(y,x)$$ 
     $$B(\frac{1}{2}, \frac{1}{2})= \pi$$
+- `Primer statistike, ki se porazdeljuje po Fisherjevo`
+  - F-test za hipoteze o enakosti varianc v dveh normalno porazdeljenih statisticnih populacijah in v regresijski analizi.
 - `se kaksne lastnosti fisherjeve porazdelitve`
+  - Za $U \sim F(m,n)$ je $\dfrac{1}{U} \sim F(n, m)$
+  - Za $U \sim t(n)$ je $U^2 \sim F(1, n)$
+
 <div align="center">
 
 | Statisticni parameter | enacba |
