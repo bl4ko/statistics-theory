@@ -26,6 +26,8 @@
 
 - `motivacija za definicijo (utezeno povprecje), tj. tezisce`
   - povprecje vrednosti diskretne spremenljivke (verjetnost $\cdot$ vrednost)
+  - utezeno povprecje: $k_1 + \dots+ k_m = N$, $f_i = \dfrac{k_i}{N}$
+    $$\overline{x} = \dfrac{x_1k_1 + \dots + x_mk_m}{N} = x_1f_1 + \dots + x_mf_m$$
   - predstavlja $\mu$ pri CLI
     $$E(X)=\sum\limits^n_{i=1}x_i \cdot p_i$$
 - `definicija za diskretne slucajne spremenljivke (kdaj obstaja)`
@@ -39,6 +41,7 @@
 - `primer slucajne spremenljivke za katero ne obstaja E(X)`
   - $X\sim p(x) = \frac{1}{\pi (1+x^2)}$ <u>**Caucheyeva porazdelitev**</u>
   - $\int\limits_{-\infty}^{\infty} \frac{x}{\pi (1+x)^2} \rightarrow$ divergira
+  - $x_k= (-1)^{k + 1} \dfrac{2^k}{k}$ in $p_k = 2^{-k}$ (primer diskretne ko je $E(X) = \infty$)
 - `lastnosti: linearnost, z dokazom za homogenost`
   - **linearnost**: $E(aX+bY)=aE(x)+bE(Y)$
   - **homogenost**: $E(aX)=aE(X)$:
@@ -46,7 +49,12 @@
     - $\sum\limits_{i=1}^{\infty} a\cdot x_i p_{Xi}+ \sum\limits_{i=1}^{\infty} b\cdot y_i p_{Yi}=a\cdot b\sum\limits_{i=1}^{\infty} x_ip_{Xi}+y_ip_{Yi}$
     - E(X) je definirana kot povprecje diskretnih spremenljivk, ce vse to pomnozis s konstanto se mnozi tudi povprecje
 - `Skica dokaz aditivnosti E(X+Y) = E(X)+E(Y) = ali Trditev 7.1: E(|XY|) ≤ √E(X2)E(Y 2)`
-  - skripta str 90 // TODO
+  - $$E(X + Y) = E(Z) = \int_{-\infty}^{\infty} zp_z(z)dz$$
+    $$= \int_{- \infty}^{\infty} z(\int_{- \infty}^{\infty} p(x, z-x))dz= \int_{- \infty}^{\infty}\int_{- \infty}^{\infty} (x + y)p(x,y)dxdy$$
+    $$\int_{-\infty}^{\infty}(\int_{-\infty}^{\infty} xp(x,y)dx)dy + \int_{-\infty}^{\infty}(\int_{-\infty}^{\infty} yp(x,y)dx)dy$$
+    $$= \int_{-\infty}^{\infty} xp_X(x)dx + \int_{-\infty}^{\infty} yp_X(y)dy$$
+    $$=E(X) + E(Y)$$
+
   - lastnosti vsot/integralov
 
 ## 2. Disperzija (razprsenost oz. varianca) slucajne spremenljivke, odklon in standardizacija
@@ -73,6 +81,7 @@
   - **Definicija**: $D(X) = E((X-E(X))^2)=E(X^2)-E^2(X)$
   - $D(X)\geq 0$
   - **Pogoj**: nesme biti neskoncna
+  - $D(aX) = a^2D(X) $ in $D(x + a) = D(X)$
 - `D(X) = 0 ⇐⇒ X je konstanta`
   - $D(X)=E((X-E(X))^2)=E((X-X)^2)=E(0)=0$
   - Torej ce je npr $P(X=a)=c$, Bo odklon vseh ostalih posameznih vzorcev od povprecja = 0;
@@ -110,6 +119,7 @@
 - `lastnosti korelacije`
   - Ce sta slucajni spremenljivki X in Y neodvisni $\rightarrow E(XY)=E(X)E(Y) \rightarrow \text{Cov}(X,Y)=0$
 - `definicij korelacijskega koeficienta, vedno na [−1, 1]`
+  - Korelacijski koefcient vpeljemo zato, ker je moc povzezanosti med dvema s.s. tezko ocentit preko kovariance, zato jo delimo s obema std. odklonoma
   - $r(X,Y)= \frac{\text{Cov}(X,Y)}{\sigma(X)\sigma(Y)}=\frac{E(XY)-E(X)E(Y)}{\sqrt{E(X^2)-E^2(X)}\cdot\sqrt{E(Y^2)-E^2(Y)}}$
   - $r(X,Y)=0\Leftrightarrow$ X in Y nekorelirani
   - $r(X,Y)=\pm 1 \Leftrightarrow$ X in Y sta v linearni zvezi
@@ -141,24 +151,30 @@
   - Za zvezni vektor uporabimo integrale
     - $F_{X,Y}(x,y)=P(X\leq x, Y\leq y)=\int\limits^x_{-\infty}\int\limits^y_{-\infty}p_{X,Y}(x,y)dxdy$
 - `verjetnostna in kontingencna tabela, verjetnostna funkcija (primer)`
+  - __verjetnostna tabela__
+    $$
+    \begin{array}{c|cccc|c}
+        X,Y & y_1 & y_2 & \dots & y_m & X \\
+        \hline
+        x_1 & p_{11} & p_{12} & \dots & p_{1m} & p_1 \\
+        x_2 & p_{21} & p_{22} & \dots & p_{2m} & p_2 \\
+        \dots & \dots & \dots  & \dots & \dots & \dots \\
+        x_n & p_{n1} & p_{n2} & \dots  & p_{nm} & p_n \\
+        \hline
+        Y & q_1 & q_2 & \dots & q_m & 1
+    \end{array}
+    $$
+    - kjer:
+      - $P(X=x_i, Y=y_j)=p_{ij}$
+      - $P(X=x_i)=p_i$, **robna porazdelitev** za X
+      - $P(Y=y_i)= q_i$, **robna porazdelitev** za Y
+  - __kontigencna tabela__ (modelira nakup avtomobila)
 
-  $$
-  \begin{array}{c|cccc|c}
-      X,Y & y_1 & y_2 & \dots & y_m & X \\
-      \hline
-      x_1 & p_{11} & p_{12} & \dots & p_{1m} & p_1 \\
-      x_2 & p_{21} & p_{22} & \dots & p_{2m} & p_2 \\
-      \dots & \dots & \dots  & \dots & \dots & \dots \\
-      x_n & p_{n1} & p_{n2} & \dots  & p_{nm} & p_n \\
-      \hline
-      Y & q_1 & q_2 & \dots & q_m & 1
-  \end{array}
-  $$
-
-  - kjer:
-    - $P(X=x_i, Y=y_j)=p_{ij}$
-    - $P(X=x_i)=p_i$, **robna porazdelitev** za X
-    - $P(Y=y_i)= q_i$, **robna porazdelitev** za Y
+    | starost         | >20 | <20 | sum |
+    |-----------------|-----|-----|-----|
+    | kupil avtomobil | 80  | 20  | 100 |
+    | ni kupil        | 100 | 50  | 150 |
+    | sum             | 180 | 70  | 250 |
 
 - `gostota verjetnosti (primer)`
   - funkciji $p_{X,Y}$ pravimo (dvorazsezna) gostota verjetnosti (doloca vektor zveznih spremenlijvk)
@@ -207,6 +223,7 @@
     - spremenljivke $X_i$ opisujejo stevilo pojavitev rezultata i
   - $P(X_1=k_1, \dots, X_r=k_r)=\frac{n!}{k_1! \cdots k_r!}p_1^{k_1}\cdots p_r^{k_r}$
 - `povezava z binomsko`
+  - je posplositev binomske porazdelitve
   - za r=2 dobimo binomsko spremenjivko $B(n,p)=P(n,p,q)$
 - `pricakovana vrednost in disperzija`
   - $E(X_i)= np_i$
@@ -271,7 +288,7 @@
     $U=u(X,Y)$ in $V=v(X,Y)$. Porazdelitveni zakon za nov slucajni vektor $(U,V)$ je
   - $F_{U,V}(u,v)=P(U < u, V < v)=P((U,V)\in A(u,v))=P(X,Y)\in f^{-1}(A(u,v))$
 - `definicija konvolucije`
-  - Definiramo $Z=X+Y$, kjer je $(X,Y)$ zvezno porazdljen slucajni vektor z gostoto $p(x,y)$verjetnostna funkcija (diskretni)
+  - Definiramo $Z=X+Y$, kjer je $(X,Y)$ zvezno porazdljen slucajni vektor z gostoto $p(x,y)$ verjetnostna funkcija (diskretni)
   - $F_Z(z)=P(Z\leq z)=P(X+Y \leq z)=\int \int_{x+y\leq z} p(x,y) dx dy=\int\limits^{\infty} _ {-\infty}dx \int\limits_{-\infty}^{z-x}p(x,y)dy$
   - za slucajni dobimo gostoto verjetnosti:
     $$p_Z(z)=\int\limits^\infty_{-\infty}f_{XY}(x,z-x)dx$$
@@ -346,12 +363,15 @@
 - `definicija momenta reda k glede na tocko a`
   - $m_k(a)=E((X-a)^k)$
   - Moment obstaja, ce obstaja pricakovana vrednost, ki ni neskoncna $E(|X-a|^k) < \infty$
+  - Za $a = 0$ dobimo zacetni moment $z_k = m_k(0)$
+  - Za $a = E(x)$ dobimo centralni moment $m_k = m_k(E(X))$
 - `zacetni moment, centralni moment`
   - zacetni moment ko je a =0
   - centralni moment ko je a = povprecna vrednost
 - `lastnosti`
   - Ce obstaja centralni moment reda n, potem obstaja vsi momenti reda k, $k\leq n$
   - Ce obstaja zacetni moment reda n, potem obstajaju tudi centralni momenti reda n za $\forall a \in \mathbb{R}$
+  - Ce sta $X$ in $Y$ neodvisni velja: $m_3(X+Y) = m_3(X) +m_3(Y)$
 - `definicija kvantila`
   - Kadar spremenljivka nima momentov uporabimo kvantile.
   - Kvantili so "linije" ki razdelijo podatke v skupine enake velikosti
@@ -414,7 +434,12 @@ Recimo da naredimo __IQ__ test na obeh populacijah. Na vzorcih iz obeh populacij
 - `beta funkcije`
     $$B(x,y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}=B(y,x)$$ 
     $$B(\frac{1}{2}, \frac{1}{2})= \pi$$
+- `Primer statistike, ki se porazdeljuje po Fisherjevo`
+  - F-test za hipoteze o enakosti varianc v dveh normalno porazdeljenih statisticnih populacijah in v regresijski analizi.
 - `se kaksne lastnosti fisherjeve porazdelitve`
+  - Za $U \sim F(m,n)$ je $\dfrac{1}{U} \sim F(n, m)$
+  - Za $U \sim t(n)$ je $U^2 \sim F(1, n)$
+
 <div align="center">
 
 | Statisticni parameter | enacba |
