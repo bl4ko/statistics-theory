@@ -3,7 +3,7 @@
 ## 1. Vzorcenje in cenilke
 
 - `Definicija enostavnega slucajnega vzorca`
-  - Naj bo X slucajna spremenljivka. **Enostavni slucajni vzorec** je slucajni vektor $(X_1, X_2,\dots, X_n)$ za katerega velja:
+  - Naj bo X slucajna spremenljivka. **Enostavni slucajni vzorec** je slucajni vektor $(X_1, X_2,\dots, X_n)$ z vrednostmi meritev $(x_1, \dots, x_n)$ (n = velikost vzorca) za katerega velja:
     1.  vsi cleni vektorja $X_i$ imajo **enako porazdelitev** kot spremenljivka X
     1.  cleni $X_i$ so med seboj **neodvisni**
 - `Vzorcna statistika`
@@ -26,6 +26,9 @@
 - `Vzorcne mere oblike porazdelitve (koeficienta asimetrije in sploscenosti)`
   - **koeficient asimetrije** (s centralnimi momenti): $g_1 = \frac{m_3}{m_2^{3/2}}$
   - **koeficient sploscenosti** (s centralnimi momenti): $K=g_2=\frac{m_4}{m_2^2-3}$
+    - $K=3$ ~ normalna porzadelitev zvonaste oblike
+    - $K<3$ ~ bolj kopasta kot normalna porazdelitev, s krajsimi repi
+    - $K>3$ ~ bolj spicasta kot normalna porazdelitev, s daljsimi repi 
 - `Definicija cenilke`
   > cenilka je pravilo ali formula, ki nam pove, kako izracunati numericno oceno parametra populacije na osnovi merjenj vzorca.
   - **Cenilka** parametra $\zeta$ je __vzorcna statistika__ $C=C(X_1,\dots,X_n)$, katere porazdelitveni zakon je odvisen
@@ -36,7 +39,7 @@
     | Standardni odklon $\sigma$ | $S=\sqrt{\frac{1}{n-1}\sum\limits_{i=1}^n(X_i-\overline{X})^2}$ | $s=\sqrt{\frac{1}{n-1}\sum\limits_{i=1}^n (x_i-\overline{x})^2}$
     | Verjetnost $p$ | $\overline{X}=\frac{1}{n} \sum\limits_{i=1}^n X_i$ | $\overline{x}=\frac{1}{n}\sum\limits_{i=1}^n x_i$ |
 - `Vpelji nepristranskost in doslednost cenilke`
-  - Cenilka $C_n$ parametra $\zeta$ je **nepristranska**, ce je $E(C_n)=\zeta, \forall n$
+  - Cenilka $C_n$ parametra $\zeta$ je **nepristranska**, ce je $E(C_n)=\zeta, \forall n$ in je asimpoticno nepristranska, ce je $\lim_{n \rightarrow \infty} E(C_n) = \zeta$
   - Cenilka $C_n$ parametra $\zeta$ je **dosledna** ce z rastocim n zaporedje $C_n$ verjetnostno konvergira k parametru
     $\zeta$, tj. za vsak $\epsilon > 0$, velja
     $$\lim\limits_{n\rightarrow \infty} P(|C_n - \zeta)< \epsilon) = 1$$
@@ -51,11 +54,11 @@
     - Denimo da se spremenljivka X na populaciji porazdeljuje normalno $N(\mu, \sigma)$. Na vsakem vzorcu (s ponavljanjem)
     izracunamo vzorcno povprecje $\overline{X}$. Po reprodukcijski lastnosti normalne porazdelitve je __porazdelitev vzorcnih 
 povprecij normalna__ kjer je:
-        $$E(\overline{X})=\mu$$
-        $$\text{SE}(\overline{X})=D(\overline{X})=\frac{\sigma}{\sqrt{n}}$$
+        $$E(\overline{X})=E(\dfrac{\sum X_i}{n}) = \dfrac{1}{n} \sum E(X_i)= \dfrac{\sum E(X_i)}{n}=\dfrac{\sum \mu}{n}=\mu$$
+        $$\text{SE}(\overline{X})=D(\overline{X})=\dfrac{1}{n^2} \sum_{i=1}^n D(Xi)=\dfrac{D(x)}{n}=\frac{\sigma}{\sqrt{n}}$$
 
     - __Kaj pa ce porazdelitev X ni normalna?__. Pri vecjih vzorcih (n>30), lahko uporabimo centralni limitni izrek, ki 
-    zagotavlja, da je spremenljivka \overline{X} porazdeljena standardizirano normalno. Vzorcno povprecje ima tedaj porazdelitev priblizno
+    zagotavlja, da je spremenljivka $\overline{X}$ porazdeljena standardizirano normalno. Vzorcno povprecje ima tedaj porazdelitev priblizno
     $$\overline{X}\sim N(\mu, \frac{\sigma}{\sqrt{n}})$$
 
 - `primer`
@@ -160,8 +163,11 @@ porazdeljeni po $\chi^2$ z m-1 oziroma n-1 prostostnimi stopnjami in sta tudi ne
 - `parameter σ te normalne porazdelitve`
     - $\sigma=\frac{2d_2^2 (d_1+d_2-2)}{d_1(d_2-2)^2(d_2-4)}$
 - `uporaba`
-    - Uporabljamo pri intervalu zuapanja in statisticnemu testu za kvocient 
-
+    - Uporabljamo pri intervalu zuapanja in statisticnemu testu za kvocient populacijskih varianc $\dfrac{\sigma_1^2}{\sigma_2^2}$
+- `primer`
+    
+    Zelimo prijemjati varianci teze prebivalcev dveh mest. $X$ je teza odraslih moskih enega mesta in $Y$ je teza odraslih moskih drugega mesta. Ker ne moramo izmeriti teze celotni populaciji si izberemo slucajni vzorec iz vsake od populacij in izmerimo njuno tezo. Slucajni spremenljivki sta neodvisni, obe porazdeljeni normalno.
+    Na njih tvorimo slucjane vzorce $(X_1, \dots, X_m)$ in $(Y_1, \dots, Y_m)$  ter izracunamo vzorcni povprecji in popravljeni vzorcni varianci za obe spremenljivki. Kvoceiwnt varianc ocenujemo s kvocientom popravljenih vzorcnih varianc.
 
 ## 8. Intervali zaupanja
 - `interval zaupanja σ je znan`
@@ -351,7 +357,21 @@ seboj na 5% stopnji znacilnosti. Najprej izracunajmo vzorcni koeficient korelaci
 Kriticno obmocje je doloceno z kriticnima vrednostima $\pm t_{\alpha/2}(n-2)=\pm t_{0.025}(6)=\pm 2.447$
 
 - `linearna regresija (definicije, predpostavke, metoda najmanjsih kvadratov)`
+    - Regresija prikazuje kaksen vpliv ima spremenljivka $X$ na $Y$, ce razen spremeljivke $X$ ni drugih vplivov na $Y$
+    - Slucjano spremenljivko $Y$ zapisemo kot $Y_i = E(Y_i) + e_i = a +bx_i + e_i$, kjer je $1 \leq i \leq todo$
 
-Linearno regresijsko funkcjo
+        $y=a+bx$ je enacba regresijske premice ,kjer je `a` neznan odsek, `b` neznan naklon premice in $e_i$ nakljucna napaka odvisna od $X$  
+    - __Metodo najmanjsih kvadratov__ uporabimo ko zelimo razdalje tock do regresijske premice cimbolj zmanjsati.
 - `casovne vrste in definicija trenda`
-- `Staticni test linearnosti mo`
+    - Casovna vrsta je niz istovrstnih podatkov, ki se nanasajo na zaporedne casovne razmike ali trenutke
+    - osnovni namen analize casovnih vrst:
+        - opazovati casovni razvoj pojavitev
+        - iskati njihove zakonitosti
+        - predvidevti nadaljni razvoj
+    - Casovne vrste analiziramo tako, da opazujemo spreminjanje vrednosti clenov v casovnih vrstah in iscemo zakonitosti tega spreminjanja
+    - Naloga enostavne analize casovnih vrst je primerjava med deli v isti casovni vrsti
+    - Z metodami, ki so specializirane za analizo casovnih vrst, analiziramo zakonitosti dinamike ene same vrste, s korelacijsko analizo pa zakonitosti odvisnosti v dinamiki vec pojavov, ki so med seboj v zvezi
+    - Trendi ali dolgorocno gibanje - $X_T$ podaja dolgorocno smer razvoja. Obicajno ga je mogoce izraziti s preprostimi rahlo ukrivljenimi krivuljami.
+- `Staticni test linearnosti modela`
+    - Validnost linearnega regresijskega modela lahko preverimo s tem, da narisemo graf ostankov v odvisnosti od $X$ vrednosti. Ali pa od predvidenih vrednosti $\hat{y} = a \hat{x} + \hat{b}$ in preverimo obstoj kaksnega vzorca.
+    - Ce so tocke enakomerno raztresene nad in pod premico in ne vidimo nobene oblike, je linearni model validen. Ce pa na grafu opazimo nekaksen vzorec, nam oblika vzorca daje informacijo, da v modelu manjka neka funkcija $X$.
