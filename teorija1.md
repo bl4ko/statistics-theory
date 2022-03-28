@@ -148,30 +148,29 @@
 - `uporaba pri problemu "zbiranja kuponov"`
   - V trgovini lahko kupimo Kraseve cokoladice kraljestvo zivali. Vsaka
   cokoladica ima prilozeno nalepko dolocene zivali. Vseh nalepk je 250,
-  posamezna pa stane okoli 0.4$. Pricakovana vrednost za takosno zbiranje pride $E(X) = \dfrac{250}{0.4}= 625 > 150$ (knjiga o zivalih).
+  posamezna pa stane okoli 0.4. Pricakovana vrednost za takosno zbiranje pride $E(X) = \dfrac{250}{0.4}= 625 > 150$ (knjiga o zivalih).
   - Nauk zgodbe: Bolj se splaca kupiti knjigo o zivalih, kot zbirati slicice, oz. ce se vseeno odlocimo da bomo zbirali slicice, se nam jih proti koncu splaca izmenjati z drugimi.
 
 ## 5. Hipergeometrijska porazdelitev
 
 - `zaloga vrednosti`
-  - $0,1, \dots, \min(n,R)$
+  - $0,1, 2, \dots$
 - `definicija (verjetnostna funkcija)`
-  - $X\sim (R,B,n)$
+  - $X\sim (n; M, N)$
   - X je stevilo rdecih kroglic med izbranimi n kroglicami.
-    - V posodi imamo R rdecih in B belih kroglic. Iz posode izvlecemo n kroglic.
-  - $P(X=k)=\frac{\begin{pmatrix} R \\ k \end{pmatrix} \cdot \begin{pmatrix}B\\n-k\end{pmatrix}}{\begin{pmatrix}R+B \\ n\end{pmatrix}}$
+    - V posodi imamo M rdecih in N-M belih kroglic. Iz posode izvlecemo n kroglic.
+  - $P(X=k)=\frac{\begin{pmatrix} M \\ k \end{pmatrix} \cdot \begin{pmatrix}N-M\\n-k\end{pmatrix}}{\begin{pmatrix}N \\ n\end{pmatrix}}$
 - `omejitve parametrov`
-  - $\text{max}(0, n - (R - B))\leq k \leq \text{min}(R,n)$
-  - $N=R+B$
+  - $\text{max}(0, n - (N - M))\leq k \leq \text{min}(M,n)$
   - $n\leq N$
 - `primer uporabe`
   - Iz vrece, ki ima 4 modre in 5 rdecih potegnemo 3 kroglie.
   - Koliksna je verjetnost da potegnemo 2 modri
-    - R=4, B=5, n=3
+    - M=4, N-M=5, n=3
   - $P(X=2)=\frac{\begin{pmatrix} 4 \\ 2 \end{pmatrix} \cdot \begin{pmatrix}5\\1\end{pmatrix}}{\begin{pmatrix}9 \\ 3\end{pmatrix}}=0.357$
 - `Standardni odklon in upanje`
-  - $E(X)=\frac{nR}{R+B}$
-  - $D(X)=\frac{nRB\cdot(R+B-n)}{(R+B)^2(R+B-1)}$
+  - $E(X)=\frac{nM}{N}$
+  - $D(X)=\frac{M(N-M)n(N-n)}{N^2(N-1)}$
 - `je vec parametrov boljse ali slabse`
   - Pri hipergeometrijski porazdelivi imamo le dve kategoriji (ima lastnost, nima lastonsti). Ampak lahko bi imeli vec kategorij, in
   posledicno vec informacij. Na splosno je pri merjenju bolje izbrati vecje stevilo parametrov/kategorij, saj na tak nacin pridobimo vec informacij. Parametri dolocajo porazdelitev: nam pokazejo kje je povprecje(pricakovana vrednost), mediana, modus, oblika porazdelitve,..
@@ -223,23 +222,26 @@
 
 - `slika: unimodalna, zvonasta krivulja`
   - N($\mu,\sigma$)
-      <p align="center"><img src="./images/normalna-porazdelitev.png" width="90%"></p>
+      <p align="center"><img src="./images/normalna-porazdelitev.png" width="80%"></p>
 - `povezava z vsoto slucajnih spremenljivk in/ali CLI`
   - Naj bodo $X_1, \dots , X_n$ **neodvisne** in **enako porazdeljene** slucajne spremenljivke s: 
     - $E(X_i)=\mu$, 
     - $D(X_i) = \sigma^2$
   - Potem za dovolj velik n velja $S=X_1+\dots+X_n$
     - $S\sim N(n\cdot \mu, \sqrt{n}\cdot\sigma)$
+  - Normalna porazdelitev je najpomembnejsa oz. najpogosteje uporabljena porazdelitev v statistiki,
+  saj marsikatera kolicina predstavlja vsoto mnogih drugih in je zato vsaj priblizno n. porazdeljena. Npr. Rezultat izpita, ki je sestavljen iz vecjega stevila kratkih vprasanj, je vsota posameznih vprasanj.
 - `zaloga vrednosti, gostota verjetnosti, funkcija napake`
   - $X\sim N(\mu, \sigma)$
   - $Z_X = \mathbb{R}$
   - $$p_X(x)=\frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$
-  - **funkcija napake** $\phi(x)=F_X(x)=\int\limits_{-\infty}^{x} e^{-\frac{y^2}{2}}dy$
-  - **funkcija napake** $\phi(\frac{x-\mu}{\sigma})$
+  - **funkcija napake** $\phi(x)=F_X(x)=\int\limits_{-\infty}^{x} e^{-\frac{y^2}{2}}dy$, je liha, zvezno odvedljiva in strogo narascujoca funkcija
+  - posebne vrednosti funkcije napake:
+    - $\phi(0) = 0, \phi(\infty) = 0.5, \phi(- \infty) = -0.5$
 - `standardizacija in tabela za N(0,1)`
   - Porazdelitev $N(0,1)$ je standardizirana normalna porazdelitev
   - $N(0,1)$
-      <p align="center"><img src="./images/zvonasta-krivulja.png" width="90%"></p>
+      <p align="center"><img src="./images/zvonasta-krivulja.png" width="80%"></p>
 
   - Spremenljivko $X \sim N(\mu, \sigma)$ pretvorimo s transformacijo $Z= \dfrac{X - \mu}{\sigma}$ v standardno spremenljivko $Z \sim N(0,1)$
 - `kje sta` $\mu$ `in` $\sigma$ `na grafu y=p(x) in pravilo 68-95-99,7`
@@ -249,7 +251,16 @@
     - Priblizno 95% povrsine pod krivuljo spada v dva standardna odkloa $[\mu-2\sigma, \mu+2\sigma]$
     - Priblizno 99% povrsine pod krivuljo spada v tri standardne odklone $[\mu-3\sigma, \mu+3\sigma]$
 - `vecrazsezna gostota porazdelitve`
+  - $p(x) = \sqrt{\dfrac{detA}{(2 \pi)^n}} e^{-\dfrac{1}{2}(x - \mu)^TA(x- \mu)}$
+  kjer je matrika A kovariancna matrika.
 - `vektorska oblika s kovariancno matriko`
+  - primer kovariancne matrike za $(X, Y) \sim N(\mu_x, \mu_y, \sigma_x, \sigma_y, \rho)$
+    $$
+      \begin{bmatrix}
+            \sigma_x^2 & \rho \sigma_x \sigma_y  \\
+            \rho \sigma_x \sigma_y & \sigma_y^2  \\
+      \end{bmatrix}
+    $$
 - `Laplaceov tockovni obrazec - Funkcija napake`
 
   - za p blizu 1/2 in velike n velja $B(n,p)\approx N(np, \sqrt{npq})$
@@ -263,7 +274,7 @@
     - je liha, zvezno odvedljiva in strogo narascujaca funkcija
     - $\phi(0)=0$
 
-      <p align="center"><img src="./images/funkcija-napake.png" width="60%"></p>
+      <p align="center"><img src="./images/funkcija-napake.png" width="50%"></p>
 
 ## 8. Bernulliljev zakon velikih stevil
 
@@ -318,6 +329,7 @@
   - $X\sim \text{Exp}(\lambda)$
   - Opisuje cas med dvema zaporednima dogodkoma v Poissonovem procesu
     - tj. proces kjer se dogodki pojavljajo zvezno in neodivisno pri povprecni hitrosti ponavljanja
+    - hkrati je tudi analog geom. porazdelitve
 - `slika, zaloga vrednosti, gostota verjetnosti`
   - $p(x)=\lambda e^{-\lambda x}$, $x\geq 0$
   - $Z_f = [0, \infty]$
@@ -331,16 +343,18 @@
 - `karakterizacija: zvezna slucajna spremenljivka brez spomina`
     - Poissonova porazdelitev: pojavitev dogodka je nedovisna od tega kdaj se pojavi dogodek pred tem
     - $P(X > x + y | X > x) = P(X > y)$
+    - npr. zivljenska doba zarnice
 ## 10. Gama porazdelitev
 
 - `posebni primeri (npr. eksponentna, hi-kvadrat)`
   - Eksponentno porazdelitev lahko se posplosimo: pri Poissonovem procesu merimo cas da se zgodi k zaporednih dogodkov.
   - Naj bosta k,$\lambda > 0$. Tedaj imamo `Gama Porazdelitev` $X\sim \Gamma(k,\lambda)$
-    - k parameter oblike
-    - $\lambda$ paramter raztega
+    - k  je stevilo dogodkov, za katere cakamo.
+    - $\lambda$ paramter raztega, pove nam kako se dogodki casovno odvijajo
     - na sliki $\theta= \frac{1}{\lambda}$, za k = 1 dobimo eksponentno porazdelitev
       <p align="center"><img src="./images/gamma-porazdelitev.png" width="60%"></p>
 - `Kako lahko iz eskponentne pridemo do Gama porazdelitve`
+  - za parameter pri gama k = 1 ali;
   - Ce $X_i \sim \text{Exp}(\lambda)$
   - potem $\Gamma(k, \lambda)= X_1+X_2+\dots+X_k$
 - `slika, zaloga vrednosti, gostota verjetnosti in kako pridemo do zgornjih primerov iz Gama porazdelitve`
