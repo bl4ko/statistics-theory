@@ -21,14 +21,14 @@
 - `Vzorcne mere razprsenosti (razmik, varianca, standardni odklon)`
   - **vzorcni razmah/razmik**: $\max\limits_i x_i - \min\limits_i x_i$
   - **Vzorcna disperzija**: $s^2_0 = \frac{1}{n} \sum\limits_{i=1}^n (x_i-\overline{x})^2$
-  - **Popravljen vzorcna disperzija** $s^2 = \frac{1}{n-1} \sum\limits_{i=1}^n (x_i-\overline{x})^2$
+  - **Popravljen vzorcna disperzija** $s^2 = \frac{1}{n-1} \sum\limits_{i=1}^n (x_i-\overline{x})^2$ uporabimo jo ko je vzorec majhen
   - **vzorcna odklona**: $s_0$ in s
 - `Vzorcne mere oblike porazdelitve (koeficienta asimetrije in sploscenosti)`
   - **koeficient asimetrije** (s centralnimi momenti): $g_1 = \frac{m_3}{m_2^{3/2}}$
-  - **koeficient sploscenosti** (s centralnimi momenti): $K=g_2=\frac{m_4}{m_2^2-3}$
-    - $K=3$ ~ normalna porzadelitev zvonaste oblike
-    - $K<3$ ~ bolj kopasta kot normalna porazdelitev, s krajsimi repi
-    - $K>3$ ~ bolj spicasta kot normalna porazdelitev, s daljsimi repi 
+  - **koeficient sploscenosti** (s centralnimi momenti): $K=g_2=\frac{m_4}{m_2^2} - 3$
+    - $K=0$ ~ normalna porzadelitev zvonaste oblike
+    - $K<0$ ~ bolj kopasta kot normalna porazdelitev, s krajsimi repi
+    - $K>0$ ~ bolj spicasta kot normalna porazdelitev, s daljsimi repi 
 - `Definicija cenilke`
   > cenilka je pravilo ali formula, ki nam pove, kako izracunati numericno oceno parametra populacije na osnovi merjenj vzorca.
   - **Cenilka** parametra $\zeta$ je __vzorcna statistika__ $C=C(X_1,\dots,X_n)$, katere porazdelitveni zakon je odvisen
