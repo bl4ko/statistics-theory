@@ -124,6 +124,7 @@
 - `Poissonov obrazec`
   - $B(n,p)\approx P(np)$
     - dokaz zgoraj 
+
 ## 4. Pascalova porazdelitev
 
 - `primeri (npr. geometrijska)`
@@ -344,6 +345,7 @@
     - Poissonova porazdelitev: pojavitev dogodka je nedovisna od tega kdaj se pojavi dogodek pred tem
     - $P(X > x + y | X > x) = P(X > y)$
     - npr. zivljenska doba zarnice
+
 ## 10. Gama porazdelitev
 
 - `posebni primeri (npr. eksponentna, hi-kvadrat)`

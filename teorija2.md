@@ -30,18 +30,25 @@
     $$\overline{x} = \dfrac{x_1k_1 + \dots + x_mk_m}{N} = x_1f_1 + \dots + x_mf_m$$
   - predstavlja $\mu$ pri CLI
     $$E(X)=\sum\limits^n_{i=1}x_i \cdot p_i$$
+  - $P(X = a) = 1 \Rightarrow E(X) = a$
 - `definicija za diskretne slucajne spremenljivke (kdaj obstaja)`
   - diskretna slucjna spremenljivka je slucajna spremenljivka, ki ima stevno zalogo vrednosti
   - $E(X)=\sum\limits^n_{i=1}x_i \cdot p_i$
-  - **pogoj** $\sum\limits^n_{i=1} |x_i| \cdot p_i < \infty$
+  - **pogoj** $\sum\limits^n_{i=1} |x_i| \cdot p_i < \infty$ 
+  - Slucajna spremenljivka $X$ ima pricakovano vrednost, ko ga ima slucajna sp. $|X|$. Ocitno velja $|E(X))| \leq E(|X|)$.
 - `definicija za zvezne slucajne spremenljivke (kdaj obstaja)`
   - zvezna slucajna spremenljivka je slucajna spremenljivka ki lahko zavzameo katerokoli vrednost iz nekega intervala
   - $E(X) = \int\limits_{-\infty}^{\infty} x\cdot p_X(x) dx$
   - **pogoj**: $\int\limits_{-\infty}^{\infty} |x|p_X(x)dx < \infty$
 - `primer slucajne spremenljivke za katero ne obstaja E(X)`
   - $X\sim p(x) = \frac{1}{\pi (1+x^2)}$ <u>**Caucheyeva porazdelitev**</u>
-  - $\int\limits_{-\infty}^{\infty} \frac{x}{\pi (1+x)^2} \rightarrow$ divergira
   - $x_k= (-1)^{k + 1} \dfrac{2^k}{k}$ in $p_k = 2^{-k}$ (primer diskretne ko je $E(X) = \infty$)
+  V tem primeru bi morala biti koncna vsota: $s = \frac{1}{1}+\frac{1}{2}+\frac{1}{3} + \dots$, opazimo $\frac{1}{3}+\frac{1}{4} >\frac{1}{4}+\frac{1}{4} = \frac{1}{2}$, ter 
+  v splosnem 
+  $$
+    \frac{1}{2^n+1} + \dots + \frac{1}{2^{n+1}} > \frac{2^n}{2^n+1} = \frac{1}{2}
+  $$
+  torej velja $S> \sum_{n=1}^{\infty} \frac{n}{2} \rightarrow$ neskoncna vsota.
 - `lastnosti: linearnost, z dokazom za homogenost`
   - **linearnost**: $E(aX+bY)=aE(x)+bE(Y)$
   - **homogenost**: $E(aX)=aE(X)$:
@@ -97,7 +104,10 @@
     - $D(X_s)=D(\frac{X-\mu}{\sigma})=\frac{D(X-\mu)}{\sigma^2}=\frac{\sigma^2+0}{\sigma^2}=1$
   - Standardizacija slucajne spremenljivke povzroci da vsaka spr. enako vpliva na pricakovano vrednost (npr. ce smo neke rezultate zmerili z razlicinimi merili, to nam pomaga za primerjavao razlicnih tipov spremenljivk)
 - `Skica dokaza zveze “kosinusnu izrek”`
-  - TODO
+  - $$
+  D(X + Y) = D(X) + D(Y) \Rightarrow \sigma^2(x+y) = \sigma(x) + \sigma(y)
+  $$
+  - analogija: V geometriji kosinusni izrek velja samo za pravokotne trikotnike, ravno tako pri statistiki velja samo za neodvisne spremenljivke. Klicemo ga statisticni kosinusni izrek.
 
 ## 3. Korelacija in kovarianca
 
@@ -197,9 +207,10 @@
   - Naj porazdelitvena funkcija opisuje verjetnost da je slucajna tocka (X,Y) v mnozici A(x,y)
     $$F(x,y)=p(X\leq x, Y\leq y)=P(X,Y)\in A(x,y)$$
   - Tedaj je verjetnost da je slucjana tocka (X,Y) v pravokotniku $(a,b]\times (c,d]$ enaka:
-    $$P(X,Y)\in (a,b]\times (c,d]=F(b,d)-F(a,d)-F(b,c)+F(a,c)
+    $$P(X,Y)\in (a,b]\times (c,d]=F(b,d)-F(a,d)-F(b,c)+F(a,c)$$
 - `neodvisnost`
-  - $P(X=x)\cdot P(Y=y) = P(X=x,Y=Y)$
+  - diskretne: $P(X=x)\cdot P(Y=y) = P(X=x,Y=Y)$
+  - zvezne: $P_{X,Y}(X, Y) = P_X(X) * P_Y(Y)$
 
 ## 5. Polinomska porazdelitev
 
@@ -261,7 +272,10 @@
   - __Primer__: naj bo $Y=X^2$
     - $P(X^2\leq y)=P(|X|\leq \sqrt{y})=P(-\sqrt{y} \leq X \leq \sqrt{y})$
 - `zveza med gostatami verjetnosti`
-  - $f_Y(y)=f_X(g^{-1}(y)) \left| \frac{dg^{-1}(y)}{dy}\right|$
+  - Ce je $X$ porazdeljena z zvezno gostoto $p(x)$, je
+    $F_Y(y) = \int_{-\infty}^{f^{-1}(y)} p(x) dx$,
+  - in ce je $f$ se odvedljiva velja 
+    $p_Y(x) = p(f^{-1}(y))f^{-1}(y)'$
 - `formula za pricakovano vrednost`
   - diskretna:
     $$E(f(X))=\sum\limits^{\infty}_{k=0} f(x_k)\cdot p_k$$
@@ -283,6 +297,7 @@
 ## 7. Funkcije slucajnih vektorjev
 
 - `primer`
+  - Izracun pricakovane vrednosti $(E(X))$
 - `definicija`
   - Naj bo $f:(x,y)\rightarrow (u,v)$ transofrmacija slucajnega vektorja (X,Y) v slucajni vektor (U,V) dolocena z zvezama
     $U=u(X,Y)$ in $V=v(X,Y)$. Porazdelitveni zakon za nov slucajni vektor $(U,V)$ je
@@ -296,7 +311,7 @@
     $$P(Z=z)=\sum\limits^\infty_{k=-\infty} P(X=k)P(Y=z-k)$$
     - ce sta neovidsni pa
       $$p_Z(z)=\int\limits^\infty_{-\infty}p_X(x)p_Y(z-x)dx$$
-  - In tej formuli pravimo **konvolucija** slucajnih distribucij
+  - Gostota $p_Z = p_X + p_Y$ je **konvolucija** funkcij $p_X$ in $p_Y$.
 - `uporaba za vsoto dveh neodvisnih normalnih porazdelitev`
   - $X\sim N(\mu_X, \sigma^2_X)$
   - $Y\sim N(\mu_Y, \sigma^2_Y)$
@@ -336,12 +351,12 @@
   - Vpeljimo pogojno verjetnostno funkcijo $p_{i|k}=\frac{p_{ik}}{q_k}$. Tedaj je $F_X(x|y_k)=\sum\limits_{x_i\leq x}p_{i|k}$
 - `izpeljava pogojne gostote v zveznem primeru`
   - Naj bosta gostoti $p(x,y)$ in $p_Y(y)> 0$ zvezni. Tedaj je:
-    $$F_X(x|y)=\lim\limits_{h\rightarrow 0}\frac{\frac{F(x,y+h)-F(x,y)}{h}}{\frac{F_Y(y+h)-F_Y(y)}{h}}=\frac{\frac{\partial F}{\partial y}(x,y)}{F_Y'(y)}=\frac{1}{p_Y(y)}\int\limits^x_{-\infty}p(u,y)du
+    $$F_X(x|y)=\lim\limits_{h\rightarrow 0}\frac{\frac{F(x,y+h)-F(x,y)}{h}}{\frac{F_Y(y+h)-F_Y(y)}{h}}=\frac{\frac{\partial F}{\partial y}(x,y)}{F_Y'(y)}=\frac{1}{p_Y(y)}\int\limits^x_{-\infty}p(u,y)du$$
 - `primer za zvezni slucajni vektor`
 
 ## 9. Momenti in kvantili
 
-- Momenti pokazejo lastnosti vzorca - povprecno vrednost, razprsitev, asimetrijo in sploscenost
+- Momenti pokazejo lastnosti vzorca - povprecno vrednost, razprsitev, asimetrijo in sploscenost. 
 - `katere momente poznas`
 
   - **Zacetne** (merimo od 0)
@@ -361,7 +376,8 @@
     - $\frac{1}{n}\frac{\Sigma(x-\mu)^4}{\sigma^4}$ (standardizeran cetrti moment)
 
 - `definicija momenta reda k glede na tocko a`
-  - $m_k(a)=E((X-a)^k)$
+  - Momenti so posplositev pricakovane vrednosti in disperzije.
+  - Momenti reda $k \in N $ glede na tocko $a \in R$ imenujemo kolicino $m_k(a) = E((X - a)^k)$
   - Moment obstaja, ce obstaja pricakovana vrednost, ki ni neskoncna $E(|X-a|^k) < \infty$
   - Za $a = 0$ dobimo zacetni moment $z_k = m_k(0)$
   - Za $a = E(x)$ dobimo centralni moment $m_k = m_k(E(X))$
