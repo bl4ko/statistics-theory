@@ -88,7 +88,7 @@
   - **Definicija**: $D(X) = E((X-E(X))^2)=E(X^2)-E^2(X)$
   - $D(X)\geq 0$
   - **Pogoj**: nesme biti neskoncna
-  - $D(aX) = a^2D(X) $ in $D(x + a) = D(X)$
+  - $D(aX) = a^2D(X)$ in $D(x + a) = D(X)$
 - `D(X) = 0 ⇐⇒ X je konstanta`
   - $D(X)=E((X-E(X))^2)=E((X-X)^2)=E(0)=0$
   - Torej ce je npr $P(X=a)=c$, Bo odklon vseh ostalih posameznih vzorcev od povprecja = 0;
@@ -103,11 +103,11 @@
     - $E(X_s)=E(\frac{X-\mu}{\sigma})=\frac{E(X-\mu)}{\sigma}=\frac{\mu-\mu}{\sigma}=0$
     - $D(X_s)=D(\frac{X-\mu}{\sigma})=\frac{D(X-\mu)}{\sigma^2}=\frac{\sigma^2+0}{\sigma^2}=1$
   - Standardizacija slucajne spremenljivke povzroci da vsaka spr. enako vpliva na pricakovano vrednost (npr. ce smo neke rezultate zmerili z razlicinimi merili, to nam pomaga za primerjavao razlicnih tipov spremenljivk)
-- `Skica dokaza zveze “kosinusnu izrek”`
+- `Skica dokaza zveze “kosinusni izrek”`
   - $$
-  D(X + Y) = D(X) + D(Y) \Rightarrow \sigma^2(x+y) = \sigma(x) + \sigma(y)
+  D(X + Y) = D(X) + D(Y) + 2Cov(X, Y) \sim (x+y)^2 = x^2 + y^2 + 2cos\alpha
   $$
-  - analogija: V geometriji kosinusni izrek velja samo za pravokotne trikotnike, ravno tako pri statistiki velja samo za neodvisne spremenljivke. Klicemo ga statisticni kosinusni izrek.
+  - analogija:  Disperzijo bi lako primerjali s tipicnim geometrijskim kosinusnim izrekom. Ko sta si stranici pravokotni se izraz izracuna neodvisno od $cos(90)=0$. Ce pogledamo pri disperziji, ko sta si spremenljivki nedovisni je njuna kovarianca $Cov(X, Y) = 0$.
 
 ## 3. Korelacija in kovarianca
 
@@ -377,7 +377,7 @@
 
 - `definicija momenta reda k glede na tocko a`
   - Momenti so posplositev pricakovane vrednosti in disperzije.
-  - Momenti reda $k \in N $ glede na tocko $a \in R$ imenujemo kolicino $m_k(a) = E((X - a)^k)$
+  - Momenti reda $k \in N$ glede na tocko $a \in R$ imenujemo kolicino $m_k(a) = E((X - a)^k)$
   - Moment obstaja, ce obstaja pricakovana vrednost, ki ni neskoncna $E(|X-a|^k) < \infty$
   - Za $a = 0$ dobimo zacetni moment $z_k = m_k(0)$
   - Za $a = E(x)$ dobimo centralni moment $m_k = m_k(E(X))$
