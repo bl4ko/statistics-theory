@@ -311,7 +311,7 @@
     $$P(Z=z)=\sum\limits^\infty_{k=-\infty} P(X=k)P(Y=z-k)$$
     - ce sta neovidsni pa
       $$p_Z(z)=\int\limits^\infty_{-\infty}p_X(x)p_Y(z-x)dx$$
-  - Gostota $p_Z = p_X + p_Y$ je **konvolucija** funkcij $p_X$ in $p_Y$.
+  - Gostota $p_Z = p_X * p_Y$ je **konvolucija** funkcij $p_X$ in $p_Y$.
 - `uporaba za vsoto dveh neodvisnih normalnih porazdelitev`
   - $X\sim N(\mu_X, \sigma^2_X)$
   - $Y\sim N(\mu_Y, \sigma^2_Y)$
