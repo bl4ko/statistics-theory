@@ -302,7 +302,10 @@
     - ter dejstvo: $\text{Var}(\overline{X}_ n)= \text{Var}(\frac{1}{n}(X_1+\cdots +X_n))=\frac{\sigma^2 n}{n^2}$
     $$P(|\overline{X}_n-\mu| > \epsilon)\leq \frac{\text{Var}(\overline{X}_n)}{\epsilon^2}=\frac{\sigma^2}{n\epsilon^2}\rightarrow 0$$
 - `statisticna in klasicna definicija verjetnosti`
-    - [del-0](./teorija0.md/1#4.-popoln-sistem-dogodkov-in-definicije-vrjetnosti) 
+    - __klascina__:
+      - Naj bo G popopolni sistem dogodkov $G =\{H_1, \dots, H_n\} = 1$. $P(H_i) = \frac{1}{n}$. Imenujmo dogodek A, ki se zgodi $k$-krat. Po N ponovitvah poskusa sledi $P(A) = \frac{k}{N}$.
+    - __statisticna__:
+      - Verjetnost dogodka A v danem poskusu je stevilo $P(A)$, pri katerem se navadno ustali relativna frekvenca pojavitve A, pri velikem stevilu poskusov.
 - `definicija funkcije napake`
     - [zgoraj](./1#7.-normalna-porazdelitev)
 - `uporaba/primer za izracun verjetnosti ali velikost n`
@@ -319,6 +322,9 @@
     $$P(k_1-1, k_2)\approx \phi (\frac{k_2-np}{\sqrt{npq}})-\phi(\frac{k_1-1-np}{\sqrt{npq}})\approx 2\phi(\frac{n\epsilon}{\sqrt{npq}})$$
 - `Zakaj to smatramo za prvo verzijo CLI?`
     - Pri velikem stevilu ponovitev poskusa, povprecje dobljenih vrednosti konvergira k pricakovani vrednosti.
+    $$
+      \lim_{n \rightarrow \infty} P(|E(X) - \mu| < \epsilon) = 1
+    $$
 
 ## 9. Eksponentna porazdelitev
 

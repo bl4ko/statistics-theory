@@ -43,11 +43,23 @@
   - Cenilka $C_n$ parametra $\zeta$ je **dosledna** ce z rastocim n zaporedje $C_n$ verjetnostno konvergira k parametru
     $\zeta$, tj. za vsak $\epsilon > 0$, velja
     $$\lim\limits_{n\rightarrow \infty} P(|C_n - \zeta)< \epsilon) = 1$$
-- `CLI`
-  - Naj bo $(X_1, X_2, \dots, X_n)$ normlano porazdeljen enostavni slucajni vzorec.
-    - $X_i \sim N(\mu, \sigma)$
-    $$\sum\limits_{i=1}^n X_i \sim N(n\mu, \sigma \sqrt{n})$$
 
+- `CLI`
+    - Opazujemo doloceno lastnost(neke populacije velikosti N), ki jo spremlja spremenljivka $X$.
+    - Radi bi oceneili pricakovano vrednost $E(X)$, pri cemer predpostavimo $D(X) < \infty$.
+    - V ta namen si izberemo vzorec velikosti $n << N$ (nimamo vec moznosti, da bi opravili meritve na celotni populaciji ali pa je to enostavno predrago):
+        - vzorec je vektor $(x_1, \dots, x_n)$, sestavljen iz $n$ meritev.
+        - izberemo ga nakljucno, mertive in izbira pa so med seboj neodvisne
+        - vzorec mora biti dovolj velik (npr. vsaj $n \geq 30$)
+    - Naj bo $X_i (1 \leq i \leq n)$ spremenljivka, ki spremlja $i$-to meritev. Lahko predpostavimo, da ima enako porazdelitev kot $X$ ter zato tudi 
+    $$
+    E(X_i) = \mu \text{ in } D(X_i) = \sigma^2
+    $$
+    - Iscemo dobro formulo oz. funkcijo $f(x_1, \dots, x_n)$ (cenilko), za katero velja, da je simetricna in da bo njena vrednost na danem vzorcu z dovolj veliko verjetnostjo blizu $E(X)$. V primeru $E(X)$ je to vzorcno povprecje (ki je tudi slucajna spremenljivka):
+    $$
+        \overline{X} = \frac{1}{n} \sum^n_{i=1} X_i
+    $$
+    - CLI nam zagotavlja, da se $\overline{X}$ porazdeljuje normalno, tj. $\overline{X} \sim N(\mu_{\overline{X}}, \sigma_{\overline{X}})$ (ob predpostavkah $n \leq 30$ in $\sigma < \infty$ !). V praksi nas zanima, koliko sta parametra $\mu_{\overline{X}}, \sigma_{\overline{X}}$!
 ## 2. CLI za $\overline{X}$
 - `teorija`
 
