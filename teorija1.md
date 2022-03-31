@@ -52,10 +52,10 @@
   - `Pascalova/Negativna binomska` $\sim P(n,p)$
     - X je stevilo ponovitev poskusa do (vkljucno) n-te pojavitve izida A
       - npr. koliko poskusov rabimo do 10. sestice
-    - $P(X=k)=\begin{pmatrix}k-1 \\ n-1\end{pmatrix}p^{k-n}p^n$
+    - $P(X=k)=\begin{pmatrix}k-1 \\ n-1\end{pmatrix}p^{k-n}(1-p)^n$
   - `Hipergeometrijska` $\sim H(R,B,n)$
     - X je stevilo rdecih kroglic med izbranimi n kroglicami
-    - $P(X=k)=\frac{\begin{pmatrix}R\\k\end{pmatrix}+\begin{pmatrix}B\\n-k\end{pmatrix}}{\begin{pmatrix}R+B \\ n\end{pmatrix}}$
+    - $P(X=k)=\frac{\begin{pmatrix}R\\k\end{pmatrix}\begin{pmatrix}B\\n-k\end{pmatrix}}{\begin{pmatrix}R+B \\ n\end{pmatrix}}$
   - `Poissonova` $X\sim P(\lambda)$
     - V povprecju imamo na intervalu $\lambda$ ponovited dogdka A
     - X pa je stevilo ponovitev dogodka A na danem intervalu
